@@ -1,0 +1,10 @@
+attack_category,window_count,percentage,rare_class
+BENIGN,1939,79.0139,False
+Brute Force,171,6.9682,False
+Bot,163,6.6422,False
+DoS,71,2.8932,False
+Infiltration,27,1.1002,False
+PortScan,27,1.1002,False
+Web Attack,24,0.978,False
+DDoS,21,0.8557,False
+ATTACK,11,0.4482,True

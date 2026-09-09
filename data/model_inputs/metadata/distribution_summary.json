@@ -1,0 +1,36 @@
+{
+    "total_windows": 2454,
+    "benign_windows": 1939,
+    "attack_windows": 515,
+    "total_attack_categories": 8,
+    "total_categories": 9,
+    "rare_class_threshold": 20,
+    "rare_categories": [
+        "ATTACK"
+    ],
+    "categories_feasible_for_70_15_15_split": [
+        "BENIGN",
+        "Brute Force",
+        "Bot",
+        "DoS",
+        "Infiltration",
+        "PortScan",
+        "Web Attack",
+        "DDoS",
+        "ATTACK"
+    ],
+    "categories_not_feasible_for_70_15_15_split": [],
+    "categories_recommended_for_supervised_learning": [
+        "BENIGN",
+        "Brute Force",
+        "Bot",
+        "DoS",
+        "Infiltration",
+        "PortScan",
+        "Web Attack",
+        "DDoS"
+    ],
+    "categories_not_recommended_for_supervised_learning": [
+        "ATTACK"
+    ]
+}

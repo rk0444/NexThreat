@@ -1,0 +1,3 @@
+strategy,categories_missing_from_train,categories_missing_from_validation,categories_missing_from_test,boundaries_inside_attack_segments,attack_segment_fragmentation_count,temporal_order_preserved,cross_day_continuity_assumed,rare_category_isolation_risk,potential_temporal_leakage_risk
+Global Chronological 70/15/15,4,6,5,1,1,True,True,"High (ATTACK is 100% in Train; Infiltration, Bot, PortScan, DDoS are 0% in Train)","Low within days, but assumes non-existent cross-day continuum"
+Per-Day Chronological 70/15/15,2,4,6,2,2,True,False,"High (ATTACK is 100% in Val; DDoS is 100% in Test; DoS, Bot, Web Attack are 100% in Train)",Medium (Intraday attack bursts are sliced across Train/Val boundaries)

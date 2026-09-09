@@ -1,0 +1,15 @@
+dataset_day,attack_category,train_windows,validation_windows,test_windows
+Monday,BENIGN,341,73,73
+Tuesday,BENIGN,253,36,72
+Tuesday,Brute Force,89,37,1
+Wednesday,ATTACK,0,11,0
+Wednesday,BENIGN,285,65,77
+Wednesday,DoS,71,0,0
+Thursday,BENIGN,265,53,73
+Thursday,Brute Force,44,0,0
+Thursday,Infiltration,7,20,0
+Thursday,Web Attack,24,0,0
+Friday,BENIGN,164,58,51
+Friday,Bot,163,0,0
+Friday,DDoS,0,0,21
+Friday,PortScan,12,15,0

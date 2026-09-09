@@ -1,0 +1,10 @@
+attack_category,window_count,first_day,last_day,first_window_id,last_window_id
+BENIGN,1939,Monday,Friday,20170703_1355,20170707_2202
+Brute Force,171,Tuesday,Thursday,20170704_1417,20170706_1500
+DoS,71,Wednesday,Wednesday,20170705_1401,20170705_1619
+ATTACK,11,Wednesday,Wednesday,20170705_2012,20170705_2032
+Web Attack,24,Thursday,Thursday,20170706_1515,20170706_1542
+Infiltration,27,Thursday,Thursday,20170706_1919,20170706_2044
+Bot,163,Friday,Friday,20170707_1434,20170707_1759
+PortScan,27,Friday,Friday,20170707_1805,20170707_2023
+DDoS,21,Friday,Friday,20170707_2056,20170707_2116

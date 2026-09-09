@@ -1,0 +1,6 @@
+dataset_day,ATTACK,BENIGN,Bot,Brute Force,DDoS,DoS,Infiltration,PortScan,Web Attack
+Monday,0,487,0,0,0,0,0,0,0
+Tuesday,0,361,0,127,0,0,0,0,0
+Wednesday,11,427,0,0,0,71,0,0,0
+Thursday,0,391,0,44,0,0,27,0,24
+Friday,0,273,163,0,21,0,0,27,0

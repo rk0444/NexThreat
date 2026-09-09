@@ -1,0 +1,11 @@
+dataset_day,total_windows,train_start,train_end,validation_start,validation_end,test_start,test_end,boundary_name,boundary_position,boundary_inside_attack_segment,segment_id,attack_category
+Monday,487,1,341,342,414,415,487,Train/Validation,341,False,None,None
+Monday,487,1,341,342,414,415,487,Validation/Test,414,False,None,None
+Tuesday,488,1,342,343,415,416,488,Train/Validation,342,True,Tuesday_SEG_003,Brute Force
+Tuesday,488,1,342,343,415,416,488,Validation/Test,415,False,None,None
+Wednesday,509,1,356,357,432,433,509,Train/Validation,356,False,None,None
+Wednesday,509,1,356,357,432,433,509,Validation/Test,432,False,None,None
+Thursday,486,1,340,341,413,414,486,Train/Validation,340,True,Thursday_SEG_012,Infiltration
+Thursday,486,1,340,341,413,414,486,Validation/Test,413,False,None,None
+Friday,484,1,339,340,412,413,484,Train/Validation,339,False,None,None
+Friday,484,1,339,340,412,413,484,Validation/Test,412,False,None,None

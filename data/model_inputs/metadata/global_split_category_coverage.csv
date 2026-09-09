@@ -1,0 +1,10 @@
+attack_category,train_windows,validation_windows,test_windows,missing_from_train,missing_from_validation,missing_from_test
+BENIGN,1441,289,209,False,False,False
+Brute Force,171,0,0,False,True,True
+Bot,0,52,111,True,False,False
+DoS,71,0,0,False,True,True
+Infiltration,0,27,0,True,False,True
+PortScan,0,0,27,True,True,False
+Web Attack,24,0,0,False,True,True
+DDoS,0,0,21,True,True,False
+ATTACK,11,0,0,False,True,True

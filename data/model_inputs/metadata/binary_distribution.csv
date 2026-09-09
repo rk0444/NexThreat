@@ -1,0 +1,3 @@
+is_attack,label,window_count,percentage
+0,BENIGN,1939,79.0139
+1,ATTACK,515,20.9861

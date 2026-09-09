@@ -1,0 +1,10 @@
+attack_category,window_count,estimated_train,estimated_validation,estimated_test,split_feasible,recommended_for_supervised_learning
+BENIGN,1939,1357,291,291,True,True
+Brute Force,171,120,26,25,True,True
+Bot,163,114,24,25,True,True
+DoS,71,50,11,10,True,True
+Infiltration,27,19,4,4,True,True
+PortScan,27,19,4,4,True,True
+Web Attack,24,17,4,3,True,True
+DDoS,21,15,3,3,True,True
+ATTACK,11,8,2,1,True,False

@@ -1,0 +1,10 @@
+attack_category,days_present,train_total,validation_total,test_total,missing_from_train,missing_from_validation,missing_from_test
+BENIGN,Friday|Monday|Thursday|Tuesday|Wednesday,1308,285,346,False,False,False
+Brute Force,Thursday|Tuesday,133,37,1,False,False,False
+Bot,Friday,163,0,0,False,True,True
+DoS,Wednesday,71,0,0,False,True,True
+Infiltration,Thursday,7,20,0,False,False,True
+PortScan,Friday,12,15,0,False,False,True
+Web Attack,Thursday,24,0,0,False,True,True
+DDoS,Friday,0,0,21,True,True,False
+ATTACK,Wednesday,0,11,0,True,False,True

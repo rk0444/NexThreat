@@ -1,0 +1,237 @@
+{
+    "total_windows": 2454,
+    "total_attack_windows": 515,
+    "total_benign_windows": 1939,
+    "total_attack_segments": 81,
+    "total_benign_gaps": 86,
+    "rounding_policy": "train_size = round(N * 0.70), validation_size = round(N * 0.15), test_size = N - train_size - validation_size",
+    "days_with_attacks": [
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+    ],
+    "all_benign_days": [
+        "Monday"
+    ],
+    "per_day_metrics": {
+        "Monday": {
+            "total_windows": 487,
+            "attack_windows": 0,
+            "benign_windows": 487,
+            "attack_segments": 0,
+            "benign_gaps": 1,
+            "categories_present": [
+                "BENIGN"
+            ]
+        },
+        "Tuesday": {
+            "total_windows": 488,
+            "attack_windows": 127,
+            "benign_windows": 361,
+            "attack_segments": 4,
+            "benign_gaps": 5,
+            "categories_present": [
+                "BENIGN",
+                "Brute Force"
+            ]
+        },
+        "Wednesday": {
+            "total_windows": 509,
+            "attack_windows": 82,
+            "benign_windows": 427,
+            "attack_segments": 21,
+            "benign_gaps": 22,
+            "categories_present": [
+                "ATTACK",
+                "BENIGN",
+                "DoS"
+            ]
+        },
+        "Thursday": {
+            "total_windows": 486,
+            "attack_windows": 95,
+            "benign_windows": 391,
+            "attack_segments": 30,
+            "benign_gaps": 31,
+            "categories_present": [
+                "BENIGN",
+                "Brute Force",
+                "Infiltration",
+                "Web Attack"
+            ]
+        },
+        "Friday": {
+            "total_windows": 484,
+            "attack_windows": 211,
+            "benign_windows": 273,
+            "attack_segments": 26,
+            "benign_gaps": 27,
+            "categories_present": [
+                "BENIGN",
+                "Bot",
+                "DDoS",
+                "PortScan"
+            ]
+        }
+    },
+    "attack_category_segment_metrics": {
+        "Brute Force": {
+            "total_windows": 171,
+            "number_of_segments": 7,
+            "average_segment_length": 24.43,
+            "min_segment_length": 1,
+            "max_segment_length": 63,
+            "days_present": "Thursday|Tuesday"
+        },
+        "Bot": {
+            "total_windows": 163,
+            "number_of_segments": 16,
+            "average_segment_length": 10.19,
+            "min_segment_length": 1,
+            "max_segment_length": 70,
+            "days_present": "Friday"
+        },
+        "DoS": {
+            "total_windows": 71,
+            "number_of_segments": 10,
+            "average_segment_length": 7.1,
+            "min_segment_length": 1,
+            "max_segment_length": 23,
+            "days_present": "Wednesday"
+        },
+        "Infiltration": {
+            "total_windows": 27,
+            "number_of_segments": 25,
+            "average_segment_length": 1.08,
+            "min_segment_length": 1,
+            "max_segment_length": 3,
+            "days_present": "Thursday"
+        },
+        "PortScan": {
+            "total_windows": 27,
+            "number_of_segments": 9,
+            "average_segment_length": 3.0,
+            "min_segment_length": 1,
+            "max_segment_length": 6,
+            "days_present": "Friday"
+        },
+        "Web Attack": {
+            "total_windows": 24,
+            "number_of_segments": 2,
+            "average_segment_length": 12.0,
+            "min_segment_length": 3,
+            "max_segment_length": 21,
+            "days_present": "Thursday"
+        },
+        "DDoS": {
+            "total_windows": 21,
+            "number_of_segments": 1,
+            "average_segment_length": 21.0,
+            "min_segment_length": 21,
+            "max_segment_length": 21,
+            "days_present": "Friday"
+        },
+        "ATTACK": {
+            "total_windows": 11,
+            "number_of_segments": 11,
+            "average_segment_length": 1.0,
+            "min_segment_length": 1,
+            "max_segment_length": 1,
+            "days_present": "Wednesday"
+        }
+    },
+    "global_split_summary": {
+        "train_windows": 1718,
+        "validation_windows": 368,
+        "test_windows": 368,
+        "categories_missing_from_train": [
+            "Bot",
+            "Infiltration",
+            "PortScan",
+            "DDoS"
+        ],
+        "categories_missing_from_validation": [
+            "Brute Force",
+            "DoS",
+            "PortScan",
+            "Web Attack",
+            "DDoS",
+            "ATTACK"
+        ],
+        "categories_missing_from_test": [
+            "Brute Force",
+            "DoS",
+            "Infiltration",
+            "Web Attack",
+            "ATTACK"
+        ]
+    },
+    "per_day_split_summary": {
+        "categories_missing_from_train": [
+            "DDoS",
+            "ATTACK"
+        ],
+        "categories_missing_from_validation": [
+            "Bot",
+            "DoS",
+            "Web Attack",
+            "DDoS"
+        ],
+        "categories_missing_from_test": [
+            "Bot",
+            "DoS",
+            "Infiltration",
+            "PortScan",
+            "Web Attack",
+            "ATTACK"
+        ],
+        "boundaries_cutting_attack_segments": [
+            {
+                "dataset_day": "Tuesday",
+                "boundary_name": "Train/Validation",
+                "segment_id": "Tuesday_SEG_003",
+                "attack_category": "Brute Force"
+            },
+            {
+                "dataset_day": "Thursday",
+                "boundary_name": "Train/Validation",
+                "segment_id": "Thursday_SEG_012",
+                "attack_category": "Infiltration"
+            }
+        ]
+    },
+    "split_strategy_comparison": [
+        {
+            "strategy": "Global Chronological 70/15/15",
+            "categories_missing_from_train": 4,
+            "categories_missing_from_validation": 6,
+            "categories_missing_from_test": 5,
+            "boundaries_inside_attack_segments": 1,
+            "attack_segment_fragmentation_count": 1,
+            "temporal_order_preserved": true,
+            "cross_day_continuity_assumed": true,
+            "rare_category_isolation_risk": "High (ATTACK is 100% in Train; Infiltration, Bot, PortScan, DDoS are 0% in Train)",
+            "potential_temporal_leakage_risk": "Low within days, but assumes non-existent cross-day continuum"
+        },
+        {
+            "strategy": "Per-Day Chronological 70/15/15",
+            "categories_missing_from_train": 2,
+            "categories_missing_from_validation": 4,
+            "categories_missing_from_test": 6,
+            "boundaries_inside_attack_segments": 2,
+            "attack_segment_fragmentation_count": 2,
+            "temporal_order_preserved": true,
+            "cross_day_continuity_assumed": false,
+            "rare_category_isolation_risk": "High (ATTACK is 100% in Val; DDoS is 100% in Test; DoS, Bot, Web Attack are 100% in Train)",
+            "potential_temporal_leakage_risk": "Medium (Intraday attack bursts are sliced across Train/Val boundaries)"
+        }
+    ],
+    "key_findings": [
+        "Attack windows are highly clustered into 81 distinct temporal bursts separated by 86 BENIGN gaps.",
+        "Attacks are extremely day-specific: Monday has no attacks; Tuesday has only Brute Force; Wednesday has DoS and Heartbleed; Thursday has Brute Force, Web Attack, and Infiltration; Friday has Bot, PortScan, and DDoS.",
+        "A Global Chronological 70/15/15 split leaves 4 attack categories (Infiltration, Bot, PortScan, DDoS) completely absent from training.",
+        "A Per-Day Chronological 70/15/15 split leaves 2 attack categories absent from training (ATTACK, DDoS), 4 absent from validation, and 6 absent from test.",
+        "Both naive chronological splitting strategies fragment ongoing attack bursts across split boundaries."
+    ]
+}
