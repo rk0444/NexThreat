@@ -135,4 +135,51 @@ MODEL_SPECIFIC_SPLIT_REQUIREMENTS_CSV = "model_specific_split_requirements.csv"
 LSTM_SEQUENCE_FEASIBILITY_CSV = "lstm_sequence_feasibility.csv"
 SPLIT_STRATEGY_ANALYSIS_SUMMARY_JSON = "split_strategy_analysis_summary.json"
 
+# ============================================================
+# PHASE 3.2 MODEL DIRECTORIES, MANIFESTS & DATASET CONSTANTS
+# ============================================================
+
+# Directory Paths
+MANIFESTS_DIR = MODEL_INPUTS_DIR / "manifests"
+AUTOENCODER_DIR = MODEL_INPUTS_DIR / "autoencoder"
+XGBOOST_DIR = MODEL_INPUTS_DIR / "xgboost"
+LSTM_DIR = MODEL_INPUTS_DIR / "lstm"
+
+# Model Identifiers
+AUTOENCODER_MODEL_NAME = "autoencoder"
+XGBOOST_MODEL_NAME = "xgboost"
+LSTM_MODEL_NAME = "lstm"
+
+# Split Labels
+TRAIN_SPLIT = "train"
+VALIDATION_SPLIT = "validation"
+TEST_SPLIT = "test"
+BUFFER_SPLIT = "buffer"
+EXCLUDED_SPLIT = "excluded"
+
+# Manifest Filenames
+AUTOENCODER_MANIFEST_CSV = "autoencoder_split_manifest.csv"
+XGBOOST_MANIFEST_CSV = "xgboost_split_manifest.csv"
+LSTM_MANIFEST_CSV = "lstm_split_manifest.csv"
+SPLIT_INTEGRITY_REPORT_JSON = "split_integrity_report.json"
+
+# Dataset Output Filenames
+TRAIN_CSV = "train.csv"
+VALIDATION_CSV = "validation.csv"
+TEST_CSV = "test.csv"
+LSTM_TRAIN_WINDOWS_CSV = "train_windows.csv"
+LSTM_VALIDATION_WINDOWS_CSV = "validation_windows.csv"
+LSTM_TEST_WINDOWS_CSV = "test_windows.csv"
+
+# LSTM Sequence & Buffer Parameters
+LSTM_BOUNDARY_BUFFER = 10
+
+# XGBoost Parameters
+XGBOOST_REQUIRED_CLASSES = XGBOOST_SUPERVISED_CLASSES
+XGBOOST_EXCLUDED_CLASSES = [EXCLUDED_SUPERVISED_CLASS]
+
+# Reproducibility
+RANDOM_SEED = 42
+
+
 

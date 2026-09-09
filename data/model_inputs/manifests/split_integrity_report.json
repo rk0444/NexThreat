@@ -1,0 +1,133 @@
+{
+    "phase": "3.2",
+    "phase_title": "Final Model-Specific Dataset Split Integrity Report",
+    "timestamp": "2026-09-09T23:17:15.266449",
+    "final_status": "PASS",
+    "master_dataset_integrity": {
+        "source_dataset_unchanged": true,
+        "source_hashes": {
+            "Monday_features.csv": "c284c892f4ee54f0219d8e3ea8cd0c2abde1969af6f2b01f9ce941e5a8cb9115",
+            "Tuesday_features.csv": "ac6920dc4b5c0a83455e06555bef4680db8c8cd86ff1f779776a791564482d4f",
+            "Wednesday_features.csv": "50ed0b3ad9e37809a182ef908f9f06bbc09b15220e8f3c188e92745b18deb09e",
+            "Thursday_features.csv": "772cb385fb294e70a11fbbbb322429eed9337c1f5b41fe14a423320176eed140",
+            "Friday_features.csv": "8c2520edf76d32a75e8ae981cf358b6b9f272813c05615094330a6afb62bfe93"
+        }
+    },
+    "universal_manifest_checks": {
+        "autoencoder": {
+            "total_windows": 2454,
+            "duplicate_count": 0,
+            "partition_overlap_detected": false,
+            "split_distribution": {
+                "train": 1511,
+                "validation": 535,
+                "test": 408
+            }
+        },
+        "xgboost": {
+            "total_windows": 2454,
+            "duplicate_count": 0,
+            "partition_overlap_detected": false,
+            "split_distribution": {
+                "train": 1799,
+                "validation": 325,
+                "test": 319,
+                "excluded": 11
+            }
+        },
+        "lstm": {
+            "total_windows": 2454,
+            "duplicate_count": 0,
+            "partition_overlap_detected": false,
+            "split_distribution": {
+                "train": 1586,
+                "validation": 432,
+                "test": 336,
+                "buffer": 100
+            }
+        }
+    },
+    "autoencoder_verification": {
+        "status": "PASS",
+        "train_count": 1511,
+        "validation_count": 535,
+        "test_count": 408,
+        "total_materialized_windows": 2454,
+        "train_benign_count": 1511,
+        "attack_contamination_count": 0,
+        "attack_contamination_percentage": 0.0,
+        "validation_attack_categories": [
+            "ATTACK",
+            "Bot",
+            "Brute Force",
+            "DoS",
+            "Infiltration",
+            "PortScan",
+            "Web Attack"
+        ],
+        "test_attack_categories": [
+            "ATTACK",
+            "Bot",
+            "Brute Force",
+            "DDoS",
+            "DoS",
+            "Infiltration",
+            "PortScan",
+            "Web Attack"
+        ],
+        "overlap_detected": false
+    },
+    "xgboost_verification": {
+        "status": "PASS",
+        "train_count": 1799,
+        "validation_count": 325,
+        "test_count": 319,
+        "excluded_count": 11,
+        "total_materialized_windows": 2443,
+        "training_classes": [
+            "BENIGN",
+            "Bot",
+            "Brute Force",
+            "DDoS",
+            "DoS",
+            "Infiltration",
+            "PortScan",
+            "Web Attack"
+        ],
+        "missing_required_classes": [],
+        "excluded_classes_verified": [
+            "ATTACK"
+        ],
+        "ddos_exception": {
+            "total_windows": 21,
+            "train_windows": 15,
+            "validation_windows": 3,
+            "test_windows": 3,
+            "is_exception_flagged": true,
+            "allocation_reason": "Model-Specific Supervised Sub-Segmentation Exception"
+        },
+        "overlap_detected": false
+    },
+    "lstm_verification": {
+        "status": "PASS",
+        "train_windows": 1586,
+        "buffer_windows": 100,
+        "validation_windows": 432,
+        "test_windows": 336,
+        "total_windows": 2454,
+        "chronological_ordering_verified": true,
+        "boundary_buffer_size": 10,
+        "segment_atomicity_verified": true,
+        "cross_boundary_sequence_possible": false,
+        "overlap_detected": false
+    },
+    "summary": {
+        "master_dataset_unchanged": true,
+        "autoencoder_attack_contamination_count": 0,
+        "xgboost_all_required_classes_present": true,
+        "xgboost_excluded_classes_verified": true,
+        "lstm_segment_atomicity_verified": true,
+        "lstm_cross_boundary_sequence_possible": false,
+        "all_checks_passed": true
+    }
+}
