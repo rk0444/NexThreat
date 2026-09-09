@@ -1,0 +1,143 @@
+{
+    "phase": "3.1C",
+    "phase_title": "Segment-Aware Split Strategy Analysis",
+    "dataset_summary": {
+        "total_windows": 2454,
+        "benign_windows": 1939,
+        "attack_windows": 515,
+        "total_attack_segments": 81,
+        "total_benign_gaps": 86,
+        "attack_categories_count": 8,
+        "total_categories_count": 9
+    },
+    "segment_integrity_policy": {
+        "level_1_strict_segment_atomicity": {
+            "target_model": "LSTM",
+            "rules": [
+                "Attack segments must never be sliced across partitions.",
+                "Chronological continuity must be preserved.",
+                "No sequence may cross partition boundaries.",
+                "Mandatory 10-window exclusion buffers at split boundaries.",
+                "Zero temporal leakage and zero look-ahead bias."
+            ]
+        },
+        "level_2_preferred_segment_atomicity": {
+            "target_model": "XGBoost",
+            "rules": [
+                "Attack segments should remain atomic by default.",
+                "Whole-segment allocation is strongly preferred.",
+                "Category-aware allocation across splits.",
+                "Any sub-segmentation must be an explicit, documented model-specific exception.",
+                "Sub-segmentation must never be silently described as segment-preserving."
+            ]
+        },
+        "level_3_benign_purity_priority": {
+            "target_model": "Autoencoder",
+            "rules": [
+                "Training data must contain BENIGN windows only (zero attack contamination).",
+                "Attack segment continuity in training is not the primary objective; clean benign baseline is.",
+                "Validation and test sets contain mixed benign and attack segments for threshold tuning and ROC-AUC evaluation."
+            ]
+        }
+    },
+    "class_coverage_policy": {
+        "training_requirement": "MANDATORY: Complete major supervised class coverage (8 / 8 classes: BENIGN + 7 attack categories: Brute Force, Bot, DoS, Infiltration, PortScan, Web Attack, DDoS in XGBoost training).",
+        "validation_goal": "OPTIMIZATION GOAL: Maximize feasible category representation subject to segment availability and data integrity constraints (full coverage is not a hard constraint).",
+        "test_goal": "OPTIMIZATION GOAL: Maximize feasible category representation subject to segment availability and data integrity constraints (full coverage is not a hard constraint).",
+        "rare_class_limitations": [
+            "DDoS has only 1 segment (21 mins): cannot appear in all splits without an explicit sub-segmentation exception.",
+            "Web Attack has only 2 segments (lengths 21, 3): under whole-segment allocation (SEG_001 Train, SEG_002 Test), Validation has 0 Web Attack windows.",
+            "Heartbleed (ATTACK) has 11 single-window spikes: excluded as independent supervised class; allocated across Val/Test for anomaly detection."
+        ]
+    },
+    "ddos_special_case_decision": {
+        "category": "DDoS",
+        "total_windows": 21,
+        "segment_count": 1,
+        "duration_minutes": 21,
+        "day": "Friday",
+        "option_a_strict_whole_segment": {
+            "allocation": "100% (21 windows) to Training",
+            "advantages": [
+                "100% segment integrity",
+                "Zero artificial temporal fragmentation",
+                "XGBoost learns DDoS"
+            ],
+            "disadvantages": [
+                "DDoS cannot be evaluated as a supervised class in Validation or Test"
+            ]
+        },
+        "option_b_xgboost_subsegment_exception": {
+            "allocation": "15 windows Train / 3 windows Validation / 3 windows Test",
+            "advantages": [
+                "DDoS represented in Train, Validation, and Test for multi-class evaluation"
+            ],
+            "disadvantages": [
+                "Slices the 21-minute burst across partitions",
+                "Introduces slight temporal autocorrelation between splits for DDoS"
+            ]
+        },
+        "selected_policy": "Option B (Model-Specific Supervised Sub-Segmentation Exception for XGBoost; Option A strictly preserved for LSTM)",
+        "justification": "XGBoost operates on engineered 1-minute tabular feature vectors rather than rolling sequence tensors. Slicing DDoS 15/3/3 is acceptable only as an explicitly documented model-specific exception to enable supervised multi-class evaluation, while LSTM strictly preserves 100% segment atomicity."
+    },
+    "candidate_strategies_evaluated": [
+        "Global Chronological Split (70/15/15)",
+        "Naive Per-Day Chronological Split (70/15/15)",
+        "Random Stratified Window Split (70/15/15)",
+        "Uniform Segment-Level Stratified Split",
+        "Model-Specific Hybrid Segment-Aware Split"
+    ],
+    "architectural_decisions": {
+        "strategy_01_global_chronological": "REJECTED (Severe class omission in Train: Bot, PortScan, DDoS, Infiltration missing)",
+        "strategy_02_naive_per_day_chronological": "REJECTED (Slices attack bursts, isolates DDoS to Test and DoS to Train)",
+        "strategy_03_random_stratified_window": "REJECTED (Catastrophic autocorrelation leakage, destroys LSTM sequences)",
+        "strategy_04_uniform_segment_stratified": "CONDITIONALLY VIABLE (Excellent segment integrity, but creates single-segment DDoS bottleneck)",
+        "strategy_05_model_specific_hybrid_segment_aware": "RECOMMENDED & APPROVED (Tailored partitions for Autoencoder, XGBoost, LSTM)"
+    },
+    "model_specific_split_blueprint": {
+        "autoencoder": {
+            "architecture": "Pure-Benign Training with Mixed Anomaly Validation/Testing",
+            "integrity_level": "Level 3 \u2014 Benign Purity Priority",
+            "train_source": "Monday (100% Benign = 487w) + 70% of Tue-Fri Benign Gaps (~870w) = ~1,357 pure benign windows",
+            "val_source": "15% of Benign Gaps (~291w) + Anomaly segments across attack classes",
+            "test_source": "15% of Benign Gaps (~291w) + Anomaly segments across all 8 attack classes"
+        },
+        "xgboost": {
+            "architecture": "Segment-Stratified Multi-Class with Documented DDoS Exception",
+            "integrity_level": "Level 2 \u2014 Preferred Segment Atomicity",
+            "supervised_classes": [
+                "BENIGN",
+                "Brute Force",
+                "Bot",
+                "DoS",
+                "Infiltration",
+                "PortScan",
+                "Web Attack",
+                "DDoS"
+            ],
+            "excluded_class": "ATTACK",
+            "multi_segment_classes_strategy": "Whole-segment allocation (Brute Force, Bot, DoS, Infiltration, PortScan)",
+            "single_segment_class_strategy": "Explicit Model-Specific Sub-Segmentation Exception for DDoS (15w Train / 3w Val / 3w Test)",
+            "rare_segment_class_strategy": "Web Attack: SEG_001 (21w) to Train, SEG_002 (3w) to Test (Validation has 0w)"
+        },
+        "lstm": {
+            "architecture": "Buffered Continuous Block Chronological Split",
+            "integrity_level": "Level 1 \u2014 Strict Segment Atomicity",
+            "sequence_tensor_shape": [
+                10,
+                13
+            ],
+            "target": "is_attack_at_t_plus_1",
+            "boundary_buffer_rule": "10-window exclusion margin between Train/Val and Val/Test to guarantee zero history leakage",
+            "total_valid_buffered_sequences": 2304,
+            "sequence_retention_rate": 95.84
+        }
+    },
+    "key_analytical_takeaways": [
+        "Attack segments are atomic units by default across the pipeline.",
+        "Exceptions may exist ONLY as explicitly documented model-specific exceptions (e.g. XGBoost DDoS 15/3/3 sub-segmentation).",
+        "LSTM strictly prohibits segment slicing and cross-split sequences, enforcing 10-window exclusion buffers at boundaries.",
+        "Complete major supervised class coverage is MANDATORY in Training (8/8 classes), while Validation and Test coverage are OPTIMIZATION GOALS subject to segment availability.",
+        "STRAT_05 (Model-Specific Hybrid Segment-Aware Split) remains the mathematically and architecturally superior design."
+    ]
+}

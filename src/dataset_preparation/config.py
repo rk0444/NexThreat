@@ -105,3 +105,34 @@ GLOBAL_SPLIT_CATEGORY_COVERAGE_CSV = "global_split_category_coverage.csv"
 SPLIT_STRATEGY_RISK_ANALYSIS_CSV = "split_strategy_risk_analysis.csv"
 ATTACK_SEGMENT_SUMMARY_JSON = "attack_segment_summary.json"
 
+# ============================================================
+# PHASE 3.1C MODEL ARCHITECTURE CONSTANTS & METADATA FILENAMES
+# ============================================================
+
+AUTOENCODER_TARGET_CLASS = "BENIGN"
+
+XGBOOST_SUPERVISED_CLASSES = [
+    "BENIGN",
+    "Brute Force",
+    "Bot",
+    "DoS",
+    "Infiltration",
+    "PortScan",
+    "Web Attack",
+    "DDoS",
+]
+
+EXCLUDED_SUPERVISED_CLASS = "ATTACK"  # Heartbleed (11 windows - evaluated in binary anomaly detection only)
+
+LSTM_SEQUENCE_LENGTH = 10
+LSTM_FEATURE_DIM = 13
+LSTM_TARGET_COLUMN = "is_attack"
+
+# Phase 3.1C Output Filenames
+CANDIDATE_SPLIT_STRATEGIES_CSV = "candidate_split_strategies.csv"
+SEGMENT_ALLOCATION_FEASIBILITY_CSV = "segment_allocation_feasibility.csv"
+MODEL_SPECIFIC_SPLIT_REQUIREMENTS_CSV = "model_specific_split_requirements.csv"
+LSTM_SEQUENCE_FEASIBILITY_CSV = "lstm_sequence_feasibility.csv"
+SPLIT_STRATEGY_ANALYSIS_SUMMARY_JSON = "split_strategy_analysis_summary.json"
+
+

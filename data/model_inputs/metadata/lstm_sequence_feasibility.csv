@@ -1,0 +1,7 @@
+dataset_day,total_windows,unbroken_valid_sequences,train_windows,train_buffered_sequences,validation_windows,validation_buffered_sequences,test_windows,test_buffered_sequences,total_buffered_sequences,boundary_buffer_sequence_loss,sequence_retention_rate_pct
+Monday,487,477,341,331,73,63,73,63,457,20,95.81
+Tuesday,488,478,342,332,73,63,73,63,458,20,95.82
+Wednesday,509,499,356,346,76,66,77,67,479,20,95.99
+Thursday,486,476,340,330,73,63,73,63,456,20,95.8
+Friday,484,474,339,329,73,63,72,62,454,20,95.78
+TOTAL / GLOBAL,2454,2404,1718,1668,368,318,368,318,2304,100,95.84
