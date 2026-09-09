@@ -1,0 +1,47 @@
+{
+    "sequence_length": 10,
+    "feature_count": 13,
+    "generation_policy": "partition_and_day_isolated",
+    "cross_partition_sequences_allowed": false,
+    "cross_day_sequences_allowed": false,
+    "total_sequences_generated": 2204,
+    "train": {
+        "sequence_count": 1536,
+        "days_processed": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+        ],
+        "days_skipped": [],
+        "attack_target_count": 367,
+        "benign_target_count": 1169
+    },
+    "validation": {
+        "sequence_count": 382,
+        "days_processed": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+        ],
+        "days_skipped": [],
+        "attack_target_count": 107,
+        "benign_target_count": 275
+    },
+    "test": {
+        "sequence_count": 286,
+        "days_processed": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday"
+        ],
+        "days_skipped": [],
+        "attack_target_count": 21,
+        "benign_target_count": 265
+    }
+}

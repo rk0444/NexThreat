@@ -1,0 +1,158 @@
+{
+    "phase": "3.3",
+    "phase_title": "Model-Specific Dataset Preparation Verification Report",
+    "timestamp": "2026-09-09T23:28:50.781561",
+    "status": "PASS",
+    "feature_metadata": {
+        "feature_count": 13,
+        "feature_columns": [
+            "flow_count",
+            "packet_rate",
+            "byte_rate",
+            "mean_flow_duration",
+            "std_flow_duration",
+            "short_flow_ratio",
+            "mean_packet_size",
+            "packet_length_variability",
+            "fwd_bwd_packet_ratio",
+            "unique_dst_ports",
+            "unique_dst_ips",
+            "tcp_flow_ratio",
+            "syn_packet_ratio"
+        ],
+        "feature_dtype": "float32",
+        "label_dtype": "int64"
+    },
+    "phase_3_2_input_integrity": {
+        "status": "PASS",
+        "files": {
+            "autoencoder/train.csv": {
+                "hash_before": "04d4fb5eef3e6153e4c5ae3db446129a5d7810e4c4b03ae50206032bc22155b5",
+                "hash_after": "04d4fb5eef3e6153e4c5ae3db446129a5d7810e4c4b03ae50206032bc22155b5",
+                "unchanged": true
+            },
+            "autoencoder/validation.csv": {
+                "hash_before": "1b24cbe8ac2c0ca5ee07114c49a5faa5b4840137ee08c84db72e6b0a2f177f28",
+                "hash_after": "1b24cbe8ac2c0ca5ee07114c49a5faa5b4840137ee08c84db72e6b0a2f177f28",
+                "unchanged": true
+            },
+            "autoencoder/test.csv": {
+                "hash_before": "31b93bc133ebc67f0bcd4cefe31fb902f856e471b6fee53b037c2a46f3462316",
+                "hash_after": "31b93bc133ebc67f0bcd4cefe31fb902f856e471b6fee53b037c2a46f3462316",
+                "unchanged": true
+            },
+            "xgboost/train.csv": {
+                "hash_before": "836267c2083093c90975292d6126a8509ac474e3ad59a0dba74b28ed2c2b728d",
+                "hash_after": "836267c2083093c90975292d6126a8509ac474e3ad59a0dba74b28ed2c2b728d",
+                "unchanged": true
+            },
+            "xgboost/validation.csv": {
+                "hash_before": "0001422b930b7409a2ad410422cd7cf76025de9cc54d4def06b75f123d11b8ca",
+                "hash_after": "0001422b930b7409a2ad410422cd7cf76025de9cc54d4def06b75f123d11b8ca",
+                "unchanged": true
+            },
+            "xgboost/test.csv": {
+                "hash_before": "9106eedfd2bf7a4b6cc07ea607ff19b5543e2bf1b211046f041038b5d092f31d",
+                "hash_after": "9106eedfd2bf7a4b6cc07ea607ff19b5543e2bf1b211046f041038b5d092f31d",
+                "unchanged": true
+            },
+            "lstm/train_windows.csv": {
+                "hash_before": "94f8fe8246e3566385c5404a9828eca0bfc7bed9c777462b2bc1ab74a9da4956",
+                "hash_after": "94f8fe8246e3566385c5404a9828eca0bfc7bed9c777462b2bc1ab74a9da4956",
+                "unchanged": true
+            },
+            "lstm/validation_windows.csv": {
+                "hash_before": "f229217f6db102dc50e0d112b1388af04db392a312b3ff0c88d66f538f4b3821",
+                "hash_after": "f229217f6db102dc50e0d112b1388af04db392a312b3ff0c88d66f538f4b3821",
+                "unchanged": true
+            },
+            "lstm/test_windows.csv": {
+                "hash_before": "3cc158a00174ed09f0aa56c2c3f148682b111eeabaf5226df98cc7d2f47d382e",
+                "hash_after": "3cc158a00174ed09f0aa56c2c3f148682b111eeabaf5226df98cc7d2f47d382e",
+                "unchanged": true
+            }
+        }
+    },
+    "autoencoder": {
+        "status": "PASS",
+        "scaler_type": "StandardScaler",
+        "scaler_fit_partition": "train",
+        "training_policy": "BENIGN_ONLY",
+        "evaluation_labels": "binary",
+        "train_shape": [
+            1511,
+            13
+        ],
+        "validation_shape": [
+            535,
+            13
+        ],
+        "test_shape": [
+            408,
+            13
+        ],
+        "scaler_artifact_valid": true,
+        "train_source_pure_benign": true
+    },
+    "xgboost": {
+        "status": "PASS",
+        "scaling_applied": false,
+        "class_count": 8,
+        "train_shape": [
+            1799,
+            13
+        ],
+        "validation_shape": [
+            325,
+            13
+        ],
+        "test_shape": [
+            319,
+            13
+        ],
+        "classes_in_train": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "all_8_classes_present": true,
+        "encoder_artifact_valid": true
+    },
+    "lstm": {
+        "status": "PASS",
+        "scaler_type": "StandardScaler",
+        "sequence_length": 10,
+        "feature_count": 13,
+        "train_shape": [
+            1536,
+            10,
+            13
+        ],
+        "validation_shape": [
+            382,
+            10,
+            13
+        ],
+        "test_shape": [
+            286,
+            10,
+            13
+        ],
+        "scaler_artifact_valid": true,
+        "total_sequences": 2204,
+        "provenance_verified": true
+    },
+    "verification_summary": {
+        "phase_3_2_input_integrity_pass": true,
+        "autoencoder_pass": true,
+        "xgboost_pass": true,
+        "lstm_pass": true,
+        "metadata_pass": true,
+        "all_checks_passed": true
+    }
+}

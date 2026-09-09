@@ -1,0 +1,44 @@
+{
+    "phase": "3.3",
+    "feature_configuration": {
+        "feature_count": 13,
+        "feature_dtype": "float32",
+        "feature_columns": [
+            "flow_count",
+            "packet_rate",
+            "byte_rate",
+            "mean_flow_duration",
+            "std_flow_duration",
+            "short_flow_ratio",
+            "mean_packet_size",
+            "packet_length_variability",
+            "fwd_bwd_packet_ratio",
+            "unique_dst_ports",
+            "unique_dst_ips",
+            "tcp_flow_ratio",
+            "syn_packet_ratio"
+        ]
+    },
+    "autoencoder": {
+        "scaler": "StandardScaler",
+        "scaler_fit_partition": "train",
+        "training_policy": "BENIGN_ONLY",
+        "evaluation_labels": "binary"
+    },
+    "xgboost": {
+        "scaling_applied": false,
+        "feature_dtype": "float32",
+        "label_dtype": "int64",
+        "class_count": 8
+    },
+    "lstm": {
+        "scaler": "StandardScaler",
+        "scaler_fit_partition": "train",
+        "sequence_length": 10,
+        "feature_count": 13,
+        "target_type": "binary_attack_forecast",
+        "generation_policy": "partition_and_day_isolated",
+        "cross_partition_sequences_allowed": false,
+        "cross_day_sequences_allowed": false
+    }
+}
