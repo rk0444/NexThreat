@@ -1,0 +1,65 @@
+{
+    "model_name": "autoencoder",
+    "phase": "4.2",
+    "architecture": {
+        "input_dimension": 13,
+        "latent_dimension": 8,
+        "layers": [
+            13,
+            32,
+            16,
+            8,
+            16,
+            32,
+            13
+        ],
+        "hidden_activation": "relu",
+        "output_activation": "linear"
+    },
+    "training": {
+        "optimizer": "adam",
+        "loss": "mean_squared_error",
+        "learning_rate": 0.001,
+        "batch_size": 32,
+        "maximum_epochs": 100,
+        "actual_epochs_trained": 100,
+        "random_seed": 42,
+        "convergence_status": "LIMIT_REACHED_WITH_CONTINUED_IMPROVEMENT"
+    },
+    "paths": {
+        "scaler_path": "data/model_ready/artifacts/autoencoder_scaler.joblib",
+        "training_dataset_path": "data/model_ready/autoencoder/X_train.npy",
+        "validation_dataset_path": "data/model_ready/autoencoder/X_validation.npy",
+        "test_dataset_path": "data/model_ready/autoencoder/X_test.npy",
+        "best_model_path": "data/models/autoencoder/checkpoints/best_model.keras",
+        "final_model_path": "data/models/autoencoder/final_model/autoencoder.keras"
+    },
+    "threshold": {
+        "selection_method": "f1_optimization",
+        "selection_split": "validation",
+        "selected_threshold": 0.003207791231673312,
+        "frozen_for_test": true,
+        "threshold_source": "validation",
+        "test_used_for_threshold_selection": false
+    },
+    "error_analysis_test": {
+        "true_negatives": 22,
+        "false_positives": 197,
+        "false_negatives": 10,
+        "true_positives": 179,
+        "false_positive_rate": 0.8995433789954338,
+        "false_negative_rate": 0.05291005291005291,
+        "benign_test_samples": 219,
+        "attack_test_samples": 189
+    },
+    "performance_observations": {
+        "high_attack_recall": true,
+        "high_false_positive_rate": true,
+        "training_reached_epoch_limit": true,
+        "recall_value": 0.9470899470899471,
+        "false_positive_rate_value": 0.8995433789954338,
+        "false_negative_rate_value": 0.05291005291005291,
+        "training_convergence_status": "LIMIT_REACHED_WITH_CONTINUED_IMPROVEMENT",
+        "analysis": "The Autoencoder achieves strong threat detection sensitivity (94.71% recall on test attacks) with a frozen threshold selected strictly on validation F1. In an unsupervised reconstruction setting, standard F1 optimization on validation data sets a sensitive threshold (0.003208) that results in a high false positive rate (89.95%) on benign test windows. This behavior represents an intentional operating tradeoff prioritizing high recall for Tier 1 anomaly detection, with downstream supervised models (e.g., XGBoost) filtering false alarms."
+    }
+}

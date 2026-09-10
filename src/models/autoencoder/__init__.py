@@ -1,0 +1,28 @@
+"""
+NexThreat Phase 4.2 — Autoencoder Anomaly Detection Package.
+"""
+from src.models.autoencoder.config import (
+    INPUT_DIM,
+    LATENT_DIM,
+    LAYER_DIMS,
+    BATCH_SIZE,
+    MAX_EPOCHS,
+    LEARNING_RATE,
+    BEST_MODEL_PATH,
+    FINAL_MODEL_PATH,
+    AUTOENCODER_EVALUATION_REPORT_PATH,
+    AUTOENCODER_VERIFICATION_REPORT_PATH,
+)
+
+__all__ = [
+    "INPUT_DIM",
+    "LATENT_DIM",
+    "LAYER_DIMS",
+    "BATCH_SIZE",
+    "MAX_EPOCHS",
+    "LEARNING_RATE",
+    "BEST_MODEL_PATH",
+    "FINAL_MODEL_PATH",
+    "AUTOENCODER_EVALUATION_REPORT_PATH",
+    "AUTOENCODER_VERIFICATION_REPORT_PATH",
+]

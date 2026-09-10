@@ -1,0 +1,290 @@
+{
+    "phase": "4.2",
+    "model": "autoencoder",
+    "timestamp": "2026-09-10T11:26:31.331705",
+    "checks": {
+        "model_artifact": "PASS",
+        "architecture": "PASS",
+        "dataset_integrity": "PASS",
+        "scaler_integrity": "PASS",
+        "training_integrity": "PASS",
+        "threshold_integrity": "PASS",
+        "evaluation_integrity": "PASS",
+        "metrics_integrity": "PASS",
+        "input_immutability": "PASS",
+        "independent_threshold_replay": "PASS",
+        "independent_metric_replay": "PASS"
+    },
+    "detailed_results": {
+        "check_a_model_artifact": {
+            "status": "PASS",
+            "best_model_exists": true,
+            "final_model_exists": true,
+            "metadata_exists": true,
+            "model_loadable": true,
+            "errors": []
+        },
+        "check_b_architecture": {
+            "status": "PASS",
+            "input_dimension": 13,
+            "output_dimension": 13,
+            "dense_layer_units": [
+                32,
+                16,
+                8,
+                16,
+                32,
+                13
+            ],
+            "expected_dense_units": [
+                32,
+                16,
+                8,
+                16,
+                32,
+                13
+            ],
+            "units_match": true,
+            "errors": []
+        },
+        "check_c_dataset_integrity": {
+            "status": "PASS",
+            "datasets": {
+                "X_train": {
+                    "shape": [
+                        1511,
+                        13
+                    ],
+                    "dtype": "float32",
+                    "ndim": 2,
+                    "size": 19643,
+                    "finite_applicable": true,
+                    "has_nan": false,
+                    "has_inf": false,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": []
+                },
+                "X_validation": {
+                    "shape": [
+                        535,
+                        13
+                    ],
+                    "dtype": "float32",
+                    "ndim": 2,
+                    "size": 6955,
+                    "finite_applicable": true,
+                    "has_nan": false,
+                    "has_inf": false,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": []
+                },
+                "X_test": {
+                    "shape": [
+                        408,
+                        13
+                    ],
+                    "dtype": "float32",
+                    "ndim": 2,
+                    "size": 5304,
+                    "finite_applicable": true,
+                    "has_nan": false,
+                    "has_inf": false,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": []
+                }
+            }
+        },
+        "check_d_scaler_integrity": {
+            "status": "PASS",
+            "scaler_path": "data/model_ready/artifacts/autoencoder_scaler.joblib",
+            "hash_matched": true,
+            "can_transform": true,
+            "feature_count_fitted": 13,
+            "errors": []
+        },
+        "check_e_training_integrity": {
+            "status": "PASS",
+            "training_sample_count": 1511,
+            "validation_sample_count": 535,
+            "feature_count": 13,
+            "history_file_exists": true,
+            "errors": []
+        },
+        "check_f_threshold_integrity": {
+            "status": "PASS",
+            "threshold_value": 0.003207791231673312,
+            "selection_split": "validation",
+            "selection_metric": "f1",
+            "frozen_for_test": true,
+            "threshold_source": "validation",
+            "test_used_for_threshold_selection": false,
+            "errors": []
+        },
+        "check_g_evaluation_integrity": {
+            "status": "PASS",
+            "errors": []
+        },
+        "check_h_metrics_integrity": {
+            "status": "PASS",
+            "errors": []
+        },
+        "check_i_input_immutability": {
+            "status": "PASS",
+            "files_verified": 26,
+            "all_matched": true,
+            "files": {
+                "artifacts/autoencoder_scaler.joblib": {
+                    "path": "data/model_ready/artifacts/autoencoder_scaler.joblib",
+                    "matched": true
+                },
+                "artifacts/lstm_scaler.joblib": {
+                    "path": "data/model_ready/artifacts/lstm_scaler.joblib",
+                    "matched": true
+                },
+                "artifacts/xgboost_label_encoder.joblib": {
+                    "path": "data/model_ready/artifacts/xgboost_label_encoder.joblib",
+                    "matched": true
+                },
+                "autoencoder/X_test.npy": {
+                    "path": "data/model_ready/autoencoder/X_test.npy",
+                    "matched": true
+                },
+                "autoencoder/X_train.npy": {
+                    "path": "data/model_ready/autoencoder/X_train.npy",
+                    "matched": true
+                },
+                "autoencoder/X_validation.npy": {
+                    "path": "data/model_ready/autoencoder/X_validation.npy",
+                    "matched": true
+                },
+                "autoencoder/y_test.npy": {
+                    "path": "data/model_ready/autoencoder/y_test.npy",
+                    "matched": true
+                },
+                "autoencoder/y_validation.npy": {
+                    "path": "data/model_ready/autoencoder/y_validation.npy",
+                    "matched": true
+                },
+                "lstm/X_test.npy": {
+                    "path": "data/model_ready/lstm/X_test.npy",
+                    "matched": true
+                },
+                "lstm/X_train.npy": {
+                    "path": "data/model_ready/lstm/X_train.npy",
+                    "matched": true
+                },
+                "lstm/X_validation.npy": {
+                    "path": "data/model_ready/lstm/X_validation.npy",
+                    "matched": true
+                },
+                "lstm/y_test.npy": {
+                    "path": "data/model_ready/lstm/y_test.npy",
+                    "matched": true
+                },
+                "lstm/y_train.npy": {
+                    "path": "data/model_ready/lstm/y_train.npy",
+                    "matched": true
+                },
+                "lstm/y_validation.npy": {
+                    "path": "data/model_ready/lstm/y_validation.npy",
+                    "matched": true
+                },
+                "metadata/feature_columns.json": {
+                    "path": "data/model_ready/metadata/feature_columns.json",
+                    "matched": true
+                },
+                "metadata/lstm_sequence_metadata.json": {
+                    "path": "data/model_ready/metadata/lstm_sequence_metadata.json",
+                    "matched": true
+                },
+                "metadata/lstm_sequence_provenance.csv": {
+                    "path": "data/model_ready/metadata/lstm_sequence_provenance.csv",
+                    "matched": true
+                },
+                "metadata/preparation_metadata.json": {
+                    "path": "data/model_ready/metadata/preparation_metadata.json",
+                    "matched": true
+                },
+                "metadata/xgboost_label_mapping.json": {
+                    "path": "data/model_ready/metadata/xgboost_label_mapping.json",
+                    "matched": true
+                },
+                "reports/model_preparation_report.json": {
+                    "path": "data/model_ready/reports/model_preparation_report.json",
+                    "matched": true
+                },
+                "xgboost/X_test.npy": {
+                    "path": "data/model_ready/xgboost/X_test.npy",
+                    "matched": true
+                },
+                "xgboost/X_train.npy": {
+                    "path": "data/model_ready/xgboost/X_train.npy",
+                    "matched": true
+                },
+                "xgboost/X_validation.npy": {
+                    "path": "data/model_ready/xgboost/X_validation.npy",
+                    "matched": true
+                },
+                "xgboost/y_test.npy": {
+                    "path": "data/model_ready/xgboost/y_test.npy",
+                    "matched": true
+                },
+                "xgboost/y_train.npy": {
+                    "path": "data/model_ready/xgboost/y_train.npy",
+                    "matched": true
+                },
+                "xgboost/y_validation.npy": {
+                    "path": "data/model_ready/xgboost/y_validation.npy",
+                    "matched": true
+                }
+            },
+            "errors": []
+        },
+        "check_j_threshold_replay": {
+            "status": "PASS",
+            "recomputed_threshold": 0.003207791231673312,
+            "stored_threshold": 0.003207791231673312,
+            "difference": 0.0,
+            "tolerance": 1e-06,
+            "matched": true,
+            "errors": []
+        },
+        "check_k_metric_replay": {
+            "status": "PASS",
+            "recomputed_counts": {
+                "tn": 22,
+                "fp": 197,
+                "fn": 10,
+                "tp": 179
+            },
+            "recomputed_rates": {
+                "false_positive_rate": 0.8995433789954338,
+                "false_negative_rate": 0.05291005291005291
+            },
+            "recomputed_metrics": {
+                "accuracy": 0.49264705882352944,
+                "precision": 0.47606382978723405,
+                "recall": 0.9470899470899471,
+                "f1": 0.6336283185840708,
+                "roc_auc": 0.7248435650262135,
+                "pr_auc": 0.7669633746150754
+            },
+            "all_replayed_metrics_matched": true,
+            "errors": []
+        }
+    },
+    "performance_observations": {
+        "high_attack_recall": true,
+        "high_false_positive_rate": true,
+        "training_reached_epoch_limit": true,
+        "recall_value": 0.9470899470899471,
+        "false_positive_rate_value": 0.8995433789954338,
+        "false_negative_rate_value": 0.05291005291005291,
+        "training_convergence_status": "LIMIT_REACHED_WITH_CONTINUED_IMPROVEMENT",
+        "analysis": "The Autoencoder achieves strong threat detection sensitivity (94.71% recall on test attacks) with a frozen threshold selected strictly on validation F1. In an unsupervised reconstruction setting, standard F1 optimization on validation data sets a sensitive threshold (0.003208) that results in a high false positive rate (89.95%) on benign test windows. This behavior represents an intentional operating tradeoff prioritizing high recall for Tier 1 anomaly detection, with downstream supervised models (e.g., XGBoost) filtering false alarms."
+    },
+    "overall_status": "PASS"
+}

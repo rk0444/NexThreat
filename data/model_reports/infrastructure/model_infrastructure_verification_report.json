@@ -1,7 +1,7 @@
 {
     "phase": "4.1",
     "phase_title": "Model Training Infrastructure Verification Report",
-    "timestamp": "2026-09-10T11:09:09.548067",
+    "timestamp": "2026-09-10T11:26:12.129962",
     "overall_status": "PASS",
     "summary": {
         "all_categories_passed": true,
@@ -119,10 +119,10 @@
                 "scipy": "1.13.1"
             },
             "missing_core_dependencies": [],
-            "tensorflow_status": "OPTIONAL - NOT INSTALLED (Non-fatal, architecture ready)",
+            "tensorflow_status": "AVAILABLE (version 2.20.0)",
             "tensorflow_info": {
-                "installed": false,
-                "version": null,
+                "installed": true,
+                "version": "2.20.0",
                 "gpu_devices": []
             },
             "pytorch_in_architecture": false,
@@ -625,11 +625,11 @@
                 "numpy_random_seeded": true,
                 "pytorch_handled": false,
                 "tensorflow": {
-                    "available": false,
-                    "version": null,
-                    "seed_configured": false,
-                    "determinism_enabled": false,
-                    "note": "TensorFlow not installed (optional dependency)"
+                    "available": true,
+                    "version": "2.20.0",
+                    "seed_configured": true,
+                    "determinism_enabled": true,
+                    "note": "TensorFlow seeded with op determinism enabled"
                 },
                 "env_vars": {
                     "PYTHONHASHSEED": "42",

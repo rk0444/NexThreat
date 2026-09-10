@@ -1,0 +1,27 @@
+{
+    "phase": "4.2",
+    "model": "autoencoder",
+    "training_start": "2026-09-10T11:19:52.006978",
+    "training_end": "2026-09-10T11:19:56.479297",
+    "duration_seconds": 4.47,
+    "random_seed": 42,
+    "training_sample_count": 1511,
+    "validation_sample_count": 535,
+    "feature_count": 13,
+    "batch_size": 32,
+    "maximum_epochs": 100,
+    "actual_epochs": 100,
+    "best_epoch": 100,
+    "best_validation_loss": 0.11524951457977295,
+    "final_training_loss": 0.018738580867648125,
+    "final_validation_loss": 0.11524951457977295,
+    "early_stopping_status": {
+        "triggered": false,
+        "patience": 10,
+        "restore_best_weights": true
+    },
+    "saved_model_paths": {
+        "best_model": "data/models/autoencoder/checkpoints/best_model.keras",
+        "final_model": "data/models/autoencoder/final_model/autoencoder.keras"
+    }
+}

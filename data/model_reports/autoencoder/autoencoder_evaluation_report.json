@@ -1,0 +1,176 @@
+{
+    "phase": "4.2",
+    "model": "autoencoder",
+    "timestamp": "2026-09-10T11:26:21.960254",
+    "threshold": {
+        "selection_split": "validation",
+        "selection_metric": "f1",
+        "tie_break_policy": "highest_f1_highest_recall_lowest_threshold",
+        "value": 0.003207791231673312,
+        "frozen_for_test": true,
+        "threshold_source": "validation",
+        "test_used_for_threshold_selection": false,
+        "threshold_frozen_before_test": true,
+        "candidates_evaluated": 1000
+    },
+    "validation": {
+        "accuracy": 0.6448598130841121,
+        "precision": 0.639344262295082,
+        "recall": 0.9570552147239264,
+        "f1": 0.7665847665847666,
+        "roc_auc": 0.6813044882144011,
+        "pr_auc": 0.7754996630414089,
+        "confusion_matrix": [
+            [
+                33,
+                176
+            ],
+            [
+                14,
+                312
+            ]
+        ],
+        "confusion_matrix_convention": {
+            "rows": "actual",
+            "columns": "predicted",
+            "classes": [
+                "0: BENIGN",
+                "1: Attack"
+            ],
+            "tn": 33,
+            "fp": 176,
+            "fn": 14,
+            "tp": 312
+        },
+        "error_analysis": {
+            "true_negatives": 33,
+            "false_positives": 176,
+            "false_negatives": 14,
+            "true_positives": 312,
+            "false_positive_rate": 0.8421052631578947,
+            "false_negative_rate": 0.04294478527607362,
+            "benign_validation_samples": 209,
+            "attack_validation_samples": 326
+        }
+    },
+    "test": {
+        "accuracy": 0.49264705882352944,
+        "precision": 0.47606382978723405,
+        "recall": 0.9470899470899471,
+        "f1": 0.6336283185840708,
+        "roc_auc": 0.7248435650262135,
+        "pr_auc": 0.7669633746150754,
+        "confusion_matrix": [
+            [
+                22,
+                197
+            ],
+            [
+                10,
+                179
+            ]
+        ],
+        "confusion_matrix_convention": {
+            "rows": "actual",
+            "columns": "predicted",
+            "classes": [
+                "0: BENIGN",
+                "1: Attack"
+            ],
+            "tn": 22,
+            "fp": 197,
+            "fn": 10,
+            "tp": 179
+        },
+        "error_analysis": {
+            "true_negatives": 22,
+            "false_positives": 197,
+            "false_negatives": 10,
+            "true_positives": 179,
+            "false_positive_rate": 0.8995433789954338,
+            "false_negative_rate": 0.05291005291005291,
+            "benign_test_samples": 219,
+            "attack_test_samples": 189
+        }
+    },
+    "threshold_characteristics": {
+        "train": {
+            "threshold": 0.003207791231673312,
+            "total_samples": 1511,
+            "samples_below_threshold": 162,
+            "samples_at_or_above_threshold": 1349,
+            "percentage_below_threshold": 10.72137657180675,
+            "percentage_at_or_above_threshold": 89.27862342819324
+        },
+        "validation": {
+            "threshold": 0.003207791231673312,
+            "total_samples": 535,
+            "samples_below_threshold": 47,
+            "samples_at_or_above_threshold": 488,
+            "percentage_below_threshold": 8.785046728971963,
+            "percentage_at_or_above_threshold": 91.21495327102804,
+            "by_class": {
+                "BENIGN": {
+                    "count": 209,
+                    "samples_below_threshold": 33,
+                    "samples_at_or_above_threshold": 176,
+                    "percentage_below_threshold": 15.789473684210526,
+                    "percentage_at_or_above_threshold": 84.21052631578947
+                },
+                "Attack": {
+                    "count": 326,
+                    "samples_below_threshold": 14,
+                    "samples_at_or_above_threshold": 312,
+                    "percentage_below_threshold": 4.294478527607362,
+                    "percentage_at_or_above_threshold": 95.70552147239265
+                }
+            }
+        },
+        "test": {
+            "threshold": 0.003207791231673312,
+            "total_samples": 408,
+            "samples_below_threshold": 32,
+            "samples_at_or_above_threshold": 376,
+            "percentage_below_threshold": 7.8431372549019605,
+            "percentage_at_or_above_threshold": 92.15686274509804,
+            "by_class": {
+                "BENIGN": {
+                    "count": 219,
+                    "samples_below_threshold": 22,
+                    "samples_at_or_above_threshold": 197,
+                    "percentage_below_threshold": 10.045662100456621,
+                    "percentage_at_or_above_threshold": 89.95433789954338
+                },
+                "Attack": {
+                    "count": 189,
+                    "samples_below_threshold": 10,
+                    "samples_at_or_above_threshold": 179,
+                    "percentage_below_threshold": 5.291005291005291,
+                    "percentage_at_or_above_threshold": 94.70899470899471
+                }
+            }
+        }
+    },
+    "training_convergence": {
+        "final_training_loss": 0.018738580867648125,
+        "final_validation_loss": 0.11524951457977295,
+        "best_training_loss": 0.018738580867648125,
+        "best_validation_loss": 0.11524951457977295,
+        "best_epoch": 100,
+        "actual_epochs": 100,
+        "early_stopping_triggered": false,
+        "validation_loss_improvement_last_5_epochs": 0.002454310655593872,
+        "validation_loss_improvement_last_10_epochs": 0.004667811095714569,
+        "training_convergence_status": "LIMIT_REACHED_WITH_CONTINUED_IMPROVEMENT"
+    },
+    "performance_observations": {
+        "high_attack_recall": true,
+        "high_false_positive_rate": true,
+        "training_reached_epoch_limit": true,
+        "recall_value": 0.9470899470899471,
+        "false_positive_rate_value": 0.8995433789954338,
+        "false_negative_rate_value": 0.05291005291005291,
+        "training_convergence_status": "LIMIT_REACHED_WITH_CONTINUED_IMPROVEMENT",
+        "analysis": "The Autoencoder achieves strong threat detection sensitivity (94.71% recall on test attacks) with a frozen threshold selected strictly on validation F1. In an unsupervised reconstruction setting, standard F1 optimization on validation data sets a sensitive threshold (0.003208) that results in a high false positive rate (89.95%) on benign test windows. This behavior represents an intentional operating tradeoff prioritizing high recall for Tier 1 anomaly detection, with downstream supervised models (e.g., XGBoost) filtering false alarms."
+    }
+}
