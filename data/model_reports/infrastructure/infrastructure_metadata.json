@@ -1,0 +1,204 @@
+{
+    "phase": "4.1",
+    "phase_title": "Model Training Infrastructure Metadata",
+    "created_at": "2026-09-10T11:09:09.548153",
+    "reproducibility": {
+        "random_seed": 42,
+        "enable_deterministic_operations": true,
+        "env_vars": {
+            "PYTHONHASHSEED": "42",
+            "TF_DETERMINISTIC_OPS": "1",
+            "TF_CUDNN_DETERMINISTIC": "1"
+        }
+    },
+    "environment": {
+        "python_version": "3.9.6",
+        "platform": "macOS-26.6.2-arm64-arm-64bit",
+        "system": "Darwin",
+        "cpu_count": 10,
+        "packages": {
+            "numpy": "2.0.2",
+            "pandas": "2.3.3",
+            "sklearn": "1.6.1",
+            "joblib": "1.5.3",
+            "scipy": "1.13.1"
+        },
+        "tensorflow": {
+            "installed": false,
+            "version": null,
+            "gpu_devices": []
+        },
+        "pytorch_in_architecture": false
+    },
+    "canonical_directories": [
+        "data/models",
+        "data/models/autoencoder",
+        "data/models/autoencoder/checkpoints",
+        "data/models/xgboost",
+        "data/models/xgboost/checkpoints",
+        "data/models/lstm",
+        "data/models/lstm/checkpoints",
+        "data/models/baseline",
+        "data/models/baseline/checkpoints",
+        "data/model_reports",
+        "data/model_reports/infrastructure",
+        "data/model_reports/autoencoder",
+        "data/model_reports/xgboost",
+        "data/model_reports/lstm",
+        "data/model_reports/baseline",
+        "data/model_reports/comparison",
+        "data/model_reports/figures"
+    ],
+    "model_directories": [
+        "data/models",
+        "data/models/autoencoder",
+        "data/models/autoencoder/checkpoints",
+        "data/models/xgboost",
+        "data/models/xgboost/checkpoints",
+        "data/models/lstm",
+        "data/models/lstm/checkpoints",
+        "data/models/baseline",
+        "data/models/baseline/checkpoints"
+    ],
+    "report_directories": [
+        "data/model_reports",
+        "data/model_reports/infrastructure",
+        "data/model_reports/autoencoder",
+        "data/model_reports/xgboost",
+        "data/model_reports/lstm",
+        "data/model_reports/baseline",
+        "data/model_reports/comparison",
+        "data/model_reports/figures"
+    ],
+    "read_only_directories": [
+        "data/raw",
+        "data/processed",
+        "data/windows",
+        "data/features",
+        "data/model_inputs",
+        "data/model_ready"
+    ],
+    "model_input_specifications": {
+        "feature_count": 13,
+        "feature_columns": [
+            "flow_count",
+            "packet_rate",
+            "byte_rate",
+            "mean_flow_duration",
+            "std_flow_duration",
+            "short_flow_ratio",
+            "mean_packet_size",
+            "packet_length_variability",
+            "fwd_bwd_packet_ratio",
+            "unique_dst_ports",
+            "unique_dst_ips",
+            "tcp_flow_ratio",
+            "syn_packet_ratio"
+        ],
+        "feature_dtype": "float32",
+        "label_dtype": "int64",
+        "autoencoder": {
+            "files": {
+                "X_train": "data/model_ready/autoencoder/X_train.npy",
+                "X_validation": "data/model_ready/autoencoder/X_validation.npy",
+                "X_test": "data/model_ready/autoencoder/X_test.npy",
+                "y_validation": "data/model_ready/autoencoder/y_validation.npy",
+                "y_test": "data/model_ready/autoencoder/y_test.npy"
+            },
+            "scaler": "data/model_ready/artifacts/autoencoder_scaler.joblib",
+            "shapes": {
+                "X_train": [
+                    1511,
+                    13
+                ],
+                "X_validation": [
+                    535,
+                    13
+                ],
+                "X_test": [
+                    408,
+                    13
+                ],
+                "y_validation": [
+                    535
+                ],
+                "y_test": [
+                    408
+                ]
+            }
+        },
+        "xgboost": {
+            "files": {
+                "X_train": "data/model_ready/xgboost/X_train.npy",
+                "X_validation": "data/model_ready/xgboost/X_validation.npy",
+                "X_test": "data/model_ready/xgboost/X_test.npy",
+                "y_train": "data/model_ready/xgboost/y_train.npy",
+                "y_validation": "data/model_ready/xgboost/y_validation.npy",
+                "y_test": "data/model_ready/xgboost/y_test.npy"
+            },
+            "encoder": "data/model_ready/artifacts/xgboost_label_encoder.joblib",
+            "num_classes": 8,
+            "shapes": {
+                "X_train": [
+                    1799,
+                    13
+                ],
+                "X_validation": [
+                    325,
+                    13
+                ],
+                "X_test": [
+                    319,
+                    13
+                ],
+                "y_train": [
+                    1799
+                ],
+                "y_validation": [
+                    325
+                ],
+                "y_test": [
+                    319
+                ]
+            }
+        },
+        "lstm": {
+            "files": {
+                "X_train": "data/model_ready/lstm/X_train.npy",
+                "X_validation": "data/model_ready/lstm/X_validation.npy",
+                "X_test": "data/model_ready/lstm/X_test.npy",
+                "y_train": "data/model_ready/lstm/y_train.npy",
+                "y_validation": "data/model_ready/lstm/y_validation.npy",
+                "y_test": "data/model_ready/lstm/y_test.npy"
+            },
+            "scaler": "data/model_ready/artifacts/lstm_scaler.joblib",
+            "sequence_length": 10,
+            "shapes": {
+                "X_train": [
+                    1536,
+                    10,
+                    13
+                ],
+                "X_validation": [
+                    382,
+                    10,
+                    13
+                ],
+                "X_test": [
+                    286,
+                    10,
+                    13
+                ],
+                "y_train": [
+                    1536
+                ],
+                "y_validation": [
+                    382
+                ],
+                "y_test": [
+                    286
+                ]
+            }
+        }
+    }
+}

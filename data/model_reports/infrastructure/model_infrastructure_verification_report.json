@@ -1,0 +1,840 @@
+{
+    "phase": "4.1",
+    "phase_title": "Model Training Infrastructure Verification Report",
+    "timestamp": "2026-09-10T11:09:09.548067",
+    "overall_status": "PASS",
+    "summary": {
+        "all_categories_passed": true,
+        "total_categories_checked": 7,
+        "passed_categories_count": 7,
+        "failed_categories": [],
+        "overall_status": "PASS"
+    },
+    "categories": {
+        "category_a_directories": {
+            "status": "PASS",
+            "total_required_directories": 17,
+            "total_verified_directories": 17,
+            "all_directories_exist": true,
+            "all_directories_writable": true,
+            "directories": [
+                {
+                    "path": "data/models",
+                    "exists": true,
+                    "writable": true
+                },
+                {
+                    "path": "data/models/autoencoder",
+                    "exists": true,
+                    "writable": true
+                },
+                {
+                    "path": "data/models/autoencoder/checkpoints",
+                    "exists": true,
+                    "writable": true
+                },
+                {
+                    "path": "data/models/xgboost",
+                    "exists": true,
+                    "writable": true
+                },
+                {
+                    "path": "data/models/xgboost/checkpoints",
+                    "exists": true,
+                    "writable": true
+                },
+                {
+                    "path": "data/models/lstm",
+                    "exists": true,
+                    "writable": true
+                },
+                {
+                    "path": "data/models/lstm/checkpoints",
+                    "exists": true,
+                    "writable": true
+                },
+                {
+                    "path": "data/models/baseline",
+                    "exists": true,
+                    "writable": true
+                },
+                {
+                    "path": "data/models/baseline/checkpoints",
+                    "exists": true,
+                    "writable": true
+                },
+                {
+                    "path": "data/model_reports",
+                    "exists": true,
+                    "writable": true
+                },
+                {
+                    "path": "data/model_reports/infrastructure",
+                    "exists": true,
+                    "writable": true
+                },
+                {
+                    "path": "data/model_reports/autoencoder",
+                    "exists": true,
+                    "writable": true
+                },
+                {
+                    "path": "data/model_reports/xgboost",
+                    "exists": true,
+                    "writable": true
+                },
+                {
+                    "path": "data/model_reports/lstm",
+                    "exists": true,
+                    "writable": true
+                },
+                {
+                    "path": "data/model_reports/baseline",
+                    "exists": true,
+                    "writable": true
+                },
+                {
+                    "path": "data/model_reports/comparison",
+                    "exists": true,
+                    "writable": true
+                },
+                {
+                    "path": "data/model_reports/figures",
+                    "exists": true,
+                    "writable": true
+                }
+            ]
+        },
+        "category_b_environment": {
+            "status": "PASS",
+            "python_version": "3.9.6",
+            "python_version_valid": true,
+            "platform": "macOS-26.6.2-arm64-arm-64bit",
+            "cpu_count": 10,
+            "packages": {
+                "numpy": "2.0.2",
+                "pandas": "2.3.3",
+                "sklearn": "1.6.1",
+                "joblib": "1.5.3",
+                "scipy": "1.13.1"
+            },
+            "missing_core_dependencies": [],
+            "tensorflow_status": "OPTIONAL - NOT INSTALLED (Non-fatal, architecture ready)",
+            "tensorflow_info": {
+                "installed": false,
+                "version": null,
+                "gpu_devices": []
+            },
+            "pytorch_in_architecture": false,
+            "pytorch_detected_in_env": false
+        },
+        "category_c_inputs": {
+            "status": "PASS",
+            "total_files_audited": 26,
+            "all_files_exist": true,
+            "all_files_non_empty": true,
+            "files": {
+                "autoencoder/X_train": {
+                    "path": "data/model_ready/autoencoder/X_train.npy",
+                    "exists": true,
+                    "size_bytes": 78700,
+                    "type": "numpy_array"
+                },
+                "autoencoder/X_validation": {
+                    "path": "data/model_ready/autoencoder/X_validation.npy",
+                    "exists": true,
+                    "size_bytes": 27948,
+                    "type": "numpy_array"
+                },
+                "autoencoder/X_test": {
+                    "path": "data/model_ready/autoencoder/X_test.npy",
+                    "exists": true,
+                    "size_bytes": 21344,
+                    "type": "numpy_array"
+                },
+                "autoencoder/y_validation": {
+                    "path": "data/model_ready/autoencoder/y_validation.npy",
+                    "exists": true,
+                    "size_bytes": 4408,
+                    "type": "numpy_array"
+                },
+                "autoencoder/y_test": {
+                    "path": "data/model_ready/autoencoder/y_test.npy",
+                    "exists": true,
+                    "size_bytes": 3392,
+                    "type": "numpy_array"
+                },
+                "xgboost/X_train": {
+                    "path": "data/model_ready/xgboost/X_train.npy",
+                    "exists": true,
+                    "size_bytes": 93676,
+                    "type": "numpy_array"
+                },
+                "xgboost/X_validation": {
+                    "path": "data/model_ready/xgboost/X_validation.npy",
+                    "exists": true,
+                    "size_bytes": 17028,
+                    "type": "numpy_array"
+                },
+                "xgboost/X_test": {
+                    "path": "data/model_ready/xgboost/X_test.npy",
+                    "exists": true,
+                    "size_bytes": 16716,
+                    "type": "numpy_array"
+                },
+                "xgboost/y_train": {
+                    "path": "data/model_ready/xgboost/y_train.npy",
+                    "exists": true,
+                    "size_bytes": 14520,
+                    "type": "numpy_array"
+                },
+                "xgboost/y_validation": {
+                    "path": "data/model_ready/xgboost/y_validation.npy",
+                    "exists": true,
+                    "size_bytes": 2728,
+                    "type": "numpy_array"
+                },
+                "xgboost/y_test": {
+                    "path": "data/model_ready/xgboost/y_test.npy",
+                    "exists": true,
+                    "size_bytes": 2680,
+                    "type": "numpy_array"
+                },
+                "lstm/X_train": {
+                    "path": "data/model_ready/lstm/X_train.npy",
+                    "exists": true,
+                    "size_bytes": 798848,
+                    "type": "numpy_array"
+                },
+                "lstm/X_validation": {
+                    "path": "data/model_ready/lstm/X_validation.npy",
+                    "exists": true,
+                    "size_bytes": 198768,
+                    "type": "numpy_array"
+                },
+                "lstm/X_test": {
+                    "path": "data/model_ready/lstm/X_test.npy",
+                    "exists": true,
+                    "size_bytes": 148848,
+                    "type": "numpy_array"
+                },
+                "lstm/y_train": {
+                    "path": "data/model_ready/lstm/y_train.npy",
+                    "exists": true,
+                    "size_bytes": 12416,
+                    "type": "numpy_array"
+                },
+                "lstm/y_validation": {
+                    "path": "data/model_ready/lstm/y_validation.npy",
+                    "exists": true,
+                    "size_bytes": 3184,
+                    "type": "numpy_array"
+                },
+                "lstm/y_test": {
+                    "path": "data/model_ready/lstm/y_test.npy",
+                    "exists": true,
+                    "size_bytes": 2416,
+                    "type": "numpy_array"
+                },
+                "artifacts/autoencoder_scaler": {
+                    "path": "data/model_ready/artifacts/autoencoder_scaler.joblib",
+                    "exists": true,
+                    "size_bytes": 911,
+                    "valid_artifact": true,
+                    "type": "joblib_artifact"
+                },
+                "artifacts/xgboost_label_encoder": {
+                    "path": "data/model_ready/artifacts/xgboost_label_encoder.joblib",
+                    "exists": true,
+                    "size_bytes": 233,
+                    "valid_artifact": true,
+                    "type": "joblib_artifact"
+                },
+                "artifacts/lstm_scaler": {
+                    "path": "data/model_ready/artifacts/lstm_scaler.joblib",
+                    "exists": true,
+                    "size_bytes": 911,
+                    "valid_artifact": true,
+                    "type": "joblib_artifact"
+                },
+                "metadata/feature_columns": {
+                    "path": "data/model_ready/metadata/feature_columns.json",
+                    "exists": true,
+                    "size_bytes": 416,
+                    "type": "metadata_file"
+                },
+                "metadata/preparation_metadata": {
+                    "path": "data/model_ready/metadata/preparation_metadata.json",
+                    "exists": true,
+                    "size_bytes": 1272,
+                    "type": "metadata_file"
+                },
+                "metadata/xgboost_label_mapping": {
+                    "path": "data/model_ready/metadata/xgboost_label_mapping.json",
+                    "exists": true,
+                    "size_bytes": 147,
+                    "type": "metadata_file"
+                },
+                "metadata/lstm_sequence_metadata": {
+                    "path": "data/model_ready/metadata/lstm_sequence_metadata.json",
+                    "exists": true,
+                    "size_bytes": 1161,
+                    "type": "metadata_file"
+                },
+                "metadata/lstm_sequence_provenance": {
+                    "path": "data/model_ready/metadata/lstm_sequence_provenance.csv",
+                    "exists": true,
+                    "size_bytes": 67580,
+                    "type": "metadata_file"
+                },
+                "metadata/model_preparation_report": {
+                    "path": "data/model_ready/reports/model_preparation_report.json",
+                    "exists": true,
+                    "size_bytes": 5227,
+                    "type": "metadata_file"
+                }
+            }
+        },
+        "category_d_tensor_validation": {
+            "status": "PASS",
+            "total_tensors_validated": 17,
+            "all_tensors_valid": true,
+            "tensors": {
+                "autoencoder/X_train": {
+                    "shape": [
+                        1511,
+                        13
+                    ],
+                    "dtype": "float32",
+                    "ndim": 2,
+                    "size": 19643,
+                    "finite_applicable": true,
+                    "has_nan": false,
+                    "has_inf": false,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": [],
+                    "extra_checks": {},
+                    "path": "data/model_ready/autoencoder/X_train.npy"
+                },
+                "autoencoder/X_validation": {
+                    "shape": [
+                        535,
+                        13
+                    ],
+                    "dtype": "float32",
+                    "ndim": 2,
+                    "size": 6955,
+                    "finite_applicable": true,
+                    "has_nan": false,
+                    "has_inf": false,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": [],
+                    "extra_checks": {},
+                    "path": "data/model_ready/autoencoder/X_validation.npy"
+                },
+                "autoencoder/X_test": {
+                    "shape": [
+                        408,
+                        13
+                    ],
+                    "dtype": "float32",
+                    "ndim": 2,
+                    "size": 5304,
+                    "finite_applicable": true,
+                    "has_nan": false,
+                    "has_inf": false,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": [],
+                    "extra_checks": {},
+                    "path": "data/model_ready/autoencoder/X_test.npy"
+                },
+                "autoencoder/y_validation": {
+                    "shape": [
+                        535
+                    ],
+                    "dtype": "int64",
+                    "ndim": 1,
+                    "size": 535,
+                    "finite_applicable": false,
+                    "has_nan": null,
+                    "has_inf": null,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": [],
+                    "extra_checks": {
+                        "unique_labels": [
+                            0,
+                            1
+                        ],
+                        "is_binary": true
+                    },
+                    "path": "data/model_ready/autoencoder/y_validation.npy"
+                },
+                "autoencoder/y_test": {
+                    "shape": [
+                        408
+                    ],
+                    "dtype": "int64",
+                    "ndim": 1,
+                    "size": 408,
+                    "finite_applicable": false,
+                    "has_nan": null,
+                    "has_inf": null,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": [],
+                    "extra_checks": {
+                        "unique_labels": [
+                            0,
+                            1
+                        ],
+                        "is_binary": true
+                    },
+                    "path": "data/model_ready/autoencoder/y_test.npy"
+                },
+                "xgboost/X_train": {
+                    "shape": [
+                        1799,
+                        13
+                    ],
+                    "dtype": "float32",
+                    "ndim": 2,
+                    "size": 23387,
+                    "finite_applicable": true,
+                    "has_nan": false,
+                    "has_inf": false,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": [],
+                    "extra_checks": {},
+                    "path": "data/model_ready/xgboost/X_train.npy"
+                },
+                "xgboost/X_validation": {
+                    "shape": [
+                        325,
+                        13
+                    ],
+                    "dtype": "float32",
+                    "ndim": 2,
+                    "size": 4225,
+                    "finite_applicable": true,
+                    "has_nan": false,
+                    "has_inf": false,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": [],
+                    "extra_checks": {},
+                    "path": "data/model_ready/xgboost/X_validation.npy"
+                },
+                "xgboost/X_test": {
+                    "shape": [
+                        319,
+                        13
+                    ],
+                    "dtype": "float32",
+                    "ndim": 2,
+                    "size": 4147,
+                    "finite_applicable": true,
+                    "has_nan": false,
+                    "has_inf": false,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": [],
+                    "extra_checks": {},
+                    "path": "data/model_ready/xgboost/X_test.npy"
+                },
+                "xgboost/y_train": {
+                    "shape": [
+                        1799
+                    ],
+                    "dtype": "int64",
+                    "ndim": 1,
+                    "size": 1799,
+                    "finite_applicable": false,
+                    "has_nan": null,
+                    "has_inf": null,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": [],
+                    "extra_checks": {
+                        "unique_classes": [
+                            0,
+                            1,
+                            2,
+                            3,
+                            4,
+                            5,
+                            6,
+                            7
+                        ],
+                        "all_8_classes_present": true
+                    },
+                    "path": "data/model_ready/xgboost/y_train.npy"
+                },
+                "xgboost/y_validation": {
+                    "shape": [
+                        325
+                    ],
+                    "dtype": "int64",
+                    "ndim": 1,
+                    "size": 325,
+                    "finite_applicable": false,
+                    "has_nan": null,
+                    "has_inf": null,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": [],
+                    "extra_checks": {},
+                    "path": "data/model_ready/xgboost/y_validation.npy"
+                },
+                "xgboost/y_test": {
+                    "shape": [
+                        319
+                    ],
+                    "dtype": "int64",
+                    "ndim": 1,
+                    "size": 319,
+                    "finite_applicable": false,
+                    "has_nan": null,
+                    "has_inf": null,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": [],
+                    "extra_checks": {},
+                    "path": "data/model_ready/xgboost/y_test.npy"
+                },
+                "lstm/X_train": {
+                    "shape": [
+                        1536,
+                        10,
+                        13
+                    ],
+                    "dtype": "float32",
+                    "ndim": 3,
+                    "size": 199680,
+                    "finite_applicable": true,
+                    "has_nan": false,
+                    "has_inf": false,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": [],
+                    "extra_checks": {},
+                    "path": "data/model_ready/lstm/X_train.npy"
+                },
+                "lstm/X_validation": {
+                    "shape": [
+                        382,
+                        10,
+                        13
+                    ],
+                    "dtype": "float32",
+                    "ndim": 3,
+                    "size": 49660,
+                    "finite_applicable": true,
+                    "has_nan": false,
+                    "has_inf": false,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": [],
+                    "extra_checks": {},
+                    "path": "data/model_ready/lstm/X_validation.npy"
+                },
+                "lstm/X_test": {
+                    "shape": [
+                        286,
+                        10,
+                        13
+                    ],
+                    "dtype": "float32",
+                    "ndim": 3,
+                    "size": 37180,
+                    "finite_applicable": true,
+                    "has_nan": false,
+                    "has_inf": false,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": [],
+                    "extra_checks": {},
+                    "path": "data/model_ready/lstm/X_test.npy"
+                },
+                "lstm/y_train": {
+                    "shape": [
+                        1536
+                    ],
+                    "dtype": "int64",
+                    "ndim": 1,
+                    "size": 1536,
+                    "finite_applicable": false,
+                    "has_nan": null,
+                    "has_inf": null,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": [],
+                    "extra_checks": {},
+                    "path": "data/model_ready/lstm/y_train.npy"
+                },
+                "lstm/y_validation": {
+                    "shape": [
+                        382
+                    ],
+                    "dtype": "int64",
+                    "ndim": 1,
+                    "size": 382,
+                    "finite_applicable": false,
+                    "has_nan": null,
+                    "has_inf": null,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": [],
+                    "extra_checks": {},
+                    "path": "data/model_ready/lstm/y_validation.npy"
+                },
+                "lstm/y_test": {
+                    "shape": [
+                        286
+                    ],
+                    "dtype": "int64",
+                    "ndim": 1,
+                    "size": 286,
+                    "finite_applicable": false,
+                    "has_nan": null,
+                    "has_inf": null,
+                    "is_finite": true,
+                    "passed": true,
+                    "errors": [],
+                    "extra_checks": {},
+                    "path": "data/model_ready/lstm/y_test.npy"
+                }
+            }
+        },
+        "category_e_reproducibility": {
+            "status": "PASS",
+            "seed_configured": 42,
+            "enable_deterministic_operations": true,
+            "python_random_repeatable": true,
+            "numpy_random_repeatable": true,
+            "env_pythonhashseed_set": true,
+            "env_tf_deterministic_set": true,
+            "pytorch_handled": false,
+            "seed_execution_report": {
+                "seed": 42,
+                "python_random_seeded": true,
+                "numpy_random_seeded": true,
+                "pytorch_handled": false,
+                "tensorflow": {
+                    "available": false,
+                    "version": null,
+                    "seed_configured": false,
+                    "determinism_enabled": false,
+                    "note": "TensorFlow not installed (optional dependency)"
+                },
+                "env_vars": {
+                    "PYTHONHASHSEED": "42",
+                    "TF_DETERMINISTIC_OPS": "1",
+                    "TF_CUDNN_DETERMINISTIC": "1"
+                }
+            }
+        },
+        "category_f_immutability": {
+            "status": "PASS",
+            "read_only_directories_declared": [
+                "data/raw",
+                "data/processed",
+                "data/windows",
+                "data/features",
+                "data/model_inputs",
+                "data/model_ready"
+            ],
+            "total_model_ready_files_verified": 26,
+            "all_hashes_matched": true,
+            "stray_temporary_files_found": [],
+            "zero_stray_temporary_files": true,
+            "files": {
+                "artifacts/autoencoder_scaler.joblib": {
+                    "path": "data/model_ready/artifacts/autoencoder_scaler.joblib",
+                    "expected_sha256": "269484386351907137aca35ca771659b1acded096e1ea40b267673a729cf89b7",
+                    "actual_sha256": "269484386351907137aca35ca771659b1acded096e1ea40b267673a729cf89b7",
+                    "matched": true
+                },
+                "artifacts/lstm_scaler.joblib": {
+                    "path": "data/model_ready/artifacts/lstm_scaler.joblib",
+                    "expected_sha256": "0f1ee25a878ebc60c9169d4fd826a66d41565aec4e1c8e7eb5d2d5e72867cbe7",
+                    "actual_sha256": "0f1ee25a878ebc60c9169d4fd826a66d41565aec4e1c8e7eb5d2d5e72867cbe7",
+                    "matched": true
+                },
+                "artifacts/xgboost_label_encoder.joblib": {
+                    "path": "data/model_ready/artifacts/xgboost_label_encoder.joblib",
+                    "expected_sha256": "1bd6fc5e22917d71a986214fa4c9d153ca582b0c616ebde57ff259d21cdb53f5",
+                    "actual_sha256": "1bd6fc5e22917d71a986214fa4c9d153ca582b0c616ebde57ff259d21cdb53f5",
+                    "matched": true
+                },
+                "autoencoder/X_test.npy": {
+                    "path": "data/model_ready/autoencoder/X_test.npy",
+                    "expected_sha256": "a38ef9e64ac0235bb9c5474cf8cc510b7722ca0212586c5be08f7d3b16447075",
+                    "actual_sha256": "a38ef9e64ac0235bb9c5474cf8cc510b7722ca0212586c5be08f7d3b16447075",
+                    "matched": true
+                },
+                "autoencoder/X_train.npy": {
+                    "path": "data/model_ready/autoencoder/X_train.npy",
+                    "expected_sha256": "5c243ba00c31110e098929c7e4ce0e6cfdf441ad096c12db65e6b47eafb9b184",
+                    "actual_sha256": "5c243ba00c31110e098929c7e4ce0e6cfdf441ad096c12db65e6b47eafb9b184",
+                    "matched": true
+                },
+                "autoencoder/X_validation.npy": {
+                    "path": "data/model_ready/autoencoder/X_validation.npy",
+                    "expected_sha256": "0077f4b8d569febc33af5b21e271b458feab0cf8dba847b97299dd322d093d74",
+                    "actual_sha256": "0077f4b8d569febc33af5b21e271b458feab0cf8dba847b97299dd322d093d74",
+                    "matched": true
+                },
+                "autoencoder/y_test.npy": {
+                    "path": "data/model_ready/autoencoder/y_test.npy",
+                    "expected_sha256": "90afa4e7218233f7156df7d70139e002b180e8c14dc771d5cfe2f4b91f2a23a1",
+                    "actual_sha256": "90afa4e7218233f7156df7d70139e002b180e8c14dc771d5cfe2f4b91f2a23a1",
+                    "matched": true
+                },
+                "autoencoder/y_validation.npy": {
+                    "path": "data/model_ready/autoencoder/y_validation.npy",
+                    "expected_sha256": "e8764783f8fad12c07531952ea02f9e16f89f3d445bb71f2460424a7f6b7b820",
+                    "actual_sha256": "e8764783f8fad12c07531952ea02f9e16f89f3d445bb71f2460424a7f6b7b820",
+                    "matched": true
+                },
+                "lstm/X_test.npy": {
+                    "path": "data/model_ready/lstm/X_test.npy",
+                    "expected_sha256": "52f1fddc1407553df1652c8aa7b4e7792e2fae9737adda8dc42bb06c8268ae61",
+                    "actual_sha256": "52f1fddc1407553df1652c8aa7b4e7792e2fae9737adda8dc42bb06c8268ae61",
+                    "matched": true
+                },
+                "lstm/X_train.npy": {
+                    "path": "data/model_ready/lstm/X_train.npy",
+                    "expected_sha256": "7dd9da8649499dcf2f72179ab3571feea1d47dafbb249b3b693b705e4a195c96",
+                    "actual_sha256": "7dd9da8649499dcf2f72179ab3571feea1d47dafbb249b3b693b705e4a195c96",
+                    "matched": true
+                },
+                "lstm/X_validation.npy": {
+                    "path": "data/model_ready/lstm/X_validation.npy",
+                    "expected_sha256": "7032d4256bfba09370e201136edc3faf7cbc4d769bb53d041962e7646a12dfa9",
+                    "actual_sha256": "7032d4256bfba09370e201136edc3faf7cbc4d769bb53d041962e7646a12dfa9",
+                    "matched": true
+                },
+                "lstm/y_test.npy": {
+                    "path": "data/model_ready/lstm/y_test.npy",
+                    "expected_sha256": "5ce9aa2b45e84458f17cfd4cb5f5081ef9f33129d9370490f86579f8ddd4aee2",
+                    "actual_sha256": "5ce9aa2b45e84458f17cfd4cb5f5081ef9f33129d9370490f86579f8ddd4aee2",
+                    "matched": true
+                },
+                "lstm/y_train.npy": {
+                    "path": "data/model_ready/lstm/y_train.npy",
+                    "expected_sha256": "8665dabba3869adb15a347eeb63d1bce8f6454540fa310726f022c52fadb8c18",
+                    "actual_sha256": "8665dabba3869adb15a347eeb63d1bce8f6454540fa310726f022c52fadb8c18",
+                    "matched": true
+                },
+                "lstm/y_validation.npy": {
+                    "path": "data/model_ready/lstm/y_validation.npy",
+                    "expected_sha256": "dcf1838c884e77a4577d7014b43dc8f774e71b3211eed70c2ced3adeefa8590d",
+                    "actual_sha256": "dcf1838c884e77a4577d7014b43dc8f774e71b3211eed70c2ced3adeefa8590d",
+                    "matched": true
+                },
+                "metadata/feature_columns.json": {
+                    "path": "data/model_ready/metadata/feature_columns.json",
+                    "expected_sha256": "b6777c2361ca6f03d24dcaad5385491da4364b8a0f4c9bf24e27d9257c8f0b1d",
+                    "actual_sha256": "b6777c2361ca6f03d24dcaad5385491da4364b8a0f4c9bf24e27d9257c8f0b1d",
+                    "matched": true
+                },
+                "metadata/lstm_sequence_metadata.json": {
+                    "path": "data/model_ready/metadata/lstm_sequence_metadata.json",
+                    "expected_sha256": "17c8f05a1a05c3b2dae66f6866f4afa416bc55e0ca58b02c0d1beca0f35e255e",
+                    "actual_sha256": "17c8f05a1a05c3b2dae66f6866f4afa416bc55e0ca58b02c0d1beca0f35e255e",
+                    "matched": true
+                },
+                "metadata/lstm_sequence_provenance.csv": {
+                    "path": "data/model_ready/metadata/lstm_sequence_provenance.csv",
+                    "expected_sha256": "b5254e761e8d14b1b08d94e9c2cf0db7a3252c9781ddc8c9c7e0cfabedf94876",
+                    "actual_sha256": "b5254e761e8d14b1b08d94e9c2cf0db7a3252c9781ddc8c9c7e0cfabedf94876",
+                    "matched": true
+                },
+                "metadata/preparation_metadata.json": {
+                    "path": "data/model_ready/metadata/preparation_metadata.json",
+                    "expected_sha256": "f28a3ea03e69b756479853efe1aa3833fc3b58bcd7d2644a053421a1bd5361c7",
+                    "actual_sha256": "f28a3ea03e69b756479853efe1aa3833fc3b58bcd7d2644a053421a1bd5361c7",
+                    "matched": true
+                },
+                "metadata/xgboost_label_mapping.json": {
+                    "path": "data/model_ready/metadata/xgboost_label_mapping.json",
+                    "expected_sha256": "510725bc3aba004e6f407e99c62ba49df736486d2eecbf089c15909e297056dc",
+                    "actual_sha256": "510725bc3aba004e6f407e99c62ba49df736486d2eecbf089c15909e297056dc",
+                    "matched": true
+                },
+                "reports/model_preparation_report.json": {
+                    "path": "data/model_ready/reports/model_preparation_report.json",
+                    "expected_sha256": "c3b9a3adc36a4feb6f9faea6fe8c5eaffdbb9cc24ebbd7a3c63fb7f3980bcb55",
+                    "actual_sha256": "c3b9a3adc36a4feb6f9faea6fe8c5eaffdbb9cc24ebbd7a3c63fb7f3980bcb55",
+                    "matched": true
+                },
+                "xgboost/X_test.npy": {
+                    "path": "data/model_ready/xgboost/X_test.npy",
+                    "expected_sha256": "d9cdc2a9ac89afebe9f5f868548e3b8c5fc19df0b23c2880186136794cd09c01",
+                    "actual_sha256": "d9cdc2a9ac89afebe9f5f868548e3b8c5fc19df0b23c2880186136794cd09c01",
+                    "matched": true
+                },
+                "xgboost/X_train.npy": {
+                    "path": "data/model_ready/xgboost/X_train.npy",
+                    "expected_sha256": "7b3402aa6ee23ff820820aaff7bc182586fd08735f5e0fe6bf6868258c64a1a4",
+                    "actual_sha256": "7b3402aa6ee23ff820820aaff7bc182586fd08735f5e0fe6bf6868258c64a1a4",
+                    "matched": true
+                },
+                "xgboost/X_validation.npy": {
+                    "path": "data/model_ready/xgboost/X_validation.npy",
+                    "expected_sha256": "6e886ad4e3cd92900acee9f6891fbab0cab7df6ec58df3fc1c887f42c3d64239",
+                    "actual_sha256": "6e886ad4e3cd92900acee9f6891fbab0cab7df6ec58df3fc1c887f42c3d64239",
+                    "matched": true
+                },
+                "xgboost/y_test.npy": {
+                    "path": "data/model_ready/xgboost/y_test.npy",
+                    "expected_sha256": "6deda47ef824a4ef63785de71ecdccf789a20b93b9ccd2ee63e1e88dd8dd1dbc",
+                    "actual_sha256": "6deda47ef824a4ef63785de71ecdccf789a20b93b9ccd2ee63e1e88dd8dd1dbc",
+                    "matched": true
+                },
+                "xgboost/y_train.npy": {
+                    "path": "data/model_ready/xgboost/y_train.npy",
+                    "expected_sha256": "f9e826ba76c0650a666cd34b39df072d0a3090b9ea8369861e7a3262c2a9435c",
+                    "actual_sha256": "f9e826ba76c0650a666cd34b39df072d0a3090b9ea8369861e7a3262c2a9435c",
+                    "matched": true
+                },
+                "xgboost/y_validation.npy": {
+                    "path": "data/model_ready/xgboost/y_validation.npy",
+                    "expected_sha256": "5c18ee9166e97832ad2dd3580f7858ed2876b6a1306cda26edc7c7e9b19ca29a",
+                    "actual_sha256": "5c18ee9166e97832ad2dd3580f7858ed2876b6a1306cda26edc7c7e9b19ca29a",
+                    "matched": true
+                }
+            }
+        },
+        "category_g_utilities": {
+            "status": "PASS",
+            "all_utilities_passed": true,
+            "isolated_testing_verified": true,
+            "utilities_tested": {
+                "set_global_seed": {
+                    "passed": true
+                },
+                "ensure_directory": {
+                    "passed": true
+                },
+                "initialize_model_directories": {
+                    "passed": true
+                },
+                "load_and_validate_numpy_array": {
+                    "passed": true,
+                    "float32_finite_valid": true,
+                    "nan_detected_correctly": true,
+                    "int64_nan_bypass_correct": true
+                },
+                "save_and_load_json_report": {
+                    "passed": true
+                }
+            }
+        }
+    }
+}
