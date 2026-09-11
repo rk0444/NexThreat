@@ -1,0 +1,55 @@
+{
+    "generated_at": "2026-09-11T20:15:19.401796",
+    "hashes": {
+        "xgboost_model": {
+            "relative_path": "data/models/xgboost/xgboost_model.json",
+            "sha256": "9c9ab8d0bc053d84bca49504f637eeb7c63cc9ef159dda43ffa06b97bab9d442",
+            "size_bytes": 2669556
+        },
+        "metadata": {
+            "relative_path": "data/models/xgboost/metadata.json",
+            "sha256": "ffa0b8743a3372bc8aef07a1d37f5d57c2ce5f2d20f85172172ba002f540fdba",
+            "size_bytes": 2669
+        },
+        "feature_schema": {
+            "relative_path": "data/models/xgboost/feature_schema.json",
+            "sha256": "c76ea2360a24d683f810a746acf2e70a717f546b0a645b60e6efc093fc395368",
+            "size_bytes": 587
+        },
+        "class_mapping": {
+            "relative_path": "data/models/xgboost/class_mapping.json",
+            "sha256": "32c406b92081099f307700eeebc0ebafd70b288003699b7719f6f4c102c39ed1",
+            "size_bytes": 522
+        },
+        "training_config": {
+            "relative_path": "data/models/xgboost/training_config.json",
+            "sha256": "f31744853866009e9330807104249b8e842f177bb9e93c0eb96a7fca1eb08d18",
+            "size_bytes": 3305
+        },
+        "dataset_manifest": {
+            "relative_path": "data/models/xgboost/dataset_manifest.json",
+            "sha256": "5e856b8e5079a652da3b478d9ac1dffca484a695d6584634f0f698a11796beff",
+            "size_bytes": 2657
+        },
+        "val_predictions": {
+            "relative_path": "data/models/xgboost/predictions/validation_predictions.npy",
+            "sha256": "23b7a974605d052e3b0b1ac597be5169e4f99938e0ccbc19394b955a3508fd64",
+            "size_bytes": 2728
+        },
+        "val_probabilities": {
+            "relative_path": "data/models/xgboost/predictions/validation_probabilities.npy",
+            "sha256": "f6ee0b410326740ecade19417acc9f1c01db12836794564ffedf7fddcbef1dc6",
+            "size_bytes": 10528
+        },
+        "test_predictions": {
+            "relative_path": "data/models/xgboost/predictions/test_predictions.npy",
+            "sha256": "174aee3e27ab187e2708004178a80e3371da9a7808be02f764761f8ffe2fa11b",
+            "size_bytes": 2680
+        },
+        "test_probabilities": {
+            "relative_path": "data/models/xgboost/predictions/test_probabilities.npy",
+            "sha256": "85ba4a14f04d68df444cf38cacdaa015e005fb249386ce7a1491451c0961409b",
+            "size_bytes": 10336
+        }
+    }
+}

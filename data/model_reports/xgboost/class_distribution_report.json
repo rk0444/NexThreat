@@ -1,0 +1,341 @@
+{
+    "report_name": "NexThreat Phase 4.3B Class Distribution & Imbalance Report",
+    "phase": "Phase 4.3B",
+    "generated_at": "2026-09-11T20:14:48.511178",
+    "training_distribution": {
+        "split_name": "TRAINING",
+        "total_samples": 1799,
+        "classes_present_count": 8,
+        "classes_present": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "classes_missing": [],
+        "majority_class": {
+            "index": 0,
+            "name": "BENIGN",
+            "count": 1365,
+            "percentage": 75.8755
+        },
+        "minority_class": {
+            "index": 7,
+            "name": "DDoS",
+            "count": 15,
+            "percentage": 0.8338
+        },
+        "imbalance_ratio": 91.0,
+        "class_frequency_table": [
+            {
+                "class_index": 0,
+                "class_name": "BENIGN",
+                "count": 1365,
+                "percentage": 75.8755,
+                "present": true
+            },
+            {
+                "class_index": 1,
+                "class_name": "Brute Force",
+                "count": 167,
+                "percentage": 9.2829,
+                "present": true
+            },
+            {
+                "class_index": 2,
+                "class_name": "Bot",
+                "count": 131,
+                "percentage": 7.2818,
+                "present": true
+            },
+            {
+                "class_index": 3,
+                "class_name": "DoS",
+                "count": 61,
+                "percentage": 3.3908,
+                "present": true
+            },
+            {
+                "class_index": 4,
+                "class_name": "Infiltration",
+                "count": 20,
+                "percentage": 1.1117,
+                "present": true
+            },
+            {
+                "class_index": 5,
+                "class_name": "PortScan",
+                "count": 19,
+                "percentage": 1.0561,
+                "present": true
+            },
+            {
+                "class_index": 6,
+                "class_name": "Web Attack",
+                "count": 21,
+                "percentage": 1.1673,
+                "present": true
+            },
+            {
+                "class_index": 7,
+                "class_name": "DDoS",
+                "count": 15,
+                "percentage": 0.8338,
+                "present": true
+            }
+        ]
+    },
+    "validation_distribution": {
+        "split_name": "VALIDATION",
+        "total_samples": 325,
+        "classes_present_count": 7,
+        "classes_present": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7
+        ],
+        "classes_missing": [
+            6
+        ],
+        "majority_class": {
+            "index": 0,
+            "name": "BENIGN",
+            "count": 282,
+            "percentage": 86.7692
+        },
+        "minority_class": {
+            "index": 1,
+            "name": "Brute Force",
+            "count": 2,
+            "percentage": 0.6154
+        },
+        "imbalance_ratio": 141.0,
+        "class_frequency_table": [
+            {
+                "class_index": 0,
+                "class_name": "BENIGN",
+                "count": 282,
+                "percentage": 86.7692,
+                "present": true
+            },
+            {
+                "class_index": 1,
+                "class_name": "Brute Force",
+                "count": 2,
+                "percentage": 0.6154,
+                "present": true
+            },
+            {
+                "class_index": 2,
+                "class_name": "Bot",
+                "count": 24,
+                "percentage": 7.3846,
+                "present": true
+            },
+            {
+                "class_index": 3,
+                "class_name": "DoS",
+                "count": 7,
+                "percentage": 2.1538,
+                "present": true
+            },
+            {
+                "class_index": 4,
+                "class_name": "Infiltration",
+                "count": 4,
+                "percentage": 1.2308,
+                "present": true
+            },
+            {
+                "class_index": 5,
+                "class_name": "PortScan",
+                "count": 3,
+                "percentage": 0.9231,
+                "present": true
+            },
+            {
+                "class_index": 6,
+                "class_name": "Web Attack",
+                "count": 0,
+                "percentage": 0.0,
+                "present": false
+            },
+            {
+                "class_index": 7,
+                "class_name": "DDoS",
+                "count": 3,
+                "percentage": 0.9231,
+                "present": true
+            }
+        ]
+    },
+    "test_distribution": {
+        "split_name": "TEST",
+        "total_samples": 319,
+        "classes_present_count": 8,
+        "classes_present": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "classes_missing": [],
+        "majority_class": {
+            "index": 0,
+            "name": "BENIGN",
+            "count": 292,
+            "percentage": 91.5361
+        },
+        "minority_class": {
+            "index": 1,
+            "name": "Brute Force",
+            "count": 2,
+            "percentage": 0.627
+        },
+        "imbalance_ratio": 146.0,
+        "class_frequency_table": [
+            {
+                "class_index": 0,
+                "class_name": "BENIGN",
+                "count": 292,
+                "percentage": 91.5361,
+                "present": true
+            },
+            {
+                "class_index": 1,
+                "class_name": "Brute Force",
+                "count": 2,
+                "percentage": 0.627,
+                "present": true
+            },
+            {
+                "class_index": 2,
+                "class_name": "Bot",
+                "count": 8,
+                "percentage": 2.5078,
+                "present": true
+            },
+            {
+                "class_index": 3,
+                "class_name": "DoS",
+                "count": 3,
+                "percentage": 0.9404,
+                "present": true
+            },
+            {
+                "class_index": 4,
+                "class_name": "Infiltration",
+                "count": 3,
+                "percentage": 0.9404,
+                "present": true
+            },
+            {
+                "class_index": 5,
+                "class_name": "PortScan",
+                "count": 5,
+                "percentage": 1.5674,
+                "present": true
+            },
+            {
+                "class_index": 6,
+                "class_name": "Web Attack",
+                "count": 3,
+                "percentage": 0.9404,
+                "present": true
+            },
+            {
+                "class_index": 7,
+                "class_name": "DDoS",
+                "count": 3,
+                "percentage": 0.9404,
+                "present": true
+            }
+        ]
+    },
+    "validation_class_6_asymmetry": {
+        "class_6_index": 6,
+        "class_6_name": "Web Attack",
+        "validation_support": 0,
+        "has_zero_support": true,
+        "implication": "Web Attack (class 6) contains exactly 0 positive samples in validation. In validation metrics, its support is reported as 0 with zero_division=0. Its OvR ROC-AUC and OvR PR-AUC must be documented explicitly as 'undefined' (never coerced to 0.0). Valid supported classes for validation AUCs: [0, 1, 2, 3, 4, 5, 7]."
+    },
+    "imbalance_strategy": {
+        "strategy_name": "balanced_class_weighting",
+        "formula": "w_c = N / (K * N_c)",
+        "formula_variables": {
+            "N": 1799,
+            "K": 8,
+            "N_c": "Training count for class c"
+        },
+        "derived_strictly_from": "y_train ONLY",
+        "validation_labels_used": false,
+        "test_labels_used": false,
+        "weights_per_class": [
+            {
+                "class_index": 0,
+                "class_name": "BENIGN",
+                "training_samples": 1365,
+                "class_weight": 0.164744
+            },
+            {
+                "class_index": 1,
+                "class_name": "Brute Force",
+                "training_samples": 167,
+                "class_weight": 1.346557
+            },
+            {
+                "class_index": 2,
+                "class_name": "Bot",
+                "training_samples": 131,
+                "class_weight": 1.716603
+            },
+            {
+                "class_index": 3,
+                "class_name": "DoS",
+                "training_samples": 61,
+                "class_weight": 3.686475
+            },
+            {
+                "class_index": 4,
+                "class_name": "Infiltration",
+                "training_samples": 20,
+                "class_weight": 11.24375
+            },
+            {
+                "class_index": 5,
+                "class_name": "PortScan",
+                "training_samples": 19,
+                "class_weight": 11.835526
+            },
+            {
+                "class_index": 6,
+                "class_name": "Web Attack",
+                "training_samples": 21,
+                "class_weight": 10.708333
+            },
+            {
+                "class_index": 7,
+                "class_name": "DDoS",
+                "training_samples": 15,
+                "class_weight": 14.991667
+            }
+        ],
+        "candidate_usage": {
+            "Candidate_A": "Unweighted (uniform weight = 1.0)",
+            "Candidate_B": "Balanced sample weights applied during training",
+            "Candidate_C": "Unweighted (regularized tree structure)"
+        }
+    }
+}

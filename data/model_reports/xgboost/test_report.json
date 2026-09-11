@@ -1,0 +1,465 @@
+{
+    "split_name": "test",
+    "total_samples": 319,
+    "accuracy": 0.789969,
+    "log_loss": 0.644028,
+    "macro_precision": 0.406557,
+    "weighted_precision": 0.888678,
+    "macro_recall": 0.442138,
+    "weighted_recall": 0.789969,
+    "macro_f1": 0.394696,
+    "weighted_f1": 0.832458,
+    "macro_f1_supported": 0.394696,
+    "macro_recall_supported": 0.442138,
+    "macro_precision_supported": 0.406557,
+    "per_class_metrics": [
+        {
+            "class_index": 0,
+            "class_name": "BENIGN",
+            "support": 292,
+            "precision": 0.945312,
+            "recall": 0.828767,
+            "f1": 0.883212,
+            "has_support": true
+        },
+        {
+            "class_index": 1,
+            "class_name": "Brute Force",
+            "support": 2,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "has_support": true
+        },
+        {
+            "class_index": 2,
+            "class_name": "Bot",
+            "support": 8,
+            "precision": 0.107143,
+            "recall": 0.375,
+            "f1": 0.166667,
+            "has_support": true
+        },
+        {
+            "class_index": 3,
+            "class_name": "DoS",
+            "support": 3,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "has_support": true
+        },
+        {
+            "class_index": 4,
+            "class_name": "Infiltration",
+            "support": 3,
+            "precision": 0.2,
+            "recall": 0.666667,
+            "f1": 0.307692,
+            "has_support": true
+        },
+        {
+            "class_index": 5,
+            "class_name": "PortScan",
+            "support": 5,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "has_support": true
+        },
+        {
+            "class_index": 6,
+            "class_name": "Web Attack",
+            "support": 3,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "has_support": true
+        },
+        {
+            "class_index": 7,
+            "class_name": "DDoS",
+            "support": 3,
+            "precision": 1.0,
+            "recall": 0.666667,
+            "f1": 0.8,
+            "has_support": true
+        }
+    ],
+    "confusion_matrix": [
+        [
+            242,
+            14,
+            24,
+            0,
+            6,
+            3,
+            3,
+            0
+        ],
+        [
+            2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            5,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            0,
+            0,
+            0,
+            3,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            1,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+        ],
+        [
+            3,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+        ],
+        [
+            2,
+            0,
+            1,
+            0,
+            0,
+            0,
+            0,
+            0
+        ],
+        [
+            1,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            2
+        ]
+    ],
+    "roc_auc": {
+        "split_name": "test",
+        "averaging_method": "one-vs-rest (OvR)",
+        "macro_roc_auc": 0.79151,
+        "weighted_roc_auc": 0.675437,
+        "supported_classes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "excluded_classes": [],
+        "exclusion_reasons": {},
+        "per_class_roc_auc": [
+            {
+                "class_index": 0,
+                "class_name": "BENIGN",
+                "support": 292,
+                "roc_auc": 0.664637,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 1,
+                "class_name": "Brute Force",
+                "support": 2,
+                "roc_auc": 0.88959,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 2,
+                "class_name": "Bot",
+                "support": 8,
+                "roc_auc": 0.784968,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 3,
+                "class_name": "DoS",
+                "support": 3,
+                "roc_auc": 1.0,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 4,
+                "class_name": "Infiltration",
+                "support": 3,
+                "roc_auc": 0.96097,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 5,
+                "class_name": "PortScan",
+                "support": 5,
+                "roc_auc": 0.676433,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 6,
+                "class_name": "Web Attack",
+                "support": 3,
+                "roc_auc": 0.409283,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 7,
+                "class_name": "DDoS",
+                "support": 3,
+                "roc_auc": 0.946203,
+                "roc_auc_status": "computed",
+                "reason": null
+            }
+        ],
+        "note": "Classes with zero positive samples are recorded strictly as 'undefined' and excluded from averaging; never converted to 0.0."
+    },
+    "pr_auc": {
+        "split_name": "test",
+        "averaging_method": "one-vs-rest (OvR) average_precision_score",
+        "macro_pr_auc": 0.393645,
+        "weighted_pr_auc": 0.889329,
+        "supported_classes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "excluded_classes": [],
+        "exclusion_reasons": {},
+        "per_class_pr_auc": [
+            {
+                "class_index": 0,
+                "class_name": "BENIGN",
+                "support": 292,
+                "pr_auc": 0.945044,
+                "pr_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 1,
+                "class_name": "Brute Force",
+                "support": 2,
+                "pr_auc": 0.04596,
+                "pr_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 2,
+                "class_name": "Bot",
+                "support": 8,
+                "pr_auc": 0.213115,
+                "pr_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 3,
+                "class_name": "DoS",
+                "support": 3,
+                "pr_auc": 1.0,
+                "pr_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 4,
+                "class_name": "Infiltration",
+                "support": 3,
+                "pr_auc": 0.194163,
+                "pr_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 5,
+                "class_name": "PortScan",
+                "support": 5,
+                "pr_auc": 0.055465,
+                "pr_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 6,
+                "class_name": "Web Attack",
+                "support": 3,
+                "pr_auc": 0.010227,
+                "pr_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 7,
+                "class_name": "DDoS",
+                "support": 3,
+                "pr_auc": 0.685185,
+                "pr_auc_status": "computed",
+                "reason": null
+            }
+        ],
+        "note": "Classes with zero positive samples are recorded strictly as 'undefined' and excluded from averaging; never converted to 0.0."
+    },
+    "prediction_distribution": [
+        {
+            "class_index": 0,
+            "class_name": "BENIGN",
+            "predicted_count": 256,
+            "predicted_percentage": 80.2508
+        },
+        {
+            "class_index": 1,
+            "class_name": "Brute Force",
+            "predicted_count": 14,
+            "predicted_percentage": 4.3887
+        },
+        {
+            "class_index": 2,
+            "class_name": "Bot",
+            "predicted_count": 28,
+            "predicted_percentage": 8.7774
+        },
+        {
+            "class_index": 3,
+            "class_name": "DoS",
+            "predicted_count": 3,
+            "predicted_percentage": 0.9404
+        },
+        {
+            "class_index": 4,
+            "class_name": "Infiltration",
+            "predicted_count": 10,
+            "predicted_percentage": 3.1348
+        },
+        {
+            "class_index": 5,
+            "class_name": "PortScan",
+            "predicted_count": 3,
+            "predicted_percentage": 0.9404
+        },
+        {
+            "class_index": 6,
+            "class_name": "Web Attack",
+            "predicted_count": 3,
+            "predicted_percentage": 0.9404
+        },
+        {
+            "class_index": 7,
+            "class_name": "DDoS",
+            "predicted_count": 2,
+            "predicted_percentage": 0.627
+        }
+    ],
+    "error_analysis": [
+        {
+            "class_index": 0,
+            "class_name": "BENIGN",
+            "true_positives": 242,
+            "false_positives": 14,
+            "false_negatives": 50,
+            "support": 292,
+            "class_error_rate": 0.171233
+        },
+        {
+            "class_index": 1,
+            "class_name": "Brute Force",
+            "true_positives": 0,
+            "false_positives": 14,
+            "false_negatives": 2,
+            "support": 2,
+            "class_error_rate": 1.0
+        },
+        {
+            "class_index": 2,
+            "class_name": "Bot",
+            "true_positives": 3,
+            "false_positives": 25,
+            "false_negatives": 5,
+            "support": 8,
+            "class_error_rate": 0.625
+        },
+        {
+            "class_index": 3,
+            "class_name": "DoS",
+            "true_positives": 3,
+            "false_positives": 0,
+            "false_negatives": 0,
+            "support": 3,
+            "class_error_rate": 0.0
+        },
+        {
+            "class_index": 4,
+            "class_name": "Infiltration",
+            "true_positives": 2,
+            "false_positives": 8,
+            "false_negatives": 1,
+            "support": 3,
+            "class_error_rate": 0.333333
+        },
+        {
+            "class_index": 5,
+            "class_name": "PortScan",
+            "true_positives": 0,
+            "false_positives": 3,
+            "false_negatives": 5,
+            "support": 5,
+            "class_error_rate": 1.0
+        },
+        {
+            "class_index": 6,
+            "class_name": "Web Attack",
+            "true_positives": 0,
+            "false_positives": 3,
+            "false_negatives": 3,
+            "support": 3,
+            "class_error_rate": 1.0
+        },
+        {
+            "class_index": 7,
+            "class_name": "DDoS",
+            "true_positives": 2,
+            "false_positives": 0,
+            "false_negatives": 1,
+            "support": 3,
+            "class_error_rate": 0.333333
+        }
+    ]
+}

@@ -1,0 +1,62 @@
+{
+    "manifest_name": "NexThreat Phase 4.3 XGBoost Dataset Baseline Manifest",
+    "phase": "Phase 4.3",
+    "generated_at": "2026-09-11T20:14:44.666347",
+    "source_directory": "data/model_ready/xgboost",
+    "files": {
+        "X_train": {
+            "relative_path": "data/model_ready/xgboost/X_train.npy",
+            "sha256": "7b3402aa6ee23ff820820aaff7bc182586fd08735f5e0fe6bf6868258c64a1a4",
+            "size_bytes": 93676,
+            "role": "feature_array"
+        },
+        "X_validation": {
+            "relative_path": "data/model_ready/xgboost/X_validation.npy",
+            "sha256": "6e886ad4e3cd92900acee9f6891fbab0cab7df6ec58df3fc1c887f42c3d64239",
+            "size_bytes": 17028,
+            "role": "feature_array"
+        },
+        "X_test": {
+            "relative_path": "data/model_ready/xgboost/X_test.npy",
+            "sha256": "d9cdc2a9ac89afebe9f5f868548e3b8c5fc19df0b23c2880186136794cd09c01",
+            "size_bytes": 16716,
+            "role": "feature_array"
+        },
+        "y_train": {
+            "relative_path": "data/model_ready/xgboost/y_train.npy",
+            "sha256": "f9e826ba76c0650a666cd34b39df072d0a3090b9ea8369861e7a3262c2a9435c",
+            "size_bytes": 14520,
+            "role": "label_array"
+        },
+        "y_validation": {
+            "relative_path": "data/model_ready/xgboost/y_validation.npy",
+            "sha256": "5c18ee9166e97832ad2dd3580f7858ed2876b6a1306cda26edc7c7e9b19ca29a",
+            "size_bytes": 2728,
+            "role": "label_array"
+        },
+        "y_test": {
+            "relative_path": "data/model_ready/xgboost/y_test.npy",
+            "sha256": "6deda47ef824a4ef63785de71ecdccf789a20b93b9ccd2ee63e1e88dd8dd1dbc",
+            "size_bytes": 2680,
+            "role": "label_array"
+        },
+        "label_mapping": {
+            "relative_path": "data/model_ready/metadata/xgboost_label_mapping.json",
+            "sha256": "510725bc3aba004e6f407e99c62ba49df736486d2eecbf089c15909e297056dc",
+            "size_bytes": 147,
+            "role": "metadata_or_artifact"
+        },
+        "feature_columns": {
+            "relative_path": "data/model_ready/metadata/feature_columns.json",
+            "sha256": "b6777c2361ca6f03d24dcaad5385491da4364b8a0f4c9bf24e27d9257c8f0b1d",
+            "size_bytes": 416,
+            "role": "metadata_or_artifact"
+        },
+        "label_encoder": {
+            "relative_path": "data/model_ready/artifacts/xgboost_label_encoder.joblib",
+            "sha256": "1bd6fc5e22917d71a986214fa4c9d153ca582b0c616ebde57ff259d21cdb53f5",
+            "size_bytes": 233,
+            "role": "metadata_or_artifact"
+        }
+    }
+}

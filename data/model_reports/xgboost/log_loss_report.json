@@ -1,0 +1,11 @@
+{
+    "report_name": "Phase 4.3 Log Loss Report",
+    "timestamp": "2026-09-11T20:15:19.401352",
+    "validation_log_loss": 0.601347,
+    "test_log_loss": 0.644028,
+    "candidate_validation_log_losses": {
+        "Candidate_A": 0.442932,
+        "Candidate_B": 0.601347,
+        "Candidate_C": 0.435264
+    }
+}

@@ -1,0 +1,85 @@
+{
+    "report_name": "Phase 4.3 Test Classification Report",
+    "timestamp": "2026-09-11T20:15:19.400468",
+    "accuracy": 0.789969,
+    "macro_precision": 0.406557,
+    "macro_recall": 0.442138,
+    "macro_f1": 0.394696,
+    "weighted_precision": 0.888678,
+    "weighted_recall": 0.789969,
+    "weighted_f1": 0.832458,
+    "per_class_metrics": [
+        {
+            "class_index": 0,
+            "class_name": "BENIGN",
+            "support": 292,
+            "precision": 0.945312,
+            "recall": 0.828767,
+            "f1": 0.883212,
+            "has_support": true
+        },
+        {
+            "class_index": 1,
+            "class_name": "Brute Force",
+            "support": 2,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "has_support": true
+        },
+        {
+            "class_index": 2,
+            "class_name": "Bot",
+            "support": 8,
+            "precision": 0.107143,
+            "recall": 0.375,
+            "f1": 0.166667,
+            "has_support": true
+        },
+        {
+            "class_index": 3,
+            "class_name": "DoS",
+            "support": 3,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0,
+            "has_support": true
+        },
+        {
+            "class_index": 4,
+            "class_name": "Infiltration",
+            "support": 3,
+            "precision": 0.2,
+            "recall": 0.666667,
+            "f1": 0.307692,
+            "has_support": true
+        },
+        {
+            "class_index": 5,
+            "class_name": "PortScan",
+            "support": 5,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "has_support": true
+        },
+        {
+            "class_index": 6,
+            "class_name": "Web Attack",
+            "support": 3,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0,
+            "has_support": true
+        },
+        {
+            "class_index": 7,
+            "class_name": "DDoS",
+            "support": 3,
+            "precision": 1.0,
+            "recall": 0.666667,
+            "f1": 0.8,
+            "has_support": true
+        }
+    ]
+}

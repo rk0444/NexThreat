@@ -1,0 +1,24 @@
+{
+    "taxonomy_name": "NexThreat 8-Class Multiclass Attack Mapping",
+    "num_classes": 8,
+    "class_to_index": {
+        "BENIGN": 0,
+        "Brute Force": 1,
+        "Bot": 2,
+        "DoS": 3,
+        "Infiltration": 4,
+        "PortScan": 5,
+        "Web Attack": 6,
+        "DDoS": 7
+    },
+    "index_to_class": {
+        "0": "BENIGN",
+        "1": "Brute Force",
+        "2": "Bot",
+        "3": "DoS",
+        "4": "Infiltration",
+        "5": "PortScan",
+        "6": "Web Attack",
+        "7": "DDoS"
+    }
+}

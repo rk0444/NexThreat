@@ -1,0 +1,93 @@
+{
+    "project_name": "NexThreat",
+    "phase": "Phase 4.3 \u2014 XGBoost Multiclass Development",
+    "random_seed": 42,
+    "num_classes": 8,
+    "objective": "multi:softprob",
+    "eval_metric": "mlogloss",
+    "early_stopping_rounds": 15,
+    "early_stopping_split": "validation",
+    "test_set_used_in_training": false,
+    "test_set_used_in_selection": false,
+    "candidates": {
+        "Candidate_A": {
+            "candidate_id": "Candidate_A",
+            "name": "Unweighted Baseline",
+            "description": "Baseline multiclass XGBoost with default sampling and uniform sample weights",
+            "use_class_weights": false,
+            "params": {
+                "objective": "multi:softprob",
+                "num_class": 8,
+                "eval_metric": "mlogloss",
+                "tree_method": "hist",
+                "random_state": 42,
+                "early_stopping_rounds": 15,
+                "n_estimators": 200,
+                "max_depth": 5,
+                "learning_rate": 0.1,
+                "subsample": 1.0,
+                "colsample_bytree": 1.0,
+                "min_child_weight": 1
+            }
+        },
+        "Candidate_B": {
+            "candidate_id": "Candidate_B",
+            "name": "Balanced Class Weights",
+            "description": "Multiclass XGBoost with balanced sample weights derived strictly from y_train: w_c = N / (K * N_c)",
+            "use_class_weights": true,
+            "params": {
+                "objective": "multi:softprob",
+                "num_class": 8,
+                "eval_metric": "mlogloss",
+                "tree_method": "hist",
+                "random_state": 42,
+                "early_stopping_rounds": 15,
+                "n_estimators": 200,
+                "max_depth": 5,
+                "learning_rate": 0.1,
+                "subsample": 1.0,
+                "colsample_bytree": 1.0,
+                "min_child_weight": 1
+            }
+        },
+        "Candidate_C": {
+            "candidate_id": "Candidate_C",
+            "name": "Regularized",
+            "description": "Regularized multiclass XGBoost with feature/row subsampling and shallower tree depth to prevent overfitting",
+            "use_class_weights": false,
+            "params": {
+                "objective": "multi:softprob",
+                "num_class": 8,
+                "eval_metric": "mlogloss",
+                "tree_method": "hist",
+                "random_state": 42,
+                "early_stopping_rounds": 15,
+                "n_estimators": 200,
+                "max_depth": 4,
+                "learning_rate": 0.08,
+                "subsample": 0.85,
+                "colsample_bytree": 0.85,
+                "min_child_weight": 2
+            }
+        }
+    },
+    "selection_priority": [
+        "macro_f1_supported",
+        "macro_recall_supported",
+        "log_loss",
+        "candidate_index"
+    ],
+    "selected_candidate": "Candidate_B",
+    "selected_candidate_name": "Balanced Class Weights",
+    "class_imbalance_weights": {
+        "0": 0.164744,
+        "1": 1.346557,
+        "2": 1.716603,
+        "3": 3.686475,
+        "4": 11.24375,
+        "5": 11.835526,
+        "6": 10.708333,
+        "7": 14.991667
+    },
+    "weight_calculation_formula": "w_c = N / (K * N_c) derived strictly from y_train"
+}

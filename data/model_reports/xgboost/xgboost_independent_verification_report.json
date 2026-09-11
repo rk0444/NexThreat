@@ -1,0 +1,88 @@
+{
+    "report_name": "Phase 4.3 Independent Verification Report",
+    "timestamp": "2026-09-11T20:16:35.485957",
+    "overall_status": "PASS",
+    "checks": {
+        "Check A  Source Data Existence": {
+            "status": "PASS",
+            "description": "All 6 canonical Phase 3.3 XGBoost model-ready array files exist",
+            "missing_files": []
+        },
+        "Check B  SHA-256 Integrity": {
+            "status": "PASS",
+            "description": "Source files match canonical Phase 4.3 baseline manifest SHA-256 hashes exactly",
+            "differences": []
+        },
+        "Check C  Model-Ready Immutability": {
+            "status": "PASS",
+            "description": "All 26 model-ready files unchanged; Phase 4.2 Autoencoder artifacts and threshold intact",
+            "issues": []
+        },
+        "Check D  Feature Contract": {
+            "status": "PASS",
+            "description": "13 features, exact declared ordering, float32, zero NaN/Inf, raw/unscaled representation",
+            "issues": []
+        },
+        "Check E  Label Contract": {
+            "status": "PASS",
+            "description": "Labels strictly within 0..7, int64 dtype, matching immutable 8-class attack taxonomy",
+            "issues": []
+        },
+        "Check F  Dataset Isolation": {
+            "status": "PASS",
+            "description": "Train strictly for fitting; validation strictly for selection/early stopping; test isolated",
+            "issues": []
+        },
+        "Check G  Class Weight Integrity": {
+            "status": "PASS",
+            "description": "Balanced sample weights recalculated strictly from y_train match stored weights <= 1e-5",
+            "recomputed_weights": {
+                "0": 0.164744,
+                "1": 1.346557,
+                "2": 1.716603,
+                "3": 3.686475,
+                "4": 11.24375,
+                "5": 11.835526,
+                "6": 10.708333,
+                "7": 14.991667
+            },
+            "issues": []
+        },
+        "Check H  Model Loadability": {
+            "status": "PASS",
+            "description": "Saved xgboost_model.json successfully loaded into XGBClassifier",
+            "issues": []
+        },
+        "Check I  Model Configuration": {
+            "status": "PASS",
+            "description": "Model configuration contract: objective=multi:softprob, num_class=8, seed=42 verified",
+            "issues": []
+        },
+        "Check J  Prediction Replay": {
+            "status": "PASS",
+            "description": "Independent re-prediction on X_test matches saved test probabilities (<= 1e-5) & predictions exactly",
+            "max_probability_diff": 0.0,
+            "issues": []
+        },
+        "Check K  Metric Replay": {
+            "status": "PASS",
+            "description": "All test and validation metrics recomputed independently match stored reports <= 1e-5",
+            "issues": []
+        },
+        "Check L  Test Isolation": {
+            "status": "PASS",
+            "description": "Test set isolated from candidate selection, early stopping, and class weighting",
+            "issues": []
+        },
+        "Check M  Artifact Integrity": {
+            "status": "PASS",
+            "description": "Cryptographic SHA-256 hashes of all generated model and prediction artifacts verified",
+            "issues": []
+        },
+        "Check N  Reproducibility": {
+            "status": "PASS",
+            "description": "Complete reproducibility specification, software versions, PRNG seeds, and artifact provenance recorded",
+            "issues": []
+        }
+    }
+}

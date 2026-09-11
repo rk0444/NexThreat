@@ -1,0 +1,23 @@
+{
+    "schema_name": "NexThreat Phase 4.3 Feature Schema",
+    "feature_count": 13,
+    "feature_names": [
+        "flow_count",
+        "packet_rate",
+        "byte_rate",
+        "mean_flow_duration",
+        "std_flow_duration",
+        "short_flow_ratio",
+        "mean_packet_size",
+        "packet_length_variability",
+        "fwd_bwd_packet_ratio",
+        "unique_dst_ports",
+        "unique_dst_ips",
+        "tcp_flow_ratio",
+        "syn_packet_ratio"
+    ],
+    "dtype": "float32",
+    "raw_unscaled": true,
+    "scaler_applied": false,
+    "target_column_included": false
+}

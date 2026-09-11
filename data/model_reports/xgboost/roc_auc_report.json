@@ -1,0 +1,177 @@
+{
+    "report_name": "Phase 4.3 ROC-AUC Report",
+    "timestamp": "2026-09-11T20:15:19.400790",
+    "test_roc_auc": {
+        "split_name": "test",
+        "averaging_method": "one-vs-rest (OvR)",
+        "macro_roc_auc": 0.79151,
+        "weighted_roc_auc": 0.675437,
+        "supported_classes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+        ],
+        "excluded_classes": [],
+        "exclusion_reasons": {},
+        "per_class_roc_auc": [
+            {
+                "class_index": 0,
+                "class_name": "BENIGN",
+                "support": 292,
+                "roc_auc": 0.664637,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 1,
+                "class_name": "Brute Force",
+                "support": 2,
+                "roc_auc": 0.88959,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 2,
+                "class_name": "Bot",
+                "support": 8,
+                "roc_auc": 0.784968,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 3,
+                "class_name": "DoS",
+                "support": 3,
+                "roc_auc": 1.0,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 4,
+                "class_name": "Infiltration",
+                "support": 3,
+                "roc_auc": 0.96097,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 5,
+                "class_name": "PortScan",
+                "support": 5,
+                "roc_auc": 0.676433,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 6,
+                "class_name": "Web Attack",
+                "support": 3,
+                "roc_auc": 0.409283,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 7,
+                "class_name": "DDoS",
+                "support": 3,
+                "roc_auc": 0.946203,
+                "roc_auc_status": "computed",
+                "reason": null
+            }
+        ],
+        "note": "Classes with zero positive samples are recorded strictly as 'undefined' and excluded from averaging; never converted to 0.0."
+    },
+    "validation_roc_auc": {
+        "split_name": "validation_Candidate_B",
+        "averaging_method": "one-vs-rest (OvR)",
+        "macro_roc_auc": 0.851927,
+        "weighted_roc_auc": 0.72627,
+        "supported_classes": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            7
+        ],
+        "excluded_classes": [
+            6
+        ],
+        "exclusion_reasons": {
+            "6": "zero positive samples in split"
+        },
+        "per_class_roc_auc": [
+            {
+                "class_index": 0,
+                "class_name": "BENIGN",
+                "support": 282,
+                "roc_auc": 0.716395,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 1,
+                "class_name": "Brute Force",
+                "support": 2,
+                "roc_auc": 0.773994,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 2,
+                "class_name": "Bot",
+                "support": 24,
+                "roc_auc": 0.690615,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 3,
+                "class_name": "DoS",
+                "support": 7,
+                "roc_auc": 0.915094,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 4,
+                "class_name": "Infiltration",
+                "support": 4,
+                "roc_auc": 0.883956,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 5,
+                "class_name": "PortScan",
+                "support": 3,
+                "roc_auc": 0.983437,
+                "roc_auc_status": "computed",
+                "reason": null
+            },
+            {
+                "class_index": 6,
+                "class_name": "Web Attack",
+                "support": 0,
+                "roc_auc": null,
+                "roc_auc_status": "undefined",
+                "reason": "zero positive samples in split"
+            },
+            {
+                "class_index": 7,
+                "class_name": "DDoS",
+                "support": 3,
+                "roc_auc": 1.0,
+                "roc_auc_status": "computed",
+                "reason": null
+            }
+        ],
+        "note": "Classes with zero positive samples are recorded strictly as 'undefined' and excluded from averaging; never converted to 0.0."
+    }
+}

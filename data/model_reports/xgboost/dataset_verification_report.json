@@ -1,0 +1,293 @@
+{
+    "report_name": "Phase 4.3A XGBoost Dataset Verification Report",
+    "phase": "Phase 4.3A",
+    "timestamp": "2026-09-11T20:14:44.667564",
+    "overall_status": "PASS",
+    "checks": {
+        "file_existence": {
+            "status": "PASS",
+            "description": "All 6 canonical XGBoost model-ready array files exist",
+            "files_checked": {
+                "X_train": "data/model_ready/xgboost/X_train.npy",
+                "X_validation": "data/model_ready/xgboost/X_validation.npy",
+                "X_test": "data/model_ready/xgboost/X_test.npy",
+                "y_train": "data/model_ready/xgboost/y_train.npy",
+                "y_validation": "data/model_ready/xgboost/y_validation.npy",
+                "y_test": "data/model_ready/xgboost/y_test.npy"
+            },
+            "missing_files": [],
+            "file_sizes_bytes": {
+                "X_train": 93676,
+                "X_validation": 17028,
+                "X_test": 16716,
+                "y_train": 14520,
+                "y_validation": 2728,
+                "y_test": 2680
+            }
+        },
+        "shapes_and_dimensions": {
+            "status": "PASS",
+            "description": "All arrays match exact expected shapes: Train (1799, 13)/(1799,), Val (325, 13)/(325,), Test (319, 13)/(319,)",
+            "details": {
+                "X_train": {
+                    "expected_shape": [
+                        1799,
+                        13
+                    ],
+                    "actual_shape": [
+                        1799,
+                        13
+                    ],
+                    "match": true
+                },
+                "X_validation": {
+                    "expected_shape": [
+                        325,
+                        13
+                    ],
+                    "actual_shape": [
+                        325,
+                        13
+                    ],
+                    "match": true
+                },
+                "X_test": {
+                    "expected_shape": [
+                        319,
+                        13
+                    ],
+                    "actual_shape": [
+                        319,
+                        13
+                    ],
+                    "match": true
+                },
+                "y_train": {
+                    "expected_shape": [
+                        1799
+                    ],
+                    "actual_shape": [
+                        1799
+                    ],
+                    "match": true
+                },
+                "y_validation": {
+                    "expected_shape": [
+                        325
+                    ],
+                    "actual_shape": [
+                        325
+                    ],
+                    "match": true
+                },
+                "y_test": {
+                    "expected_shape": [
+                        319
+                    ],
+                    "actual_shape": [
+                        319
+                    ],
+                    "match": true
+                }
+            }
+        },
+        "data_types": {
+            "status": "PASS",
+            "description": "Feature arrays are float32; label arrays are int64",
+            "details": {
+                "X_train": {
+                    "expected_dtype": "float32",
+                    "actual_dtype": "float32",
+                    "match": true
+                },
+                "X_validation": {
+                    "expected_dtype": "float32",
+                    "actual_dtype": "float32",
+                    "match": true
+                },
+                "X_test": {
+                    "expected_dtype": "float32",
+                    "actual_dtype": "float32",
+                    "match": true
+                },
+                "y_train": {
+                    "expected_dtype": "int64",
+                    "actual_dtype": "int64",
+                    "match": true
+                },
+                "y_validation": {
+                    "expected_dtype": "int64",
+                    "actual_dtype": "int64",
+                    "match": true
+                },
+                "y_test": {
+                    "expected_dtype": "int64",
+                    "actual_dtype": "int64",
+                    "match": true
+                }
+            }
+        },
+        "numerical_validity": {
+            "status": "PASS",
+            "description": "All feature arrays contain zero NaN, zero +Inf, zero -Inf (contract-based verification)",
+            "details": {
+                "X_train": {
+                    "nan_count": 0,
+                    "pos_inf_count": 0,
+                    "neg_inf_count": 0,
+                    "all_finite": true,
+                    "min_value": 0.0,
+                    "max_value": 112740624.0,
+                    "mean_value": 3675728.0
+                },
+                "X_validation": {
+                    "nan_count": 0,
+                    "pos_inf_count": 0,
+                    "neg_inf_count": 0,
+                    "all_finite": true,
+                    "min_value": 0.0003762654960155487,
+                    "max_value": 46543368.0,
+                    "mean_value": 3701139.5
+                },
+                "X_test": {
+                    "nan_count": 0,
+                    "pos_inf_count": 0,
+                    "neg_inf_count": 0,
+                    "all_finite": true,
+                    "min_value": 0.0,
+                    "max_value": 47361484.0,
+                    "mean_value": 3501657.25
+                }
+            }
+        },
+        "feature_contract": {
+            "status": "PASS",
+            "description": "Exactly 13 canonical features in strict declared order",
+            "feature_count": 13,
+            "canonical_columns": [
+                "flow_count",
+                "packet_rate",
+                "byte_rate",
+                "mean_flow_duration",
+                "std_flow_duration",
+                "short_flow_ratio",
+                "mean_packet_size",
+                "packet_length_variability",
+                "fwd_bwd_packet_ratio",
+                "unique_dst_ports",
+                "unique_dst_ips",
+                "tcp_flow_ratio",
+                "syn_packet_ratio"
+            ],
+            "recorded_columns": [
+                "flow_count",
+                "packet_rate",
+                "byte_rate",
+                "mean_flow_duration",
+                "std_flow_duration",
+                "short_flow_ratio",
+                "mean_packet_size",
+                "packet_length_variability",
+                "fwd_bwd_packet_ratio",
+                "unique_dst_ports",
+                "unique_dst_ips",
+                "tcp_flow_ratio",
+                "syn_packet_ratio"
+            ],
+            "columns_match": true
+        },
+        "raw_unscaled_contract": {
+            "status": "PASS",
+            "description": "XGBoost consumes Phase 3.3 raw continuous features directly; no scaler fitted or consumed",
+            "xgboost_scaler_artifact_exists": false,
+            "consumed_scaler": null,
+            "raw_contract_verified": true
+        },
+        "leakage_prevention": {
+            "status": "PASS",
+            "description": "X contains exclusively 13 features; no target, metadata, or anomaly scores included",
+            "details": {
+                "train": {
+                    "X_columns": 13,
+                    "y_ndim": 1,
+                    "y_shape": [
+                        1799
+                    ],
+                    "unique_labels": [
+                        0,
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7
+                    ],
+                    "labels_in_valid_range": true,
+                    "no_target_in_X": true
+                },
+                "validation": {
+                    "X_columns": 13,
+                    "y_ndim": 1,
+                    "y_shape": [
+                        325
+                    ],
+                    "unique_labels": [
+                        0,
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        7
+                    ],
+                    "labels_in_valid_range": true,
+                    "no_target_in_X": true
+                },
+                "test": {
+                    "X_columns": 13,
+                    "y_ndim": 1,
+                    "y_shape": [
+                        319
+                    ],
+                    "unique_labels": [
+                        0,
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7
+                    ],
+                    "labels_in_valid_range": true,
+                    "no_target_in_X": true
+                }
+            }
+        },
+        "model_independence": {
+            "status": "PASS",
+            "description": "Autonomous pipeline: zero dependency on Autoencoder or LSTM outputs",
+            "consumed_autoencoder_features": false,
+            "consumed_autoencoder_threshold": false,
+            "consumed_lstm_features": false
+        },
+        "baseline_manifest": {
+            "status": "PASS",
+            "description": "Computed and serialized cryptographic SHA-256 baseline manifest for XGBoost source files",
+            "manifest_path": "data/models/xgboost/xgboost_dataset_baseline_manifest.json",
+            "total_files_hashed": 9
+        }
+    },
+    "summary": {
+        "file_existence": "PASS",
+        "shapes_and_dimensions": "PASS",
+        "data_types": "PASS",
+        "numerical_validity": "PASS",
+        "feature_contract": "PASS",
+        "raw_unscaled_contract": "PASS",
+        "leakage_prevention": "PASS",
+        "model_independence": "PASS",
+        "baseline_manifest": "PASS"
+    }
+}
