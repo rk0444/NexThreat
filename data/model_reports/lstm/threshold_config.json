@@ -1,0 +1,8 @@
+{
+    "selected_threshold": 0.3,
+    "tie_break_policy": "attack_recall_desc_attack_f1_desc_fpr_asc_threshold_asc",
+    "source_candidate": "Candidate_C",
+    "evaluation_split": "validation",
+    "frozen": true,
+    "timestamp": "2026-09-12T17:30:00.033903"
+}

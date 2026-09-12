@@ -1,0 +1,156 @@
+{
+    "report_name": "Phase 4.4 LSTM Validation Threshold Report",
+    "timestamp": "2026-09-12T17:30:00.448389",
+    "selected_threshold": 0.3,
+    "selection_policy": "attack_recall_desc_attack_f1_desc_fpr_asc_threshold_asc",
+    "winning_candidate": "Candidate_C",
+    "validation_metrics_at_selected_threshold": {
+        "threshold": 0.3,
+        "attack_recall": 0.9813084112149533,
+        "attack_f1": 0.46357615894039733,
+        "attack_precision": 0.30346820809248554,
+        "fpr": 0.8763636363636363,
+        "fnr": 0.018691588785046728,
+        "accuracy": 0.36387434554973824,
+        "confusion_matrix": {
+            "tn": 34,
+            "fp": 241,
+            "fn": 2,
+            "tp": 105,
+            "matrix": [
+                [
+                    34,
+                    241
+                ],
+                [
+                    2,
+                    105
+                ]
+            ]
+        }
+    },
+    "threshold_sweep_records": [
+        {
+            "threshold": 0.3,
+            "attack_recall": 0.9813084112149533,
+            "attack_f1": 0.46357615894039733,
+            "attack_precision": 0.30346820809248554,
+            "fpr": 0.8763636363636363,
+            "fnr": 0.018691588785046728,
+            "accuracy": 0.36387434554973824,
+            "tn": 34,
+            "fp": 241,
+            "fn": 2,
+            "tp": 105
+        },
+        {
+            "threshold": 0.35,
+            "attack_recall": 0.9439252336448598,
+            "attack_f1": 0.505,
+            "attack_precision": 0.3447098976109215,
+            "fpr": 0.6981818181818182,
+            "fnr": 0.056074766355140186,
+            "accuracy": 0.4816753926701571,
+            "tn": 83,
+            "fp": 192,
+            "fn": 6,
+            "tp": 101
+        },
+        {
+            "threshold": 0.4,
+            "attack_recall": 0.9158878504672897,
+            "attack_f1": 0.532608695652174,
+            "attack_precision": 0.37547892720306514,
+            "fpr": 0.5927272727272728,
+            "fnr": 0.08411214953271028,
+            "accuracy": 0.5497382198952879,
+            "tn": 112,
+            "fp": 163,
+            "fn": 9,
+            "tp": 98
+        },
+        {
+            "threshold": 0.45,
+            "attack_recall": 0.8130841121495327,
+            "attack_f1": 0.5471698113207547,
+            "attack_precision": 0.41232227488151657,
+            "fpr": 0.4509090909090909,
+            "fnr": 0.18691588785046728,
+            "accuracy": 0.6230366492146597,
+            "tn": 151,
+            "fp": 124,
+            "fn": 20,
+            "tp": 87
+        },
+        {
+            "threshold": 0.5,
+            "attack_recall": 0.6728971962616822,
+            "attack_f1": 0.5475285171102662,
+            "attack_precision": 0.46153846153846156,
+            "fpr": 0.3054545454545455,
+            "fnr": 0.32710280373831774,
+            "accuracy": 0.6884816753926701,
+            "tn": 191,
+            "fp": 84,
+            "fn": 35,
+            "tp": 72
+        },
+        {
+            "threshold": 0.55,
+            "attack_recall": 0.5514018691588785,
+            "attack_f1": 0.5339366515837104,
+            "attack_precision": 0.5175438596491229,
+            "fpr": 0.2,
+            "fnr": 0.4485981308411215,
+            "accuracy": 0.7303664921465969,
+            "tn": 220,
+            "fp": 55,
+            "fn": 48,
+            "tp": 59
+        },
+        {
+            "threshold": 0.6,
+            "attack_recall": 0.411214953271028,
+            "attack_f1": 0.44,
+            "attack_precision": 0.4731182795698925,
+            "fpr": 0.1781818181818182,
+            "fnr": 0.5887850467289719,
+            "accuracy": 0.7068062827225131,
+            "tn": 226,
+            "fp": 49,
+            "fn": 63,
+            "tp": 44
+        },
+        {
+            "threshold": 0.65,
+            "attack_recall": 0.27102803738317754,
+            "attack_f1": 0.3258426966292135,
+            "attack_precision": 0.4084507042253521,
+            "fpr": 0.15272727272727274,
+            "fnr": 0.7289719626168224,
+            "accuracy": 0.6858638743455497,
+            "tn": 233,
+            "fp": 42,
+            "fn": 78,
+            "tp": 29
+        },
+        {
+            "threshold": 0.7,
+            "attack_recall": 0.19626168224299065,
+            "attack_f1": 0.26582278481012656,
+            "attack_precision": 0.4117647058823529,
+            "fpr": 0.10909090909090909,
+            "fnr": 0.8037383177570093,
+            "accuracy": 0.6963350785340314,
+            "tn": 245,
+            "fp": 30,
+            "fn": 86,
+            "tp": 21
+        }
+    ],
+    "array_storage_locations": {
+        "validation_probabilities": "data/models/lstm/predictions/validation_probabilities.npy",
+        "validation_predictions": "data/models/lstm/predictions/validation_predictions.npy",
+        "ground_truth_validation_labels": "data/model_ready/lstm/y_validation.npy"
+    }
+}

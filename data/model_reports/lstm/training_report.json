@@ -1,0 +1,143 @@
+{
+    "report_name": "Phase 4.4 LSTM Training Report",
+    "timestamp": "2026-09-12T17:30:00.452669",
+    "stage_lifecycle": {
+        "stage_1_train_candidates": "COMPLETED",
+        "stage_2_validation_candidate_selection": "COMPLETED",
+        "stage_3_validation_threshold_selection": "COMPLETED",
+        "stage_4_model_freeze": "COMPLETED",
+        "stage_5_threshold_freeze": "COMPLETED",
+        "stage_6_final_test_evaluation": "COMPLETED",
+        "stage_7_artifact_finalization": "COMPLETED"
+    },
+    "model_architecture": {
+        "winning_candidate": "Candidate_C",
+        "architecture_details": {
+            "lstm_units": 32,
+            "lstm_dropout": 0.2,
+            "dense_units": 16,
+            "dense_activation": "relu",
+            "dense_dropout": 0.2,
+            "output_units": 1,
+            "output_activation": "sigmoid",
+            "learning_rate": 0.001
+        },
+        "input_shape": [
+            10,
+            13
+        ],
+        "feature_contract": [
+            "flow_count",
+            "packet_rate",
+            "byte_rate",
+            "mean_flow_duration",
+            "std_flow_duration",
+            "short_flow_ratio",
+            "mean_packet_size",
+            "packet_length_variability",
+            "fwd_bwd_packet_ratio",
+            "unique_dst_ports",
+            "unique_dst_ips",
+            "tcp_flow_ratio",
+            "syn_packet_ratio"
+        ]
+    },
+    "training_hyperparameters": {
+        "max_epochs": 100,
+        "batch_size": 32,
+        "patience": 10,
+        "random_seed": 42,
+        "loss_function": "binary_crossentropy",
+        "optimizer": "adam"
+    },
+    "class_weighting": {
+        "strategy": "balanced_from_y_train_strictly",
+        "formula": "w_c = N / (2 * N_c)",
+        "weights": {
+            "0": 0.6569717707442259,
+            "1": 2.092643051771117
+        },
+        "sample_counts": {
+            "total": 1536,
+            "benign_0": 1169,
+            "attack_1": 367
+        }
+    },
+    "candidate_evaluation_summary": [
+        {
+            "candidate_id": "Candidate_C",
+            "index": 2,
+            "name": "Candidate C (Compact LSTM-32)",
+            "epochs_trained": 12,
+            "final_val_loss": 1.2274247407913208,
+            "best_val_loss": 0.6324250102043152,
+            "final_val_accuracy": 0.5811518430709839,
+            "val_attack_f1": 0.5475285171102662,
+            "val_attack_recall": 0.6728971962616822,
+            "val_attack_precision": 0.46153846153846156,
+            "val_fpr": 0.3054545454545455,
+            "checkpoint_path": "data/models/lstm/checkpoints/best_Candidate_C.keras",
+            "parameters": {
+                "lstm_units": 32,
+                "lstm_dropout": 0.2,
+                "dense_units": 16,
+                "dense_activation": "relu",
+                "dense_dropout": 0.2,
+                "output_units": 1,
+                "output_activation": "sigmoid",
+                "learning_rate": 0.001
+            }
+        },
+        {
+            "candidate_id": "Candidate_A",
+            "index": 0,
+            "name": "Candidate A (Standard LSTM-64)",
+            "epochs_trained": 11,
+            "final_val_loss": 2.1889617443084717,
+            "best_val_loss": 0.6242297887802124,
+            "final_val_accuracy": 0.5680628418922424,
+            "val_attack_f1": 0.38144329896907214,
+            "val_attack_recall": 0.34579439252336447,
+            "val_attack_precision": 0.42528735632183906,
+            "val_fpr": 0.18181818181818182,
+            "checkpoint_path": "data/models/lstm/checkpoints/best_Candidate_A.keras",
+            "parameters": {
+                "lstm_units": 64,
+                "lstm_dropout": 0.2,
+                "dense_units": 32,
+                "dense_activation": "relu",
+                "dense_dropout": 0.2,
+                "output_units": 1,
+                "output_activation": "sigmoid",
+                "learning_rate": 0.001
+            }
+        },
+        {
+            "candidate_id": "Candidate_B",
+            "index": 1,
+            "name": "Candidate B (Higher Dropout LSTM-64)",
+            "epochs_trained": 11,
+            "final_val_loss": 2.234619379043579,
+            "best_val_loss": 0.6330202221870422,
+            "final_val_accuracy": 0.5680628418922424,
+            "val_attack_f1": 0.36923076923076925,
+            "val_attack_recall": 0.3364485981308411,
+            "val_attack_precision": 0.4090909090909091,
+            "val_fpr": 0.1890909090909091,
+            "checkpoint_path": "data/models/lstm/checkpoints/best_Candidate_B.keras",
+            "parameters": {
+                "lstm_units": 64,
+                "lstm_dropout": 0.3,
+                "dense_units": 32,
+                "dense_activation": "relu",
+                "dense_dropout": 0.3,
+                "output_units": 1,
+                "output_activation": "sigmoid",
+                "learning_rate": 0.001
+            }
+        }
+    ],
+    "candidate_tie_break_policy": "val_attack_f1_desc_val_attack_recall_desc_val_loss_asc_candidate_index_asc",
+    "selected_candidate": "Candidate_C",
+    "selected_threshold": 0.3
+}

@@ -1,7 +1,7 @@
 {
     "phase": "4.1",
     "phase_title": "Model Training Infrastructure Metadata",
-    "created_at": "2026-09-11T20:16:47.543095",
+    "created_at": "2026-09-12T17:14:27.904994",
     "reproducibility": {
         "random_seed": 42,
         "enable_deterministic_operations": true,
@@ -12,20 +12,20 @@
         }
     },
     "environment": {
-        "python_version": "3.9.6",
-        "platform": "macOS-26.6.2-arm64-arm-64bit",
-        "system": "Darwin",
-        "cpu_count": 10,
+        "python_version": "3.14.0",
+        "platform": "Windows-11-10.0.26200-SP0",
+        "system": "Windows",
+        "cpu_count": 8,
         "packages": {
-            "numpy": "2.0.2",
-            "pandas": "2.3.3",
-            "sklearn": "1.6.1",
-            "joblib": "1.5.3",
-            "scipy": "1.13.1"
+            "numpy": "2.5.3",
+            "pandas": "3.0.5",
+            "sklearn": "1.9.0",
+            "joblib": "1.6.0",
+            "scipy": "1.18.1"
         },
         "tensorflow": {
-            "installed": true,
-            "version": "2.20.0",
+            "installed": false,
+            "version": null,
             "gpu_devices": []
         },
         "pytorch_in_architecture": false

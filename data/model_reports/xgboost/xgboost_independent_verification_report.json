@@ -1,6 +1,6 @@
 {
     "report_name": "Phase 4.3 Independent Verification Report",
-    "timestamp": "2026-09-11T20:16:35.485957",
+    "timestamp": "2026-09-12T17:16:00.632164",
     "overall_status": "PASS",
     "checks": {
         "Check A  Source Data Existence": {
@@ -61,7 +61,7 @@
         "Check J  Prediction Replay": {
             "status": "PASS",
             "description": "Independent re-prediction on X_test matches saved test probabilities (<= 1e-5) & predictions exactly",
-            "max_probability_diff": 0.0,
+            "max_probability_diff": 1.4901161193847656e-08,
             "issues": []
         },
         "Check K  Metric Replay": {

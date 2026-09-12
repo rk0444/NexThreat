@@ -1,0 +1,71 @@
+{
+    "report_name": "Phase 4.4 LSTM Artifact SHA-256 Hashes",
+    "timestamp": "2026-09-12T17:30:00.455248",
+    "hashes": {
+        "lstm_model": {
+            "relative_path": "data/models/lstm/lstm_model.keras",
+            "sha256": "cb4251a785cdc80cb3008c9aef19c852af0d7f4108d8a5eb01a570ac342ec274",
+            "size_bytes": 113482
+        },
+        "lstm_scaler": {
+            "relative_path": "data/models/lstm/lstm_scaler.joblib",
+            "sha256": "0f1ee25a878ebc60c9169d4fd826a66d41565aec4e1c8e7eb5d2d5e72867cbe7",
+            "size_bytes": 911
+        },
+        "validation_predictions": {
+            "relative_path": "data/models/lstm/predictions/validation_predictions.npy",
+            "sha256": "2f6c7ca05d8e1d6d8d61f27fa92109155501bfbdcf06781da68b5adbd7706232",
+            "size_bytes": 3184
+        },
+        "validation_probabilities": {
+            "relative_path": "data/models/lstm/predictions/validation_probabilities.npy",
+            "sha256": "1e63ac5e2e4aacbc52c911cdc63d025936f9fe06d78fbe4017d08cfe892b7f2f",
+            "size_bytes": 1656
+        },
+        "test_predictions": {
+            "relative_path": "data/models/lstm/predictions/test_predictions.npy",
+            "sha256": "4fdc3364db0e9c3109e6c1875e7deb7dc3d78ab39977b2b9af5552fa5fafbca1",
+            "size_bytes": 2416
+        },
+        "test_probabilities": {
+            "relative_path": "data/models/lstm/predictions/test_probabilities.npy",
+            "sha256": "b3b52aa202057dafd633f11f4ff4a24a0250783f72a0201aaad7370bfdb5b27c",
+            "size_bytes": 1272
+        },
+        "training_report": {
+            "relative_path": "data/model_reports/lstm/training_report.json",
+            "sha256": "e50226217bfd780fa1611ece3be26c489526379c09030cf6673f3676cb345af4",
+            "size_bytes": 5289
+        },
+        "threshold_report": {
+            "relative_path": "data/model_reports/lstm/threshold_report.json",
+            "sha256": "1be139972ef072e0e38e97750a439d6d87ebe453faba5ef5f848cfb2023d3193",
+            "size_bytes": 5086
+        },
+        "threshold_config": {
+            "relative_path": "data/model_reports/lstm/threshold_config.json",
+            "sha256": "d5db62ec898e8338feeb921b318a7d2023c4bb46df6b96ae367a35934f89b1ae",
+            "size_bytes": 269
+        },
+        "test_report": {
+            "relative_path": "data/model_reports/lstm/test_report.json",
+            "sha256": "fe2586c93fcfecc3042f6e523196d7aa12c73bec3f9bd6455b82f1f77e12fe55",
+            "size_bytes": 1556
+        },
+        "checkpoint_Candidate_A": {
+            "relative_path": "data/models/lstm/checkpoints/best_Candidate_A.keras",
+            "sha256": "73a7179ba0ae95a5bf52673f88eee560c11460e588cd83b86714783e899f71b5",
+            "size_bytes": 301431
+        },
+        "checkpoint_Candidate_B": {
+            "relative_path": "data/models/lstm/checkpoints/best_Candidate_B.keras",
+            "sha256": "3ab846acf2f1ec16eb6a0bb99ebdb197b77a59952cc3a476ed4c4aef94c7c227",
+            "size_bytes": 301433
+        },
+        "checkpoint_Candidate_C": {
+            "relative_path": "data/models/lstm/checkpoints/best_Candidate_C.keras",
+            "sha256": "d8f37b51f194ae99e563b514f142c9f42aca7b95cb36258ec78027bf6fe25df3",
+            "size_bytes": 113657
+        }
+    }
+}

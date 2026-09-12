@@ -1,0 +1,163 @@
+{
+    "report_name": "Phase 4.4 LSTM Dataset Verification Report",
+    "timestamp": "2026-09-12T17:27:31.866192",
+    "overall_status": "PASS",
+    "checks": {
+        "tensor_specifications": {
+            "status": "PASS",
+            "arrays": {
+                "X_train": {
+                    "status": "PASS",
+                    "shape": [
+                        1536,
+                        10,
+                        13
+                    ],
+                    "expected_shape": [
+                        1536,
+                        10,
+                        13
+                    ],
+                    "dtype": "float32",
+                    "expected_dtype": "float32",
+                    "has_nan": false,
+                    "has_inf": false,
+                    "unique_values": null
+                },
+                "y_train": {
+                    "status": "PASS",
+                    "shape": [
+                        1536
+                    ],
+                    "expected_shape": [
+                        1536
+                    ],
+                    "dtype": "int64",
+                    "expected_dtype": "int64",
+                    "has_nan": false,
+                    "has_inf": false,
+                    "unique_values": [
+                        0,
+                        1
+                    ]
+                },
+                "X_validation": {
+                    "status": "PASS",
+                    "shape": [
+                        382,
+                        10,
+                        13
+                    ],
+                    "expected_shape": [
+                        382,
+                        10,
+                        13
+                    ],
+                    "dtype": "float32",
+                    "expected_dtype": "float32",
+                    "has_nan": false,
+                    "has_inf": false,
+                    "unique_values": null
+                },
+                "y_validation": {
+                    "status": "PASS",
+                    "shape": [
+                        382
+                    ],
+                    "expected_shape": [
+                        382
+                    ],
+                    "dtype": "int64",
+                    "expected_dtype": "int64",
+                    "has_nan": false,
+                    "has_inf": false,
+                    "unique_values": [
+                        0,
+                        1
+                    ]
+                },
+                "X_test": {
+                    "status": "PASS",
+                    "shape": [
+                        286,
+                        10,
+                        13
+                    ],
+                    "expected_shape": [
+                        286,
+                        10,
+                        13
+                    ],
+                    "dtype": "float32",
+                    "expected_dtype": "float32",
+                    "has_nan": false,
+                    "has_inf": false,
+                    "unique_values": null
+                },
+                "y_test": {
+                    "status": "PASS",
+                    "shape": [
+                        286
+                    ],
+                    "expected_shape": [
+                        286
+                    ],
+                    "dtype": "int64",
+                    "expected_dtype": "int64",
+                    "has_nan": false,
+                    "has_inf": false,
+                    "unique_values": [
+                        0,
+                        1
+                    ]
+                }
+            }
+        },
+        "feature_contract": {
+            "status": "PASS",
+            "feature_count": 13,
+            "expected_count": 13,
+            "features_match": true,
+            "no_anomaly_score": true,
+            "no_xgboost_features": true,
+            "feature_list": [
+                "flow_count",
+                "packet_rate",
+                "byte_rate",
+                "mean_flow_duration",
+                "std_flow_duration",
+                "short_flow_ratio",
+                "mean_packet_size",
+                "packet_length_variability",
+                "fwd_bwd_packet_ratio",
+                "unique_dst_ports",
+                "unique_dst_ips",
+                "tcp_flow_ratio",
+                "syn_packet_ratio"
+            ]
+        },
+        "scaler_provenance": {
+            "status": "PASS",
+            "sha256": "0f1ee25a878ebc60c9169d4fd826a66d41565aec4e1c8e7eb5d2d5e72867cbe7",
+            "expected_sha256": "0f1ee25a878ebc60c9169d4fd826a66d41565aec4e1c8e7eb5d2d5e72867cbe7",
+            "hash_match": true,
+            "n_samples_seen": 1586,
+            "expected_samples_seen": 1586,
+            "n_features_in": 13,
+            "expected_features_in": 13,
+            "mathematical_offset_formula": "1586 scaler windows - (5 days * 10 lookback windows) = 1536 training sequences",
+            "math_verified": true,
+            "pre_scaled_policy": "Model-ready arrays are pre-scaled and must not be transformed again (Zero Double-Scaling)"
+        },
+        "sequence_boundaries": {
+            "status": "PASS",
+            "total_sequences_audited": 2204,
+            "cross_day_violations": 0,
+            "cross_partition_violations": 0,
+            "buffer_inclusion_violations": 0,
+            "within_partition_temporal_transitions_observed": 495,
+            "boundary_isolation_verified": true,
+            "permitted_transitions_policy": "Valid chronological transitions between BENIGN and ATTACK within the same partition/day are legitimate temporal patterns and accepted."
+        }
+    }
+}

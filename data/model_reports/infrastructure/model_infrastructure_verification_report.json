@@ -1,7 +1,7 @@
 {
     "phase": "4.1",
     "phase_title": "Model Training Infrastructure Verification Report",
-    "timestamp": "2026-09-11T20:16:47.542994",
+    "timestamp": "2026-09-12T17:14:27.904098",
     "overall_status": "PASS",
     "summary": {
         "all_categories_passed": true,
@@ -107,22 +107,22 @@
         },
         "category_b_environment": {
             "status": "PASS",
-            "python_version": "3.9.6",
+            "python_version": "3.14.0",
             "python_version_valid": true,
-            "platform": "macOS-26.6.2-arm64-arm-64bit",
-            "cpu_count": 10,
+            "platform": "Windows-11-10.0.26200-SP0",
+            "cpu_count": 8,
             "packages": {
-                "numpy": "2.0.2",
-                "pandas": "2.3.3",
-                "sklearn": "1.6.1",
-                "joblib": "1.5.3",
-                "scipy": "1.13.1"
+                "numpy": "2.5.3",
+                "pandas": "3.0.5",
+                "sklearn": "1.9.0",
+                "joblib": "1.6.0",
+                "scipy": "1.18.1"
             },
             "missing_core_dependencies": [],
-            "tensorflow_status": "AVAILABLE (version 2.20.0)",
+            "tensorflow_status": "OPTIONAL - NOT INSTALLED (Non-fatal, architecture ready)",
             "tensorflow_info": {
-                "installed": true,
-                "version": "2.20.0",
+                "installed": false,
+                "version": null,
                 "gpu_devices": []
             },
             "pytorch_in_architecture": false,
@@ -625,11 +625,11 @@
                 "numpy_random_seeded": true,
                 "pytorch_handled": false,
                 "tensorflow": {
-                    "available": true,
-                    "version": "2.20.0",
-                    "seed_configured": true,
-                    "determinism_enabled": true,
-                    "note": "TensorFlow seeded with op determinism enabled"
+                    "available": false,
+                    "version": null,
+                    "seed_configured": false,
+                    "determinism_enabled": false,
+                    "note": "TensorFlow not installed (optional dependency)"
                 },
                 "env_vars": {
                     "PYTHONHASHSEED": "42",
