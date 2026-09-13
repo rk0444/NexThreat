@@ -16,6 +16,9 @@ from src.application.exceptions import (
     ModelExecutionError,
     IntegrationContractError,
 )
+from src.application.service import NexThreatService, NexThreatHTTPRequestHandler
+from src.application.stream_adapter import StreamIngestionAdapter
+from src.application.alert_dispatcher import SOCAlertDispatcher
 
 __all__ = [
     "ApplicationInferenceEngine",
@@ -26,4 +29,9 @@ __all__ = [
     "TemporalEligibilityCondition",
     "ModelExecutionError",
     "IntegrationContractError",
+    "NexThreatService",
+    "NexThreatHTTPRequestHandler",
+    "StreamIngestionAdapter",
+    "SOCAlertDispatcher",
 ]
+
