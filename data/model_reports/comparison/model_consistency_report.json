@@ -1,0 +1,182 @@
+{
+  "phase": "4.5",
+  "report_name": "Pairwise Model Consistency & Concordance Report",
+  "timestamp": "2026-09-13T20:37:24.578434",
+  "scope_a_pairwise_consistency": {
+    "sample_count": 45,
+    "ae_vs_xgboost": {
+      "sample_count": 45,
+      "cohens_kappa": -0.07488702388637831,
+      "jaccard_similarity": 0.13953488372093023,
+      "jaccard_undefined_reason": null,
+      "matthews_corrcoef": -0.263245050272704,
+      "mcc_undefined_reason": null,
+      "raw_agreement_rate": 0.17777777777777778,
+      "raw_disagreement_rate": 0.8222222222222222,
+      "confusion_matrix": [
+        [
+          2,
+          2
+        ],
+        [
+          35,
+          6
+        ]
+      ],
+      "confusion_matrix_labels": {
+        "rows": "Autoencoder (0=Benign, 1=Attack)",
+        "columns": "XGBoost (0=Benign, 1=Attack)",
+        "tn": 2,
+        "fp": 2,
+        "fn": 35,
+        "tp": 6
+      }
+    },
+    "xgboost_vs_lstm": {
+      "sample_count": 45,
+      "cohens_kappa": 0.05263157894736837,
+      "jaccard_similarity": 0.2,
+      "jaccard_undefined_reason": null,
+      "matthews_corrcoef": 0.1643989873053573,
+      "mcc_undefined_reason": null,
+      "raw_agreement_rate": 0.28888888888888886,
+      "raw_disagreement_rate": 0.7111111111111111,
+      "confusion_matrix": [
+        [
+          5,
+          32
+        ],
+        [
+          0,
+          8
+        ]
+      ],
+      "confusion_matrix_labels": {
+        "rows": "XGBoost (0=Benign, 1=Attack)",
+        "columns": "LSTM (0=Benign, 1=Attack)",
+        "tn": 5,
+        "fp": 32,
+        "fn": 0,
+        "tp": 8
+      }
+    },
+    "ae_vs_lstm": {
+      "sample_count": 45,
+      "cohens_kappa": -0.10958904109589016,
+      "jaccard_similarity": 0.8,
+      "jaccard_undefined_reason": null,
+      "matthews_corrcoef": -0.11043152607484653,
+      "mcc_undefined_reason": null,
+      "raw_agreement_rate": 0.8,
+      "raw_disagreement_rate": 0.19999999999999996,
+      "confusion_matrix": [
+        [
+          0,
+          4
+        ],
+        [
+          5,
+          36
+        ]
+      ],
+      "confusion_matrix_labels": {
+        "rows": "Autoencoder (0=Benign, 1=Attack)",
+        "columns": "LSTM (0=Benign, 1=Attack)",
+        "tn": 0,
+        "fp": 4,
+        "fn": 5,
+        "tp": 36
+      }
+    }
+  },
+  "scope_b_pairwise_consistency": {
+    "sample_count": 2454,
+    "total_master_timeline_windows": 2454,
+    "eligible_windows_count": 2404,
+    "ineligible_windows_count": 50,
+    "ae_vs_xgboost": {
+      "sample_count": 2454,
+      "cohens_kappa": 0.01966006054637429,
+      "jaccard_similarity": 0.24056813138038172,
+      "jaccard_undefined_reason": null,
+      "matthews_corrcoef": 0.0552317856365281,
+      "mcc_undefined_reason": null,
+      "raw_agreement_rate": 0.30277098614506925,
+      "raw_disagreement_rate": 0.6972290138549307,
+      "confusion_matrix": [
+        [
+          201,
+          40
+        ],
+        [
+          1671,
+          542
+        ]
+      ],
+      "confusion_matrix_labels": {
+        "rows": "Autoencoder (0=Benign, 1=Attack)",
+        "columns": "XGBoost (0=Benign, 1=Attack)",
+        "tn": 201,
+        "fp": 40,
+        "fn": 1671,
+        "tp": 542
+      }
+    },
+    "xgboost_vs_lstm": {
+      "sample_count": 2404,
+      "cohens_kappa": 0.09212430742178422,
+      "jaccard_similarity": 0.27548483341621083,
+      "jaccard_undefined_reason": null,
+      "matthews_corrcoef": 0.18887469811981888,
+      "mcc_undefined_reason": null,
+      "raw_agreement_rate": 0.3939267886855241,
+      "raw_disagreement_rate": 0.6060732113144759,
+      "confusion_matrix": [
+        [
+          393,
+          1429
+        ],
+        [
+          28,
+          554
+        ]
+      ],
+      "confusion_matrix_labels": {
+        "rows": "XGBoost (0=Benign, 1=Attack)",
+        "columns": "LSTM (0=Benign, 1=Attack)",
+        "tn": 393,
+        "fp": 1429,
+        "fn": 28,
+        "tp": 554
+      }
+    },
+    "ae_vs_lstm": {
+      "sample_count": 2404,
+      "cohens_kappa": 0.041494948679273606,
+      "jaccard_similarity": 0.7646808510638298,
+      "jaccard_undefined_reason": null,
+      "matthews_corrcoef": 0.04370124107580706,
+      "mcc_undefined_reason": null,
+      "raw_agreement_rate": 0.7699667221297837,
+      "raw_disagreement_rate": 0.23003327787021632,
+      "confusion_matrix": [
+        [
+          54,
+          186
+        ],
+        [
+          367,
+          1797
+        ]
+      ],
+      "confusion_matrix_labels": {
+        "rows": "Autoencoder (0=Benign, 1=Attack)",
+        "columns": "LSTM (0=Benign, 1=Attack)",
+        "tn": 54,
+        "fp": 186,
+        "fn": 367,
+        "tp": 1797
+      }
+    }
+  }
+}

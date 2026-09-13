@@ -1,0 +1,203 @@
+{
+  "phase": "4.5",
+  "report_name": "Tri-Model Threat Inference Matrix Report",
+  "timestamp": "2026-09-13T20:37:24.715212",
+  "scope_a_synchronized_test_intersection": {
+    "sample_count": 45,
+    "state_distribution": {
+      "BENIGN_CONCORDANCE": 0,
+      "LSTM_FORECAST_ONLY": 2,
+      "XGB_ATTACK_ONLY": 0,
+      "XGB_LSTM_CONSISTENCY": 2,
+      "AE_ANOMALY_ONLY": 5,
+      "AE_LSTM_CONSISTENCY": 30,
+      "AE_XGB_CONSENSUS": 0,
+      "TRI_MODEL_CONSENSUS": 6
+    },
+    "state_percentages": {
+      "BENIGN_CONCORDANCE": 0.0,
+      "LSTM_FORECAST_ONLY": 0.044444444444444446,
+      "XGB_ATTACK_ONLY": 0.0,
+      "XGB_LSTM_CONSISTENCY": 0.044444444444444446,
+      "AE_ANOMALY_ONLY": 0.1111111111111111,
+      "AE_LSTM_CONSISTENCY": 0.6666666666666666,
+      "AE_XGB_CONSENSUS": 0.0,
+      "TRI_MODEL_CONSENSUS": 0.13333333333333333
+    },
+    "conservation_verified": true,
+    "sample_conservation_equation": "sum(Count(S_i)) == 45"
+  },
+  "scope_b_operational_replay": {
+    "total_master_timeline_windows": 2454,
+    "eligible_windows_count": 2404,
+    "ineligible_windows_count": 50,
+    "ineligibility_breakdown": {
+      "lstm_lookback_cold_start": 50
+    },
+    "state_distribution": {
+      "BENIGN_CONCORDANCE": 52,
+      "LSTM_FORECAST_ONLY": 148,
+      "XGB_ATTACK_ONLY": 2,
+      "XGB_LSTM_CONSISTENCY": 38,
+      "AE_ANOMALY_ONLY": 341,
+      "AE_LSTM_CONSISTENCY": 1281,
+      "AE_XGB_CONSENSUS": 26,
+      "TRI_MODEL_CONSENSUS": 516
+    },
+    "state_percentages": {
+      "BENIGN_CONCORDANCE": 0.021630615640599003,
+      "LSTM_FORECAST_ONLY": 0.06156405990016639,
+      "XGB_ATTACK_ONLY": 0.0008319467554076539,
+      "XGB_LSTM_CONSISTENCY": 0.015806988352745424,
+      "AE_ANOMALY_ONLY": 0.141846921797005,
+      "AE_LSTM_CONSISTENCY": 0.5328618968386023,
+      "AE_XGB_CONSENSUS": 0.010815307820299502,
+      "TRI_MODEL_CONSENSUS": 0.2146422628951747
+    },
+    "conservation_verified": true,
+    "sample_conservation_equations": {
+      "scope_b_eligible_conservation": "sum(Count(S_i)) == 2404 == N_eligible (2404)",
+      "master_timeline_partition_conservation": "N_eligible (2404) + N_ineligible (50) == N_master (2454)"
+    }
+  },
+  "state_transition_matrix": {
+    "BENIGN_CONCORDANCE": {
+      "BENIGN_CONCORDANCE": 0.076923,
+      "LSTM_FORECAST_ONLY": 0.0,
+      "XGB_ATTACK_ONLY": 0.0,
+      "XGB_LSTM_CONSISTENCY": 0.0,
+      "AE_ANOMALY_ONLY": 0.769231,
+      "AE_LSTM_CONSISTENCY": 0.134615,
+      "AE_XGB_CONSENSUS": 0.0,
+      "TRI_MODEL_CONSENSUS": 0.019231
+    },
+    "LSTM_FORECAST_ONLY": {
+      "BENIGN_CONCORDANCE": 0.013514,
+      "LSTM_FORECAST_ONLY": 0.074324,
+      "XGB_ATTACK_ONLY": 0.0,
+      "XGB_LSTM_CONSISTENCY": 0.047297,
+      "AE_ANOMALY_ONLY": 0.040541,
+      "AE_LSTM_CONSISTENCY": 0.716216,
+      "AE_XGB_CONSENSUS": 0.006757,
+      "TRI_MODEL_CONSENSUS": 0.101351
+    },
+    "XGB_ATTACK_ONLY": {
+      "BENIGN_CONCORDANCE": 0.0,
+      "LSTM_FORECAST_ONLY": 0.0,
+      "XGB_ATTACK_ONLY": 0.0,
+      "XGB_LSTM_CONSISTENCY": 0.0,
+      "AE_ANOMALY_ONLY": 0.5,
+      "AE_LSTM_CONSISTENCY": 0.0,
+      "AE_XGB_CONSENSUS": 0.0,
+      "TRI_MODEL_CONSENSUS": 0.5
+    },
+    "XGB_LSTM_CONSISTENCY": {
+      "BENIGN_CONCORDANCE": 0.0,
+      "LSTM_FORECAST_ONLY": 0.026316,
+      "XGB_ATTACK_ONLY": 0.0,
+      "XGB_LSTM_CONSISTENCY": 0.026316,
+      "AE_ANOMALY_ONLY": 0.0,
+      "AE_LSTM_CONSISTENCY": 0.368421,
+      "AE_XGB_CONSENSUS": 0.0,
+      "TRI_MODEL_CONSENSUS": 0.578947
+    },
+    "AE_ANOMALY_ONLY": {
+      "BENIGN_CONCORDANCE": 0.1,
+      "LSTM_FORECAST_ONLY": 0.023529,
+      "XGB_ATTACK_ONLY": 0.002941,
+      "XGB_LSTM_CONSISTENCY": 0.0,
+      "AE_ANOMALY_ONLY": 0.676471,
+      "AE_LSTM_CONSISTENCY": 0.15,
+      "AE_XGB_CONSENSUS": 0.038235,
+      "TRI_MODEL_CONSENSUS": 0.008824
+    },
+    "AE_LSTM_CONSISTENCY": {
+      "BENIGN_CONCORDANCE": 0.009397,
+      "LSTM_FORECAST_ONLY": 0.086139,
+      "XGB_ATTACK_ONLY": 0.0,
+      "XGB_LSTM_CONSISTENCY": 0.007831,
+      "AE_ANOMALY_ONLY": 0.039937,
+      "AE_LSTM_CONSISTENCY": 0.771339,
+      "AE_XGB_CONSENSUS": 0.003915,
+      "TRI_MODEL_CONSENSUS": 0.081441
+    },
+    "AE_XGB_CONSENSUS": {
+      "BENIGN_CONCORDANCE": 0.0,
+      "LSTM_FORECAST_ONLY": 0.076923,
+      "XGB_ATTACK_ONLY": 0.0,
+      "XGB_LSTM_CONSISTENCY": 0.0,
+      "AE_ANOMALY_ONLY": 0.423077,
+      "AE_LSTM_CONSISTENCY": 0.192308,
+      "AE_XGB_CONSENSUS": 0.192308,
+      "TRI_MODEL_CONSENSUS": 0.115385
+    },
+    "TRI_MODEL_CONSENSUS": {
+      "BENIGN_CONCORDANCE": 0.0,
+      "LSTM_FORECAST_ONLY": 0.031008,
+      "XGB_ATTACK_ONLY": 0.001938,
+      "XGB_LSTM_CONSISTENCY": 0.03876,
+      "AE_ANOMALY_ONLY": 0.0,
+      "AE_LSTM_CONSISTENCY": 0.213178,
+      "AE_XGB_CONSENSUS": 0.003876,
+      "TRI_MODEL_CONSENSUS": 0.71124
+    }
+  },
+  "dwell_time_statistics": {
+    "BENIGN_CONCORDANCE": {
+      "total_occurrences": 52,
+      "run_count": 48,
+      "mean_dwell_minutes": 1.08,
+      "median_dwell_minutes": 1.0,
+      "max_dwell_minutes": 2
+    },
+    "LSTM_FORECAST_ONLY": {
+      "total_occurrences": 148,
+      "run_count": 137,
+      "mean_dwell_minutes": 1.08,
+      "median_dwell_minutes": 1.0,
+      "max_dwell_minutes": 4
+    },
+    "XGB_ATTACK_ONLY": {
+      "total_occurrences": 2,
+      "run_count": 2,
+      "mean_dwell_minutes": 1.0,
+      "median_dwell_minutes": 1.0,
+      "max_dwell_minutes": 1
+    },
+    "XGB_LSTM_CONSISTENCY": {
+      "total_occurrences": 38,
+      "run_count": 37,
+      "mean_dwell_minutes": 1.03,
+      "median_dwell_minutes": 1.0,
+      "max_dwell_minutes": 2
+    },
+    "AE_ANOMALY_ONLY": {
+      "total_occurrences": 341,
+      "run_count": 111,
+      "mean_dwell_minutes": 3.07,
+      "median_dwell_minutes": 2.0,
+      "max_dwell_minutes": 28
+    },
+    "AE_LSTM_CONSISTENCY": {
+      "total_occurrences": 1281,
+      "run_count": 296,
+      "mean_dwell_minutes": 4.33,
+      "median_dwell_minutes": 3.0,
+      "max_dwell_minutes": 33
+    },
+    "AE_XGB_CONSENSUS": {
+      "total_occurrences": 26,
+      "run_count": 21,
+      "mean_dwell_minutes": 1.24,
+      "median_dwell_minutes": 1.0,
+      "max_dwell_minutes": 3
+    },
+    "TRI_MODEL_CONSENSUS": {
+      "total_occurrences": 516,
+      "run_count": 149,
+      "mean_dwell_minutes": 3.46,
+      "median_dwell_minutes": 1.0,
+      "max_dwell_minutes": 63
+    }
+  }
+}

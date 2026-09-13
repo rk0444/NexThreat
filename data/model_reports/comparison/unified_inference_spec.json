@@ -1,0 +1,222 @@
+{
+  "phase": "4.5",
+  "specification_name": "Deterministic Tri-Model Unified Threat Inference Specification",
+  "version": "2.9.0",
+  "architecture": {
+    "model_count": 3,
+    "models": {
+      "autoencoder": {
+        "role": "Current-window unsupervised anomaly detection",
+        "input": "13 features scaled via autoencoder_scaler.joblib",
+        "threshold": 0.003207791231673312,
+        "decision_comparator": "MSE(t) >= 0.003207791231673312"
+      },
+      "xgboost": {
+        "role": "Current-window 8-class attack categorization",
+        "input": "13 unscaled raw features",
+        "classes": [
+          "BENIGN",
+          "Brute Force",
+          "Bot",
+          "DoS",
+          "Infiltration",
+          "PortScan",
+          "Web Attack",
+          "DDoS"
+        ],
+        "decision_rule": "binary: argmax(probs, axis=1) != 0"
+      },
+      "lstm": {
+        "role": "Forward-looking attack forecasting targeting subsequent window t",
+        "input": "Lookback sequence [t-10 .. t-1] scaled via lstm_scaler.joblib",
+        "threshold": 0.3,
+        "decision_comparator": "P(attack) >= 0.3",
+        "boundary_policy": "strict_day_boundary_isolation"
+      }
+    },
+    "temporal_alignment": "AE(t) + XGB(t) + LSTM(t-1 -> t)"
+  },
+  "canonical_states": [
+    {
+      "code": "S0",
+      "name": "BENIGN_CONCORDANCE",
+      "priority": "PRIORITY_4",
+      "triage_tier": "Priority 4 (Baseline Operations)",
+      "inputs": [
+        0,
+        0,
+        0
+      ],
+      "input_semantics": {
+        "autoencoder_t": 0,
+        "xgboost_t": 0,
+        "lstm_t_minus_1_to_t": 0
+      },
+      "operational_meaning": "Normal baseline; all models concordant benign."
+    },
+    {
+      "code": "S1",
+      "name": "LSTM_FORECAST_ONLY",
+      "priority": "PRIORITY_3",
+      "triage_tier": "Priority 3 (Monitored Anomalies & Warnings)",
+      "inputs": [
+        0,
+        0,
+        1
+      ],
+      "input_semantics": {
+        "autoencoder_t": 0,
+        "xgboost_t": 0,
+        "lstm_t_minus_1_to_t": 1
+      },
+      "operational_meaning": "Forward-looking warning; current window clean."
+    },
+    {
+      "code": "S2",
+      "name": "XGB_ATTACK_ONLY",
+      "priority": "PRIORITY_3",
+      "triage_tier": "Priority 3 (Monitored Anomalies & Warnings)",
+      "inputs": [
+        0,
+        1,
+        0
+      ],
+      "input_semantics": {
+        "autoencoder_t": 0,
+        "xgboost_t": 1,
+        "lstm_t_minus_1_to_t": 0
+      },
+      "operational_meaning": "Known signature matched without AE anomaly."
+    },
+    {
+      "code": "S3",
+      "name": "XGB_LSTM_CONSISTENCY",
+      "priority": "PRIORITY_2",
+      "triage_tier": "Priority 2 (Priority Investigation)",
+      "inputs": [
+        0,
+        1,
+        1
+      ],
+      "input_semantics": {
+        "autoencoder_t": 0,
+        "xgboost_t": 1,
+        "lstm_t_minus_1_to_t": 1
+      },
+      "operational_meaning": "Forecasted signature attack active; low AE error."
+    },
+    {
+      "code": "S4",
+      "name": "AE_ANOMALY_ONLY",
+      "priority": "PRIORITY_3",
+      "triage_tier": "Priority 3 (Monitored Anomalies & Warnings)",
+      "inputs": [
+        1,
+        0,
+        0
+      ],
+      "input_semantics": {
+        "autoencoder_t": 1,
+        "xgboost_t": 0,
+        "lstm_t_minus_1_to_t": 0
+      },
+      "operational_meaning": "Statistical deviation without signature match."
+    },
+    {
+      "code": "S5",
+      "name": "AE_LSTM_CONSISTENCY",
+      "priority": "PRIORITY_2",
+      "triage_tier": "Priority 2 (Priority Investigation)",
+      "inputs": [
+        1,
+        0,
+        1
+      ],
+      "input_semantics": {
+        "autoencoder_t": 1,
+        "xgboost_t": 0,
+        "lstm_t_minus_1_to_t": 1
+      },
+      "operational_meaning": "Forecasted novel anomaly active."
+    },
+    {
+      "code": "S6",
+      "name": "AE_XGB_CONSENSUS",
+      "priority": "PRIORITY_2",
+      "triage_tier": "Priority 2 (Priority Investigation)",
+      "inputs": [
+        1,
+        1,
+        0
+      ],
+      "input_semantics": {
+        "autoencoder_t": 1,
+        "xgboost_t": 1,
+        "lstm_t_minus_1_to_t": 0
+      },
+      "operational_meaning": "Unpredicted sudden attack confirmed by AE + XGB."
+    },
+    {
+      "code": "S7",
+      "name": "TRI_MODEL_CONSENSUS",
+      "priority": "PRIORITY_1",
+      "triage_tier": "Priority 1 (Immediate SOC Triage)",
+      "inputs": [
+        1,
+        1,
+        1
+      ],
+      "input_semantics": {
+        "autoencoder_t": 1,
+        "xgboost_t": 1,
+        "lstm_t_minus_1_to_t": 1
+      },
+      "operational_meaning": "Full agreement: forecasted, anomalous, classified."
+    }
+  ],
+  "eligibility_rules": {
+    "eligibility_contract": "Window t is eligible for unified threat state mapping if and only if b_ae, b_xgb, b_lstm in {0, 1}.",
+    "ineligible_contract": "If any model output is 'unavailable', threat_state = null, is_eligible_for_threat_state = false, and ineligibility_reason is recorded.",
+    "taxonomy_preservation": "Exactly 8 canonical states (S0..S7). Zero 9th states (no S8, no LSTM_UNAVAILABLE state).",
+    "eligibility_contiguity_rule": "State transitions and dwell times are computed strictly across contiguous sequences of eligible windows. Ineligible windows terminate active sequences; zero transitions bridge across gaps."
+  },
+  "sample_conservation_laws": {
+    "scope_a_conservation": "sum(Count(S_i)) == N_scope_A == 45",
+    "scope_b_eligible_conservation": "sum(Count(S_i)) == N_eligible",
+    "master_timeline_conservation": "N_eligible + N_ineligible == N_master"
+  },
+  "investigation_priorities": {
+    "PRIORITY_1": {
+      "tier": "Immediate SOC Triage",
+      "states": [
+        "S7 (TRI_MODEL_CONSENSUS)"
+      ],
+      "sla": "Immediate automated ticket dispatch; confirmed multi-model consensus."
+    },
+    "PRIORITY_2": {
+      "tier": "Priority Investigation",
+      "states": [
+        "S6 (AE_XGB_CONSENSUS)",
+        "S3 (XGB_LSTM_CONSISTENCY)",
+        "S5 (AE_LSTM_CONSISTENCY)"
+      ],
+      "sla": "High-priority queue; dual-model confirmation."
+    },
+    "PRIORITY_3": {
+      "tier": "Monitored Anomalies & Warnings",
+      "states": [
+        "S1 (LSTM_FORECAST_ONLY)",
+        "S2 (XGB_ATTACK_ONLY)",
+        "S4 (AE_ANOMALY_ONLY)"
+      ],
+      "sla": "Automated logging and situational monitoring; single-model alert."
+    },
+    "PRIORITY_4": {
+      "tier": "Baseline Operations",
+      "states": [
+        "S0 (BENIGN_CONCORDANCE)"
+      ],
+      "sla": "Routine logging; baseline traffic."
+    }
+  }
+}

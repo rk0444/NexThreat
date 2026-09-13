@@ -1,0 +1,678 @@
+{
+  "phase": "4.5",
+  "verification_suite": "Independent Verification Suite v2.9 Hardened",
+  "overall_status": "PASS",
+  "timestamp": "2026-09-13T20:37:29.412494",
+  "total_checks": 19,
+  "passed_checks": 19,
+  "failed_checks": 0,
+  "checks": {
+    "Check_A": {
+      "check_id": "Check_A",
+      "name": "Frozen Artifact Existence",
+      "status": "PASS",
+      "verified_count": 16,
+      "missing_count": 0,
+      "missing_files": [],
+      "verified_paths": [
+        "data/model_inputs/manifests/autoencoder_split_manifest.csv",
+        "data/model_inputs/manifests/xgboost_split_manifest.csv",
+        "data/model_inputs/manifests/lstm_split_manifest.csv",
+        "data/model_inputs/manifests/split_integrity_report.json",
+        "data/model_inputs/metadata/attack_segments.csv",
+        "data/models/autoencoder/final_model/autoencoder.keras",
+        "data/models/autoencoder/checkpoints/best_model.keras",
+        "data/models/autoencoder/artifacts/model_metadata.json",
+        "data/models/xgboost/xgboost_model.json",
+        "data/models/xgboost/metadata.json",
+        "data/models/xgboost/feature_schema.json",
+        "data/models/lstm/lstm_model.keras",
+        "data/models/lstm/checkpoints/best_Candidate_C.keras",
+        "data/model_reports/lstm/threshold_config.json",
+        "data/model_ready/metadata/lstm_sequence_metadata.json",
+        "data/model_ready/metadata/lstm_sequence_provenance.csv"
+      ]
+    },
+    "Check_B": {
+      "check_id": "Check_B",
+      "name": "SHA-256 Integrity & Authority Hierarchy",
+      "status": "PASS",
+      "state_1_phase_3_3_model_ready_status": "PASS",
+      "state_1_phase_3_2_inputs_status": "PASS",
+      "state_1_phase_4_3_xgboost_status": "PASS",
+      "state_1_phase_4_4_lstm_status": "PASS",
+      "state_2_mechanisms_status": "PASS",
+      "zero_hardcoded_hashes_confirmed": true
+    },
+    "Check_C": {
+      "check_id": "Check_C",
+      "name": "Phase 3.3 Content Immutability",
+      "status": "PASS",
+      "total_files_verified": 26,
+      "immutability_verified": true
+    },
+    "Check_D": {
+      "check_id": "Check_D",
+      "name": "Canonical 13-Feature Contract",
+      "status": "PASS",
+      "feature_count": 13,
+      "expected_count": 13,
+      "feature_order_exact_match": true,
+      "features": [
+        "flow_count",
+        "packet_rate",
+        "byte_rate",
+        "mean_flow_duration",
+        "std_flow_duration",
+        "short_flow_ratio",
+        "mean_packet_size",
+        "packet_length_variability",
+        "fwd_bwd_packet_ratio",
+        "unique_dst_ports",
+        "unique_dst_ips",
+        "tcp_flow_ratio",
+        "syn_packet_ratio"
+      ],
+      "csv_header_match": true
+    },
+    "Check_E": {
+      "check_id": "Check_E",
+      "name": "Model Independence",
+      "status": "PASS",
+      "scanned_modules": [
+        "timeline_synchronizer.py",
+        "cross_model_evaluator.py",
+        "threat_inference_engine.py",
+        "lead_time_analyzer.py",
+        "consistency_analyzer.py"
+      ],
+      "inspected_ast_call_nodes": 286,
+      "model_input_contracts_verified": {
+        "autoencoder": "13 raw features (X_raw) -> frozen scaler -> reconstruction MSE",
+        "xgboost": "13 raw features (X_raw) -> DMatrix -> multiclass probabilities",
+        "lstm": "10x13 lookback sequence (lookback_raw) -> frozen scaler -> LSTM probability"
+      },
+      "deterministic_discrete_state_mapping_verified": true,
+      "cross_model_feature_coupling_detected": false,
+      "violations": []
+    },
+    "Check_F": {
+      "check_id": "Check_F",
+      "name": "Threshold Authority",
+      "status": "PASS",
+      "dynamic_ae_threshold": 0.003207791231673312,
+      "authoritative_ae_threshold": 0.003207791231673312,
+      "ae_threshold_matched": true,
+      "dynamic_lstm_threshold": 0.3,
+      "authoritative_lstm_threshold": 0.3,
+      "lstm_threshold_matched": true,
+      "ae_source_artifact": "data/models/autoencoder/artifacts/model_metadata.json",
+      "lstm_source_artifact": "data/model_reports/lstm/threshold_config.json"
+    },
+    "Check_G": {
+      "check_id": "Check_G",
+      "name": "LSTM Temporal Provenance & Alignment",
+      "status": "PASS",
+      "total_sequences_inspected": 2204,
+      "sequences_passing_exact_positional_validation": 2204,
+      "sequences_failing": 0,
+      "first_10_day_windows_inspected": 50,
+      "first_10_day_windows_unavailable_count": 50,
+      "first_10_day_windows_unavailable_verified": true,
+      "cross_day_violations_count": 0,
+      "cross_day_violations": [],
+      "malformed_provenance_records_count": 0,
+      "malformed_records": [],
+      "representative_examples": [
+        {
+          "target_position_t": 11,
+          "expected_lookback_10": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "actual_lookback_10": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "dataset_day": "Monday",
+          "target_excluded_from_input": true,
+          "prediction_associates_with_target": true
+        },
+        {
+          "target_position_t": 12,
+          "expected_lookback_10": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "actual_lookback_10": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "dataset_day": "Monday",
+          "target_excluded_from_input": true,
+          "prediction_associates_with_target": true
+        },
+        {
+          "target_position_t": 1634,
+          "expected_lookback_10": [
+            1624,
+            1625,
+            1626,
+            1627,
+            1628,
+            1629,
+            1630,
+            1631,
+            1632,
+            1633
+          ],
+          "actual_lookback_10": [
+            1624,
+            1625,
+            1626,
+            1627,
+            1628,
+            1629,
+            1630,
+            1631,
+            1632,
+            1633
+          ],
+          "dataset_day": "Thursday",
+          "target_excluded_from_input": true,
+          "prediction_associates_with_target": true
+        },
+        {
+          "target_position_t": 1635,
+          "expected_lookback_10": [
+            1625,
+            1626,
+            1627,
+            1628,
+            1629,
+            1630,
+            1631,
+            1632,
+            1633,
+            1634
+          ],
+          "actual_lookback_10": [
+            1625,
+            1626,
+            1627,
+            1628,
+            1629,
+            1630,
+            1631,
+            1632,
+            1633,
+            1634
+          ],
+          "dataset_day": "Thursday",
+          "target_excluded_from_input": true,
+          "prediction_associates_with_target": true
+        },
+        {
+          "target_position_t": 2453,
+          "expected_lookback_10": [
+            2443,
+            2444,
+            2445,
+            2446,
+            2447,
+            2448,
+            2449,
+            2450,
+            2451,
+            2452
+          ],
+          "actual_lookback_10": [
+            2443,
+            2444,
+            2445,
+            2446,
+            2447,
+            2448,
+            2449,
+            2450,
+            2451,
+            2452
+          ],
+          "dataset_day": "Friday",
+          "target_excluded_from_input": true,
+          "prediction_associates_with_target": true
+        },
+        {
+          "target_position_t": 2454,
+          "expected_lookback_10": [
+            2444,
+            2445,
+            2446,
+            2447,
+            2448,
+            2449,
+            2450,
+            2451,
+            2452,
+            2453
+          ],
+          "actual_lookback_10": [
+            2444,
+            2445,
+            2446,
+            2447,
+            2448,
+            2449,
+            2450,
+            2451,
+            2452,
+            2453
+          ],
+          "dataset_day": "Friday",
+          "target_excluded_from_input": true,
+          "prediction_associates_with_target": true
+        }
+      ],
+      "alignment_formula": "AE(t) + XGB(t) + LSTM([t-10..t-1] -> t)"
+    },
+    "Check_H": {
+      "check_id": "Check_H",
+      "name": "Manifest Partition Overlap",
+      "status": "PASS",
+      "dynamically_derived_count": 51,
+      "expected_observed_count": 51,
+      "manifest_overlap_matched": true,
+      "overlap_positions_sample": [
+        918,
+        967,
+        968,
+        969,
+        970,
+        971,
+        972,
+        973,
+        974,
+        975
+      ]
+    },
+    "Check_I": {
+      "check_id": "Check_I",
+      "name": "Synchronized Overlap",
+      "status": "PASS",
+      "dynamically_derived_synchronized_count": 45,
+      "expected_observed_count": 45,
+      "dynamically_derived_excluded_count": 6,
+      "excluded_positions": [
+        918,
+        2383,
+        2384,
+        2385,
+        2386,
+        2387
+      ],
+      "partition_conservation_verified": true
+    },
+    "Check_J": {
+      "check_id": "Check_J",
+      "name": "State Taxonomy & Neutrality (No Falsification)",
+      "status": "PASS",
+      "ineligible_rows_inspected": 50,
+      "neutrality_violations": [],
+      "dynamically_derived_n_ineligible": 50,
+      "dynamically_derived_n_eligible": 2404,
+      "dynamically_derived_n_master": 2454,
+      "accounting_conservation_holds": true,
+      "exactly_eight_canonical_states": true,
+      "forbidden_labels_detected": [],
+      "ninth_state_detected": false,
+      "ineligible_windows_excluded_from_state_distribution": true,
+      "ineligibility_breakdown": {
+        "lstm_lookback_cold_start": 50
+      },
+      "ineligibility_breakdown_sum": 50,
+      "ineligibility_breakdown_partition_verified": true
+    },
+    "Check_K": {
+      "check_id": "Check_K",
+      "name": "Scope-B Conservation",
+      "status": "PASS",
+      "sum_count_s_i": 2404,
+      "n_eligible": 2404,
+      "n_ineligible": 50,
+      "n_master": 2454,
+      "equation_1_satisfied": true,
+      "equation_1_str": "sum(Count(S_i)) [2404] == N_eligible [2404]",
+      "equation_2_satisfied": true,
+      "equation_2_str": "N_eligible [2404] + N_ineligible [50] == N_master [2454]",
+      "conservation_status": "PASS"
+    },
+    "Check_L": {
+      "check_id": "Check_L",
+      "name": "No Numerical Fusion",
+      "status": "PASS",
+      "scanned_modules": [
+        "threat_inference_engine.py",
+        "timeline_synchronizer.py",
+        "cross_model_evaluator.py"
+      ],
+      "ast_binop_nodes_inspected": 46,
+      "forbidden_score_tokens_checked": [
+        "combined_score",
+        "unified_score",
+        "weighted_score",
+        "composite_prob",
+        "ensemble_score",
+        "score_fusion",
+        "blended_score",
+        "weighted_vote"
+      ],
+      "numerical_score_fusion_detected": false,
+      "deterministic_discrete_mapping_confirmed": true,
+      "violations": []
+    },
+    "Check_M": {
+      "check_id": "Check_M",
+      "name": "No Autonomous Remediation",
+      "status": "PASS",
+      "scanned_modules": [
+        "config.py",
+        "consistency_analyzer.py",
+        "cross_model_evaluator.py",
+        "integrity.py",
+        "lead_time_analyzer.py",
+        "report_generator.py",
+        "threat_inference_engine.py",
+        "timeline_synchronizer.py",
+        "__init__.py"
+      ],
+      "ast_calls_inspected": 405,
+      "prohibited_modules_checked": [
+        "subprocess",
+        "socket",
+        "scapy",
+        "paramiko",
+        "requests",
+        "urllib.request",
+        "http.client",
+        "asyncio"
+      ],
+      "prohibited_commands_checked": [
+        "iptables",
+        "netsh",
+        "ufw",
+        "firewall",
+        "route add",
+        "taskkill",
+        "kill -9",
+        "block-ip"
+      ],
+      "actuation_or_remediation_detected": false,
+      "violations": []
+    },
+    "Check_N": {
+      "check_id": "Check_N",
+      "name": "Metric Schema Completeness",
+      "status": "PASS",
+      "missing_schema_keys": []
+    },
+    "Check_O": {
+      "check_id": "Check_O",
+      "name": "Deterministic Null Handling (MCC & Jaccard)",
+      "status": "PASS",
+      "guardrail_evaluations": [
+        {
+          "scope": "scope_a",
+          "pair": "ae_vs_xgboost",
+          "jaccard_valid": true,
+          "mcc_valid": true
+        },
+        {
+          "scope": "scope_a",
+          "pair": "xgboost_vs_lstm",
+          "jaccard_valid": true,
+          "mcc_valid": true
+        },
+        {
+          "scope": "scope_a",
+          "pair": "ae_vs_lstm",
+          "jaccard_valid": true,
+          "mcc_valid": true
+        },
+        {
+          "scope": "scope_b",
+          "pair": "ae_vs_xgboost",
+          "jaccard_valid": true,
+          "mcc_valid": true
+        },
+        {
+          "scope": "scope_b",
+          "pair": "xgboost_vs_lstm",
+          "jaccard_valid": true,
+          "mcc_valid": true
+        },
+        {
+          "scope": "scope_b",
+          "pair": "ae_vs_lstm",
+          "jaccard_valid": true,
+          "mcc_valid": true
+        }
+      ]
+    },
+    "Check_P": {
+      "check_id": "Check_P",
+      "name": "Scope Separation",
+      "status": "PASS",
+      "scope_a_present": true,
+      "scope_b_present": true,
+      "individual_benchmarks_isolated": true,
+      "autoencoder_test_samples": 408,
+      "xgboost_test_samples": 319,
+      "lstm_test_samples": 286
+    },
+    "Check_Q": {
+      "check_id": "Check_Q",
+      "name": "Day-Boundary Isolation & Lead-Time Validity",
+      "status": "PASS",
+      "dataset_days": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "day_boundaries": {
+        "Monday": {
+          "start_global_position": 1,
+          "end_global_position": 487,
+          "total_windows": 487,
+          "first_10_positions": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "first_10_unavailable_count": 10
+        },
+        "Tuesday": {
+          "start_global_position": 488,
+          "end_global_position": 975,
+          "total_windows": 488,
+          "first_10_positions": [
+            488,
+            489,
+            490,
+            491,
+            492,
+            493,
+            494,
+            495,
+            496,
+            497
+          ],
+          "first_10_unavailable_count": 10
+        },
+        "Wednesday": {
+          "start_global_position": 976,
+          "end_global_position": 1484,
+          "total_windows": 509,
+          "first_10_positions": [
+            976,
+            977,
+            978,
+            979,
+            980,
+            981,
+            982,
+            983,
+            984,
+            985
+          ],
+          "first_10_unavailable_count": 10
+        },
+        "Thursday": {
+          "start_global_position": 1485,
+          "end_global_position": 1970,
+          "total_windows": 486,
+          "first_10_positions": [
+            1485,
+            1486,
+            1487,
+            1488,
+            1489,
+            1490,
+            1491,
+            1492,
+            1493,
+            1494
+          ],
+          "first_10_unavailable_count": 10
+        },
+        "Friday": {
+          "start_global_position": 1971,
+          "end_global_position": 2454,
+          "total_windows": 484,
+          "first_10_positions": [
+            1971,
+            1972,
+            1973,
+            1974,
+            1975,
+            1976,
+            1977,
+            1978,
+            1979,
+            1980
+          ],
+          "first_10_unavailable_count": 10
+        }
+      },
+      "first_10_windows_inspected": 50,
+      "first_10_windows_unavailable_count": 50,
+      "total_campaigns_evaluated": 81,
+      "lead_time_boundary_violations": [],
+      "transition_boundary_violations": [],
+      "dwell_boundary_violations": []
+    },
+    "Check_R": {
+      "check_id": "Check_R",
+      "name": "Exact Deliverable Set",
+      "status": "PASS",
+      "expected_deliverable_count": 7,
+      "actual_deliverable_count": 7,
+      "expected_deliverables": [
+        "cross_model_evaluation_report.json",
+        "model_consistency_report.json",
+        "phase_4_5_summary.md",
+        "phase_4_5_verification_report.json",
+        "temporal_lead_time_report.json",
+        "tri_model_threat_matrix.json",
+        "unified_inference_spec.json"
+      ],
+      "actual_deliverables": [
+        "cross_model_evaluation_report.json",
+        "model_consistency_report.json",
+        "phase_4_5_summary.md",
+        "phase_4_5_verification_report.json",
+        "temporal_lead_time_report.json",
+        "tri_model_threat_matrix.json",
+        "unified_inference_spec.json"
+      ],
+      "missing_files": [],
+      "unexpected_files": [],
+      "exact_set_matched": true
+    },
+    "Check_S": {
+      "check_id": "Check_S",
+      "name": "Independent Verification of Resolved Blockers",
+      "status": "PASS",
+      "blocker_1_campaign_count_verification": {
+        "status": "PASS",
+        "derived_authoritative_campaigns_count": 81,
+        "evaluated_campaigns_count": 81,
+        "exact_segment_id_match": true
+      },
+      "blocker_2_feature_contract_verification": {
+        "status": "PASS",
+        "canonical_feature_count": 13,
+        "metadata_exact_match": true,
+        "csv_header_exact_match": true,
+        "xgboost_schema_exact_match": true
+      },
+      "blocker_3_jaccard_null_semantics_verification": {
+        "status": "PASS",
+        "synthetic_zero_union_eval_returned_none": true,
+        "synthetic_undefined_reason": "zero_positive_union",
+        "report_guardrail_verified": true
+      },
+      "blocker_4_lstm_unavailable_handling_verification": {
+        "status": "PASS",
+        "no_s8_detected": true,
+        "no_lstm_unavailable_state_detected": true,
+        "ineligible_windows_threat_state_null": true,
+        "ineligible_windows_lstm_prediction_unavailable": true,
+        "scope_b_conservation_verified": true,
+        "partition_conservation_verified": true
+      },
+      "competing_primary_authorities_detected": false,
+      "internal_contradictions_detected": false
+    }
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "phase": "4.5",
+  "report_name": "Cross-Model Evaluation & Benchmark Report",
+  "timestamp": "2026-09-13T20:37:24.579898",
+  "scope_a_individual_benchmarks": {
+    "autoencoder": {
+      "sample_count": 408,
+      "reconstruction_error_mean": 1.8735315775489902,
+      "reconstruction_error_std": 14.396660138229642,
+      "threshold": 0.003207791231673312,
+      "precision": 0.47606382978723405,
+      "recall": 0.9470899470899471,
+      "f1_score": 0.6336283185840708,
+      "roc_auc": 0.7248435650262135,
+      "pr_auc": 0.7669633746150754,
+      "anomalies_detected": 376,
+      "anomaly_rate": 0.9215686274509803
+    },
+    "xgboost": {
+      "sample_count": 319,
+      "accuracy": 0.789969,
+      "macro_f1": 0.394696,
+      "weighted_f1": 0.832458,
+      "macro_precision": 0.406557,
+      "macro_recall": 0.442138,
+      "attacks_detected": 63,
+      "attack_rate": 0.1974921630094044
+    },
+    "lstm": {
+      "sample_count": 286,
+      "threshold": 0.3,
+      "precision": 0.08974358974358974,
+      "recall": 1.0,
+      "f1_score": 0.16470588235294117,
+      "auc_pr": 0.17235315127148187,
+      "roc_auc": 0.8176100628930818,
+      "accuracy": 0.25524475524475526,
+      "forecasts_positive": 234,
+      "forecast_positive_rate": 0.8181818181818182
+    }
+  },
+  "scope_a_synchronized_benchmark": {
+    "sample_count": 45,
+    "mutual_overlap_positions": 51,
+    "excluded_positions": [
+      918,
+      2383,
+      2384,
+      2385,
+      2386,
+      2387
+    ],
+    "pairwise_metrics": {
+      "sample_count": 45,
+      "ae_vs_xgboost": {
+        "sample_count": 45,
+        "cohens_kappa": -0.07488702388637831,
+        "jaccard_similarity": 0.13953488372093023,
+        "jaccard_undefined_reason": null,
+        "matthews_corrcoef": -0.263245050272704,
+        "mcc_undefined_reason": null,
+        "raw_agreement_rate": 0.17777777777777778,
+        "raw_disagreement_rate": 0.8222222222222222,
+        "confusion_matrix": [
+          [
+            2,
+            2
+          ],
+          [
+            35,
+            6
+          ]
+        ],
+        "confusion_matrix_labels": {
+          "rows": "Autoencoder (0=Benign, 1=Attack)",
+          "columns": "XGBoost (0=Benign, 1=Attack)",
+          "tn": 2,
+          "fp": 2,
+          "fn": 35,
+          "tp": 6
+        }
+      },
+      "xgboost_vs_lstm": {
+        "sample_count": 45,
+        "cohens_kappa": 0.05263157894736837,
+        "jaccard_similarity": 0.2,
+        "jaccard_undefined_reason": null,
+        "matthews_corrcoef": 0.1643989873053573,
+        "mcc_undefined_reason": null,
+        "raw_agreement_rate": 0.28888888888888886,
+        "raw_disagreement_rate": 0.7111111111111111,
+        "confusion_matrix": [
+          [
+            5,
+            32
+          ],
+          [
+            0,
+            8
+          ]
+        ],
+        "confusion_matrix_labels": {
+          "rows": "XGBoost (0=Benign, 1=Attack)",
+          "columns": "LSTM (0=Benign, 1=Attack)",
+          "tn": 5,
+          "fp": 32,
+          "fn": 0,
+          "tp": 8
+        }
+      },
+      "ae_vs_lstm": {
+        "sample_count": 45,
+        "cohens_kappa": -0.10958904109589016,
+        "jaccard_similarity": 0.8,
+        "jaccard_undefined_reason": null,
+        "matthews_corrcoef": -0.11043152607484653,
+        "mcc_undefined_reason": null,
+        "raw_agreement_rate": 0.8,
+        "raw_disagreement_rate": 0.19999999999999996,
+        "confusion_matrix": [
+          [
+            0,
+            4
+          ],
+          [
+            5,
+            36
+          ]
+        ],
+        "confusion_matrix_labels": {
+          "rows": "Autoencoder (0=Benign, 1=Attack)",
+          "columns": "LSTM (0=Benign, 1=Attack)",
+          "tn": 0,
+          "fp": 4,
+          "fn": 5,
+          "tp": 36
+        }
+      }
+    }
+  },
+  "scope_b_operational_replay": {
+    "sample_count": 2454,
+    "total_master_timeline_windows": 2454,
+    "eligible_windows_count": 2404,
+    "ineligible_windows_count": 50,
+    "autoencoder_positive_count": 2213,
+    "autoencoder_positive_rate": 0.9017929910350448,
+    "xgboost_positive_count": 582,
+    "xgboost_positive_rate": 0.2371638141809291,
+    "lstm_positive_count": 1983,
+    "lstm_positive_rate": 0.8248752079866889,
+    "lstm_positive_rate_over_eligible": 0.8248752079866889,
+    "lstm_unavailable_count": 50
+  }
+}
