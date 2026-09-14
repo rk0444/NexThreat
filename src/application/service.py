@@ -24,6 +24,7 @@ from src.application.exceptions import (
 )
 from src.application.orchestrator import ApplicationInferenceEngine
 from src.application.schemas import ApplicationOutputRecord
+from src.application.validators import sanitize_error_message
 from src.models.comparison.config import PROJECT_ROOT
 
 logger = logging.getLogger("NexThreat.Service")
@@ -112,9 +113,14 @@ class NexThreatHTTPRequestHandler(BaseHTTPRequestHandler):
 
     def _send_error_response(self, status_code: int, error_type: str, message: str) -> None:
         now_utc = datetime.datetime.now(datetime.timezone.utc).isoformat()
+        if status_code >= 500:
+            client_message = "An internal server error occurred."
+            logger.error(f"Internal server error [{error_type}]: {message}")
+        else:
+            client_message = sanitize_error_message(message)
         payload = {
             "error": error_type,
-            "message": message,
+            "message": client_message,
             "status_code": status_code,
             "timestamp": now_utc,
         }

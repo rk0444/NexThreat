@@ -1,8 +1,9 @@
 """
-NexThreat Phase 5.2 — Application Inference Engine & Orchestrator.
+NexThreat Phase 5.5 — Application Inference Engine & Orchestrator.
 
 Orchestrates the complete multi-model threat inference lifecycle for incoming
-one-minute feature window records according to Phase 5.1 specifications.
+one-minute feature window records according to Phase 5.1 and Phase 5.5 specifications.
+Enforces the transactional temporal buffer commit invariant (Step 9 commit after all validations pass).
 """
 from __future__ import annotations
 
@@ -36,13 +37,21 @@ from src.application.schemas import (
 )
 from src.application.state_manager import TemporalHistoryBuffer
 from src.application.threat_engine import evaluate_threat_state
-from src.application.validators import validate_canonical_input
+from src.application.validators import (
+    validate_canonical_input,
+    validate_autoencoder_output,
+    validate_xgboost_output,
+    validate_lstm_output,
+    validate_threat_inference_output,
+    validate_application_output_record,
+)
 
 
 class ApplicationInferenceEngine:
     """
     Unified Application Inference Engine.
     Encapsulates frozen model predictors and an instance-owned temporal lookback buffer.
+    Enforces a strict 10-step transactional execution lifecycle.
     """
 
     def __init__(
@@ -64,27 +73,32 @@ class ApplicationInferenceEngine:
         """
         Process a single One-Minute Feature-Vector Window Record.
         
-        Lifecycle:
-        1. Validate external input contract and extract 13 canonical features.
-        2. Evaluate temporal lookback buffer (strict 60-second continuity & day boundary).
-        3. Execute Autoencoder anomaly detection.
-        4. Execute XGBoost attack-category classification.
-        5. Execute LSTM forecasting (or mark unavailable if cold-start / discontinuous).
-        6. Map discrete decisions to canonical threat state S0..S7 (or neutral null).
-        7. Commit window to temporal history buffer.
-        8. Format structured application output record.
+        Exact 10-Step Execution Lifecycle:
+        1. Input Validation: Validate external input contract and extract 13 canonical features.
+           (If invalid, raises InputValidationError; zero buffer touch).
+        2. Temporal Evaluation: Evaluate temporal lookback buffer (delegates to state_manager).
+        3. Model Inference: Execute Autoencoder, XGBoost, and LSTM inference.
+        4. Model Output Validation: Assert-only validation of AE, XGBoost, and LSTM outputs.
+        5. Threat State Resolution: Evaluate unified threat state from model outputs.
+        6. Threat State Validation: Assert-only validation of threat inference against truth table.
+        7. Application Output Assembly: Assemble complete ApplicationOutputRecord.
+        8. Application Output Validation: Assert-only validation of assembled ApplicationOutputRecord.
+        9. Temporal Buffer Commit: Commit current window to history buffer and increment counter.
+           (Transactional Invariant: executes strictly after all validations succeed).
+        10. Return validated ApplicationOutputRecord.
         """
         start_time = time.perf_counter()
 
-        # 1. Validate external input contract
+        # Step 1: Input Validation
         window_id, timestamp_str, timestamp_dt, dataset_day, features_array = validate_canonical_input(raw_input)
 
-        # 2. Evaluate temporal lookback buffer
+        # Step 2: Temporal Evaluation (state_manager is sole temporal authority)
         is_lstm_eligible, ineligibility_reason, lookback_tensor = (
             self.history_buffer.evaluate_and_get_lookback(timestamp_dt)
         )
 
-        # 3. Autoencoder inference
+        # Step 3: Model Inference
+        # 3a. Autoencoder inference
         ae_mse, ae_anomaly = self.ae_predictor.predict_sample(features_array)
         ae_record = AutoencoderOutputRecord(
             reconstruction_mse=ae_mse,
@@ -92,7 +106,7 @@ class ApplicationInferenceEngine:
             is_anomaly=ae_anomaly,
         )
 
-        # 4. XGBoost inference
+        # 3b. XGBoost inference
         xgb_class_idx, xgb_class_name, xgb_is_attack, xgb_probs = self.xgb_predictor.predict_sample(features_array)
         xgb_record = XGBoostOutputRecord(
             predicted_class_index=xgb_class_idx,
@@ -101,7 +115,7 @@ class ApplicationInferenceEngine:
             class_probabilities=xgb_probs,
         )
 
-        # 5. LSTM inference
+        # 3c. LSTM inference
         if is_lstm_eligible and lookback_tensor is not None:
             lstm_prob, lstm_decision = self.lstm_predictor.predict_sequence(lookback_tensor)
             lstm_record = LSTMOutputRecord(
@@ -122,27 +136,34 @@ class ApplicationInferenceEngine:
             )
             raw_b_lstm = "unavailable"
 
-        # 6. Unified threat-state evaluation
+        # Step 4: Model Output Validation (assert-only guards)
+        validate_autoencoder_output(ae_record)
+        validate_xgboost_output(xgb_record)
+        validate_lstm_output(lstm_record)
+
+        # Step 5: Threat-State Resolution
         threat_record = evaluate_threat_state(
             b_ae=ae_anomaly,
             b_xgb=xgb_is_attack,
             b_lstm=raw_b_lstm,
         )
 
-        # 7. Commit current window to history buffer
-        self.history_buffer.commit_window(timestamp_dt, features_array)
+        # Step 6: Threat-State Validation (assert-only guard)
+        validate_threat_inference_output(
+            threat_record=threat_record,
+            b_ae=ae_anomaly,
+            b_xgb=xgb_is_attack,
+            b_lstm=raw_b_lstm,
+        )
 
-        # 8. Track internal sequence position
-        self._internal_position_counter += 1
-
-        # 9. Measure execution latency
+        # Step 7: Application Output Assembly
+        next_position = self._internal_position_counter + 1
         latency_ms = (time.perf_counter() - start_time) * 1000.0
 
-        # 10. Assemble complete application output record
-        return ApplicationOutputRecord(
+        app_record = ApplicationOutputRecord(
             window_id=window_id,
             timestamp=timestamp_str,
-            global_position=self._internal_position_counter,
+            global_position=next_position,
             dataset_day=dataset_day,
             autoencoder=ae_record,
             xgboost=xgb_record,
@@ -154,6 +175,16 @@ class ApplicationInferenceEngine:
                 engine="NexThreat-Phase5.2",
             ),
         )
+
+        # Step 8: Application Output Validation (assert-only guard)
+        validate_application_output_record(app_record)
+
+        # Step 9: TEMPORAL BUFFER COMMIT (strictly at Step 9 after all validations succeed)
+        self.history_buffer.commit_window(timestamp_dt, features_array)
+        self._internal_position_counter = next_position
+
+        # Step 10: Return Final Validated Output
+        return app_record
 
     def reset_buffer(self) -> None:
         """Reset internal history buffer and sequence position counter."""

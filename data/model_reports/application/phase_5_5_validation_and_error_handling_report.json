@@ -1,0 +1,236 @@
+{
+  "report_metadata": {
+    "report_title": "NexThreat Phase 5.5 \u2014 Input/Output Validation & Error Handling Report",
+    "phase": "Phase 5.5",
+    "timestamp_utc": "2026-09-14T10:36:39.971752+00:00",
+    "overall_status": "PASS",
+    "total_checks": 20,
+    "passed_checks": 20,
+    "failed_checks": 0
+  },
+  "checks": {
+    "Check_P1_PRE": {
+      "name": "33-File Inventory Baseline Fingerprinting",
+      "status": "PASS",
+      "total_files": 33,
+      "missing_files": [],
+      "details": "Authoritative Phase 4.7 manifest loaded; baseline SHA-256 computed for all 33 files (0 missing)."
+    },
+    "Check_V1": {
+      "name": "Boolean Rejection in Input Features",
+      "status": "PASS",
+      "tests_executed": 8,
+      "rejected_count": 8,
+      "details": "Python boolean values (True/False) explicitly rejected as non-numeric feature inputs."
+    },
+    "Check_V2": {
+      "name": "Extraneous Top-Level Keys Rejection",
+      "status": "PASS",
+      "keys_tested": [
+        "risk_score",
+        "attack",
+        "is_attack_ground_truth",
+        "flow_id",
+        "extra_field"
+      ],
+      "rejected_count": 5,
+      "details": "Single-window request dictionaries strictly limited to {'window_id', 'timestamp', 'features'}."
+    },
+    "Check_V3": {
+      "name": "Feature Sequence Contract Strictness",
+      "status": "PASS",
+      "invalid_cases_tested": 6,
+      "rejected_count": 6,
+      "details": "Features must strictly be a sequence of exactly 13 items; dicts, scalars, strings, and wrong lengths rejected."
+    },
+    "Check_V4": {
+      "name": "Non-Finite & Non-Numeric Feature Rejection",
+      "status": "PASS",
+      "non_finite_values_tested": 7,
+      "rejected_count": 7,
+      "details": "NaN, +Inf, -Inf, null, strings, and nested structures rejected from feature vector."
+    },
+    "Check_V5": {
+      "name": "Physical Domain Bounds Rejection",
+      "status": "PASS",
+      "tests_executed": 3,
+      "rejected_count": 3,
+      "details": "Negative counts/rates/sizes and ratios outside [0.0, 1.0] strictly rejected."
+    },
+    "Check_V6": {
+      "name": "Malformed Window ID & Type Rejection",
+      "status": "PASS",
+      "cases_tested": 8,
+      "rejected_count": 8,
+      "details": "Window IDs must be strings conforming to YYYYMMDD_HHMM; non-strings and malformed IDs rejected."
+    },
+    "Check_V7": {
+      "name": "Timestamp Syntax & Parseability",
+      "status": "PASS",
+      "cases_tested": 7,
+      "rejected_count": 7,
+      "details": "Timestamp syntax validated separately from continuity; empty, unparseable, and typed non-strings rejected."
+    },
+    "Check_V8": {
+      "name": "Autoencoder Output Validation Guard",
+      "status": "PASS",
+      "threshold": 0.003207791231673312,
+      "details": "Assert-only validation confirms MSE >= 0 and strict decision conformity with MSE > 0.003207791231673312."
+    },
+    "Check_V9": {
+      "name": "XGBoost Output Validation Guard",
+      "status": "PASS",
+      "details": "Assert-only validation confirms class index in range 0..7, attack rule C != 0, and probability vector sum ~ 1.0."
+    },
+    "Check_V10": {
+      "name": "LSTM Output Validation Guard",
+      "status": "PASS",
+      "details": "Assert-only validation confirms probability in [0, 1] when eligible and strictly null when unavailable."
+    },
+    "Check_V11": {
+      "name": "Threat-State Assert-Only Oracle Guard",
+      "status": "PASS",
+      "details": "Threat-state validation acts purely as an assertion against the truth table; zero mutation or state recalculation."
+    },
+    "Check_V12": {
+      "name": "Operational Priority & Actionability Guard",
+      "status": "PASS",
+      "details": "Priority tier and operational actionability (S1..S7 True, S0 False, Cold False) verified."
+    },
+    "Check_V13": {
+      "name": "No Threat-State Mutation on Error",
+      "status": "PASS",
+      "details": "Errors produce explicit exceptions; zero fallback to S0 and zero fabrication of S8/ERROR threat states."
+    },
+    "Check_V14": {
+      "name": "Temporal Buffer Commit Transaction Invariant",
+      "status": "PASS",
+      "buffer_depth_before": 5,
+      "buffer_depth_after_error": 5,
+      "details": "Transactional boundary verified: pre-commit failure leaves temporal buffer bit-exact untouched; subsequent window succeeds."
+    },
+    "Check_V15": {
+      "name": "Inherited HTTP Status Semantics",
+      "status": "PASS",
+      "statuses_verified": {
+        "400_bad_json": 400,
+        "404_reset": 404,
+        "404_unknown": 404,
+        "405_method_not_allowed": 405,
+        "411_length_required": 411,
+        "413_payload_too_large": 413
+      },
+      "details": "Inherited Phase 5.3 status codes (400, 404, 405, 411, 413) verified with zero invented policies."
+    },
+    "Check_V16": {
+      "name": "HTTP Information Leakage Prevention",
+      "status": "PASS",
+      "error_message_sample": "Invalid window_id 'bad_id'. Expected pattern 'YYYYMMDD_HHMM' (e.g. '20170703_1355').",
+      "details": "Client error responses sanitized: zero filesystem paths, Python files, tracebacks, or memory addresses leaked."
+    },
+    "Check_V17": {
+      "name": "Stream Ingestion Error Semantics",
+      "status": "PASS",
+      "committed_windows_before_error": 3,
+      "error_raised": true,
+      "details": "Invalid record halts stream processing without corrupting previous valid lookback state."
+    },
+    "Check_V18": {
+      "name": "Historical Replay Metric Conservation",
+      "status": "PASS",
+      "n_master": 2454,
+      "n_eligible": 2404,
+      "n_ineligible_cold_start": 50,
+      "expected_cold_start": 50,
+      "threat_state_distribution": {
+        "S0": 52,
+        "S1": 148,
+        "S2": 2,
+        "S3": 38,
+        "S4": 341,
+        "S5": 1281,
+        "S6": 26,
+        "S7": 516
+      },
+      "details": "Historical replay verified N_master=2454, N_eligible=2404, N_cold=50 (5 days * 10 = 50). Invariant 100% conserved."
+    },
+    "Check_P1_POST": {
+      "name": "33-File Post-Verification Immutability Audit",
+      "status": "PASS",
+      "total_files": 33,
+      "mutations_count": 0,
+      "mutations": [],
+      "details": "0 mutations across 33 frozen files; 100% SHA-256 match with authoritative baseline."
+    }
+  },
+  "pre_hashes": {
+    "data/model_inputs/manifests/autoencoder_split_manifest.csv": "8a1635296269fa5e0061ed5f2314e35f2a804d46eb2dd50282c51a65581df58a",
+    "data/model_inputs/manifests/xgboost_split_manifest.csv": "a41999e4de5e8afd19eabb9b1a81a7e3670fc1e53ce341221973ba55befa1993",
+    "data/model_inputs/manifests/lstm_split_manifest.csv": "f30a1f223b1b238d503b03c813e355a23cb4ee3595cee78856dba41468fd485d",
+    "data/model_inputs/manifests/split_integrity_report.json": "a17f83426bfb10ce1c5757c22c79c43d14f291d4e7f8bf01753090f5052877a1",
+    "data/model_inputs/metadata/attack_segments.csv": "5847422e6b035e5918d9af0e1f29ddf7fa6442f5f21dcd5057c285a47b43c96a",
+    "data/model_ready/artifacts/autoencoder_scaler.joblib": "269484386351907137aca35ca771659b1acded096e1ea40b267673a729cf89b7",
+    "data/model_ready/artifacts/lstm_scaler.joblib": "0f1ee25a878ebc60c9169d4fd826a66d41565aec4e1c8e7eb5d2d5e72867cbe7",
+    "data/model_ready/artifacts/xgboost_label_encoder.joblib": "1bd6fc5e22917d71a986214fa4c9d153ca582b0c616ebde57ff259d21cdb53f5",
+    "data/model_ready/metadata/feature_columns.json": "b6777c2361ca6f03d24dcaad5385491da4364b8a0f4c9bf24e27d9257c8f0b1d",
+    "data/model_ready/metadata/preparation_metadata.json": "f28a3ea03e69b756479853efe1aa3833fc3b58bcd7d2644a053421a1bd5361c7",
+    "data/model_ready/metadata/xgboost_label_mapping.json": "510725bc3aba004e6f407e99c62ba49df736486d2eecbf089c15909e297056dc",
+    "data/model_ready/metadata/lstm_sequence_metadata.json": "17c8f05a1a05c3b2dae66f6866f4afa416bc55e0ca58b02c0d1beca0f35e255e",
+    "data/model_ready/metadata/lstm_sequence_provenance.csv": "b5254e761e8d14b1b08d94e9c2cf0db7a3252c9781ddc8c9c7e0cfabedf94876",
+    "data/models/autoencoder/final_model/autoencoder.keras": "e7e454e353ec58ea7bdb10c8bc8eda65539386c5a54d6f8a317f291a08868747",
+    "data/models/autoencoder/checkpoints/best_model.keras": "e7e454e353ec58ea7bdb10c8bc8eda65539386c5a54d6f8a317f291a08868747",
+    "data/models/autoencoder/artifacts/model_metadata.json": "ad48d6e4c5bdbb4cb15be18cc064f49824579894c15b8cc9d383014ca22b5d1e",
+    "data/models/xgboost/xgboost_model.json": "9c9ab8d0bc053d84bca49504f637eeb7c63cc9ef159dda43ffa06b97bab9d442",
+    "data/models/xgboost/metadata.json": "ffa0b8743a3372bc8aef07a1d37f5d57c2ce5f2d20f85172172ba002f540fdba",
+    "data/models/xgboost/feature_schema.json": "c76ea2360a24d683f810a746acf2e70a717f546b0a645b60e6efc093fc395368",
+    "data/models/xgboost/class_mapping.json": "32c406b92081099f307700eeebc0ebafd70b288003699b7719f6f4c102c39ed1",
+    "data/models/lstm/lstm_model.keras": "cb4251a785cdc80cb3008c9aef19c852af0d7f4108d8a5eb01a570ac342ec274",
+    "data/models/lstm/checkpoints/best_Candidate_C.keras": "d8f37b51f194ae99e563b514f142c9f42aca7b95cb36258ec78027bf6fe25df3",
+    "data/model_reports/lstm/threshold_config.json": "d5db62ec898e8338feeb921b318a7d2023c4bb46df6b96ae367a35934f89b1ae",
+    "data/model_reports/comparison/cross_model_evaluation_report.json": "ada2f356e61d2ee5e992a1c48ed02af79079b4f7c0d88fd7034ad9f4976d6adb",
+    "data/model_reports/comparison/model_consistency_report.json": "a1843ae4c4141981c35df6c7fc2ee380934ad885878d2356233ae52cfde6315d",
+    "data/model_reports/comparison/tri_model_threat_matrix.json": "17babacd6d1390696b757d892501238f3e0266569e5cb6fd04f404770f7fb669",
+    "data/model_reports/comparison/temporal_lead_time_report.json": "531224955fa4515066193d92d496f056e1ae270e578134da8a7f08a74d40a7fc",
+    "data/model_reports/comparison/unified_inference_spec.json": "3db96272c8287bdc38f67b6668288e62d9c9aab7c4a665e5a3e11aaff043135c",
+    "data/model_reports/comparison/phase_4_5_verification_report.json": "b34ced009d272f5ca229a14980bf908aeee4a1c53c7f2c59fa21f811af5f7362",
+    "data/model_reports/comparison/phase_4_5_summary.md": "43a8a2827afcf4a045346b1d82be62d8d81aa580200f0afd732d5a93fc4788b9",
+    "src/models/verification/verify_phase_4_6.py": "0fbe1e4b5e80c312e58965fd61e4fd0835d531cf12d8e1b34107204c4acc421c",
+    "data/model_reports/hardening/phase_4_6_verification_report.json": "732435da5b5018a034f704fa52b402387c96aafdb4b7a78d599d50394cb1bbcb",
+    "data/model_reports/hardening/phase_4_6_verification_report.md": "5ac3c6959ef81f248ca0930daa730cd6573230f09fcd7bf075789a430e97a184"
+  },
+  "post_hashes": {
+    "data/model_inputs/manifests/autoencoder_split_manifest.csv": "8a1635296269fa5e0061ed5f2314e35f2a804d46eb2dd50282c51a65581df58a",
+    "data/model_inputs/manifests/xgboost_split_manifest.csv": "a41999e4de5e8afd19eabb9b1a81a7e3670fc1e53ce341221973ba55befa1993",
+    "data/model_inputs/manifests/lstm_split_manifest.csv": "f30a1f223b1b238d503b03c813e355a23cb4ee3595cee78856dba41468fd485d",
+    "data/model_inputs/manifests/split_integrity_report.json": "a17f83426bfb10ce1c5757c22c79c43d14f291d4e7f8bf01753090f5052877a1",
+    "data/model_inputs/metadata/attack_segments.csv": "5847422e6b035e5918d9af0e1f29ddf7fa6442f5f21dcd5057c285a47b43c96a",
+    "data/model_ready/artifacts/autoencoder_scaler.joblib": "269484386351907137aca35ca771659b1acded096e1ea40b267673a729cf89b7",
+    "data/model_ready/artifacts/lstm_scaler.joblib": "0f1ee25a878ebc60c9169d4fd826a66d41565aec4e1c8e7eb5d2d5e72867cbe7",
+    "data/model_ready/artifacts/xgboost_label_encoder.joblib": "1bd6fc5e22917d71a986214fa4c9d153ca582b0c616ebde57ff259d21cdb53f5",
+    "data/model_ready/metadata/feature_columns.json": "b6777c2361ca6f03d24dcaad5385491da4364b8a0f4c9bf24e27d9257c8f0b1d",
+    "data/model_ready/metadata/preparation_metadata.json": "f28a3ea03e69b756479853efe1aa3833fc3b58bcd7d2644a053421a1bd5361c7",
+    "data/model_ready/metadata/xgboost_label_mapping.json": "510725bc3aba004e6f407e99c62ba49df736486d2eecbf089c15909e297056dc",
+    "data/model_ready/metadata/lstm_sequence_metadata.json": "17c8f05a1a05c3b2dae66f6866f4afa416bc55e0ca58b02c0d1beca0f35e255e",
+    "data/model_ready/metadata/lstm_sequence_provenance.csv": "b5254e761e8d14b1b08d94e9c2cf0db7a3252c9781ddc8c9c7e0cfabedf94876",
+    "data/models/autoencoder/final_model/autoencoder.keras": "e7e454e353ec58ea7bdb10c8bc8eda65539386c5a54d6f8a317f291a08868747",
+    "data/models/autoencoder/checkpoints/best_model.keras": "e7e454e353ec58ea7bdb10c8bc8eda65539386c5a54d6f8a317f291a08868747",
+    "data/models/autoencoder/artifacts/model_metadata.json": "ad48d6e4c5bdbb4cb15be18cc064f49824579894c15b8cc9d383014ca22b5d1e",
+    "data/models/xgboost/xgboost_model.json": "9c9ab8d0bc053d84bca49504f637eeb7c63cc9ef159dda43ffa06b97bab9d442",
+    "data/models/xgboost/metadata.json": "ffa0b8743a3372bc8aef07a1d37f5d57c2ce5f2d20f85172172ba002f540fdba",
+    "data/models/xgboost/feature_schema.json": "c76ea2360a24d683f810a746acf2e70a717f546b0a645b60e6efc093fc395368",
+    "data/models/xgboost/class_mapping.json": "32c406b92081099f307700eeebc0ebafd70b288003699b7719f6f4c102c39ed1",
+    "data/models/lstm/lstm_model.keras": "cb4251a785cdc80cb3008c9aef19c852af0d7f4108d8a5eb01a570ac342ec274",
+    "data/models/lstm/checkpoints/best_Candidate_C.keras": "d8f37b51f194ae99e563b514f142c9f42aca7b95cb36258ec78027bf6fe25df3",
+    "data/model_reports/lstm/threshold_config.json": "d5db62ec898e8338feeb921b318a7d2023c4bb46df6b96ae367a35934f89b1ae",
+    "data/model_reports/comparison/cross_model_evaluation_report.json": "ada2f356e61d2ee5e992a1c48ed02af79079b4f7c0d88fd7034ad9f4976d6adb",
+    "data/model_reports/comparison/model_consistency_report.json": "a1843ae4c4141981c35df6c7fc2ee380934ad885878d2356233ae52cfde6315d",
+    "data/model_reports/comparison/tri_model_threat_matrix.json": "17babacd6d1390696b757d892501238f3e0266569e5cb6fd04f404770f7fb669",
+    "data/model_reports/comparison/temporal_lead_time_report.json": "531224955fa4515066193d92d496f056e1ae270e578134da8a7f08a74d40a7fc",
+    "data/model_reports/comparison/unified_inference_spec.json": "3db96272c8287bdc38f67b6668288e62d9c9aab7c4a665e5a3e11aaff043135c",
+    "data/model_reports/comparison/phase_4_5_verification_report.json": "b34ced009d272f5ca229a14980bf908aeee4a1c53c7f2c59fa21f811af5f7362",
+    "data/model_reports/comparison/phase_4_5_summary.md": "43a8a2827afcf4a045346b1d82be62d8d81aa580200f0afd732d5a93fc4788b9",
+    "src/models/verification/verify_phase_4_6.py": "0fbe1e4b5e80c312e58965fd61e4fd0835d531cf12d8e1b34107204c4acc421c",
+    "data/model_reports/hardening/phase_4_6_verification_report.json": "732435da5b5018a034f704fa52b402387c96aafdb4b7a78d599d50394cb1bbcb",
+    "data/model_reports/hardening/phase_4_6_verification_report.md": "5ac3c6959ef81f248ca0930daa730cd6573230f09fcd7bf075789a430e97a184"
+  }
+}
