@@ -28,6 +28,8 @@ from src.api.schemas import (
     ThreatInferenceResponse,
     XGBoostResponse,
 )
+from src.api.handlers import NexThreatAPIHandler
+from src.api.server import NexThreatAPIServer
 from src.api.validators import (
     MAX_STREAM_RECORDS,
     validate_application_response,
@@ -60,4 +62,7 @@ __all__ = [
     "validate_single_window_request",
     "validate_stream_batch_request",
     "validate_application_response",
+    # Transport Handlers & Server
+    "NexThreatAPIHandler",
+    "NexThreatAPIServer",
 ]

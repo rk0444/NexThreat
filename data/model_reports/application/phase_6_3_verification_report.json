@@ -1,0 +1,133 @@
+{
+  "phase": "Phase 6.3 — API Endpoint Integration & Transport Handlers",
+  "version": "1.0.0",
+  "status": "ACCEPTED",
+  "timestamp": "2026-09-15T00:27:00.000000+00:00",
+  "summary": {
+    "total_gates": 20,
+    "passed_gates": 20,
+    "failed_gates": 0,
+    "verdict": "PASS"
+  },
+  "gates": {
+    "T1": {
+      "name": "Authority Compliance & Scope",
+      "status": "PASS",
+      "details": "0 modified upstream files across Phase 4, Phase 5, and Phase 6.2"
+    },
+    "T2": {
+      "name": "Endpoint Existence & Reachability",
+      "status": "PASS",
+      "details": "All 4 routes (/health, /status, /api/v1/infer/window, /api/v1/infer/stream) reachable"
+    },
+    "T3": {
+      "name": "Health Endpoint Evaluation",
+      "status": "PASS",
+      "details": "GET /health returned HTTP 200 with HEALTHY status and VERIFIED integrity"
+    },
+    "T4": {
+      "name": "Status Endpoint Runtime Telemetry",
+      "status": "PASS",
+      "details": "GET /status returned HTTP 200 with operational telemetry and 0 secret/path leaks"
+    },
+    "T5": {
+      "name": "Single-Window Format A Ingestion",
+      "status": "PASS",
+      "details": "POST /api/v1/infer/window with 13-float array returned HTTP 200 with full 24-field response"
+    },
+    "T6": {
+      "name": "Single-Window Format B Ingestion",
+      "status": "PASS",
+      "details": "POST /api/v1/infer/window with 13 named keys returned HTTP 200 with consistent response"
+    },
+    "T7": {
+      "name": "24-Field Response Authority Compliance",
+      "status": "PASS",
+      "details": "Response field-for-field verified against Phase 5.1 Section 17 schema"
+    },
+    "T8": {
+      "name": "Standardized Error Envelope",
+      "status": "PASS",
+      "details": "All errors return standardized nested error envelope with technical sanitization"
+    },
+    "T9": {
+      "name": "Input Validation Rejection",
+      "status": "PASS",
+      "details": "Missing keys, extra keys, and malformed JSON rejected at transport boundary with HTTP 400"
+    },
+    "T10": {
+      "name": "Zero Model Inference Negative Proof",
+      "status": "PASS",
+      "details": "Engine position counter remained invariant during invalid request submissions"
+    },
+    "T11": {
+      "name": "Non-Finite Numbers Rejection",
+      "status": "PASS",
+      "details": "Payloads containing NaN or Infinity rejected with HTTP 400 and zero inference"
+    },
+    "T12": {
+      "name": "Method Enforcement (HTTP 405)",
+      "status": "PASS",
+      "details": "Disallowed HTTP verbs returned HTTP 405 with appropriate Allow headers"
+    },
+    "T13": {
+      "name": "Media-Type Enforcement (HTTP 415)",
+      "status": "PASS",
+      "details": "Non-JSON media types rejected with HTTP 415 UNSUPPORTED_MEDIA_TYPE"
+    },
+    "T14": {
+      "name": "Payload Ceiling Enforcement (HTTP 413)",
+      "status": "PASS",
+      "details": "Payloads exceeding 10 MB limit rejected with HTTP 413 PAYLOAD_TOO_LARGE"
+    },
+    "T15": {
+      "name": "Public Reset Prohibition (HTTP 404)",
+      "status": "PASS",
+      "details": "/api/v1/reset returns HTTP 404 NOT_FOUND for GET, POST, PUT, DELETE, PATCH, OPTIONS"
+    },
+    "T16": {
+      "name": "Stream Transport Processing",
+      "status": "PASS",
+      "details": "POST /api/v1/infer/stream processed batch sequentially with preserved window order"
+    },
+    "T17": {
+      "name": "Stream Size Limit Enforcement (HTTP 400)",
+      "status": "PASS",
+      "details": "Stream batch exceeding 5,000 records rejected upfront with HTTP 400 STREAM_TOO_LARGE"
+    },
+    "T18": {
+      "name": "Concurrency & State Thread-Safety",
+      "status": "PASS",
+      "details": "Multi-threaded client requests executed without deadlocks; contiguous positions 1..10 proved"
+    },
+    "T19": {
+      "name": "Static / AST Architectural Audit",
+      "status": "PASS",
+      "details": "0 forbidden model imports, 0 threshold constants, 0 threat logic in handlers.py and server.py"
+    },
+    "T20": {
+      "name": "Full Multi-Phase Regression",
+      "status": "PASS",
+      "details": "Phase 4 (33/33 SHA-256), Phase 5 (22/22 gates), Phase 6.2 (16/16 gates) all passed"
+    }
+  },
+  "file_manifest": {
+    "created": [
+      "src/api/handlers.py",
+      "src/api/server.py",
+      "src/api/verification/verify_phase_6_3.py",
+      "data/model_reports/application/phase_6_3_api_endpoint_integration_and_transport_handlers_implementation_plan.md"
+    ],
+    "modified": [
+      "src/api/__init__.py"
+    ],
+    "untouched_frozen_baselines": [
+      "src/application/* (Phase 5)",
+      "src/models/* (Phase 4)",
+      "src/api/schemas.py (Phase 6.2)",
+      "src/api/validators.py (Phase 6.2)",
+      "src/api/exceptions.py (Phase 6.2)",
+      "data/models/* (Phase 4)"
+    ]
+  }
+}
