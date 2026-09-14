@@ -1,0 +1,2 @@
+window_id,timestamp,flow_count,packet_rate,byte_rate,mean_flow_duration,std_flow_duration,short_flow_ratio,mean_packet_size,packet_length_variability,fwd_bwd_packet_ratio,unique_dst_ports,unique_dst_ips,tcp_flow_ratio,syn_packet_ratio,Label,Attack
+w_csv,2017-07-03 14:00:00,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1,Attack
