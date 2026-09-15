@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+  nexthreat:
+    image: nexthreat:1.0.0
+    platform: linux/amd64
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: nexthreat-api
+    restart: on-failure:5
+    stop_grace_period: 15s
+    read_only: true
+    tmpfs:
+      - /tmp:rw,noexec,nosuid,nodev,size=64m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    user: "10001:10001"
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 2048M
+        reservations:
+          cpus: "1.0"
+          memory: 1024M
+    ports:
+      - "8000:8000"
+    environment:
+      - NEXTHREAT_HOST=0.0.0.0
+      - NEXTHREAT_PORT=8000
+      - NEXTHREAT_LOG_LEVEL=INFO
+      - PYTHONUNBUFFERED=1
+      - PYTHONHASHSEED=42
+      - PYTHONDONTWRITEBYTECODE=1
+    healthcheck:
+      test: ["CMD", "python", "-c", "import http.client, sys; conn = http.client.HTTPConnection('127.0.0.1', 8000, timeout=2); conn.request('GET', '/health'); resp = conn.getresponse(); sys.exit(0 if resp.status == 200 else 1)"]
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 5s

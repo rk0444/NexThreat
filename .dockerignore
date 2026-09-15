@@ -1,0 +1,50 @@
+# Git metadata & IDE configuration
+.git
+.git/
+.gitignore
+.gitattributes
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Python bytecode & caching
+__pycache__
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+
+# Local virtual environments & secrets
+venv
+venv/
+.venv
+.venv/
+env/
+.env
+.env/
+.env*
+
+# Scratch files & temporary logs
+scratch/
+*.log
+*.tmp
+outputs/plots/
+outputs/reports/
+
+# Unused raw data & development workspaces
+data/raw/
+data/processed/
+data/windows/
+saved_models/
+
+# Documentation planning drafts & markdown notes (excluding docs/)
+*.markdown
+*.draft

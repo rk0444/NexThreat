@@ -1,0 +1,110 @@
+{
+  "phase": "Phase 6.5 \u2014 Production Packaging & Containerization",
+  "version": "1.0.0",
+  "status": "ACCEPTED",
+  "timestamp": "2026-09-15T07:24:55.469943+00:00",
+  "summary": {
+    "total_gates": 16,
+    "passed_gates": 16,
+    "failed_gates": 0,
+    "verdict": "PASS"
+  },
+  "gates": {
+    "C1": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "C2": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "C3": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "C4": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "C5": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "C6": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "C7": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "C8": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "C9": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "C10": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "C11": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "C12": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "C13": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "C14": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "C15": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "C16": {
+      "status": "PASS",
+      "details": "PASS"
+    }
+  },
+  "upstream_regressions": {
+    "Phase 4.7": {
+      "status": "PASS",
+      "details": "33/33 SHA-256 files verified"
+    },
+    "Phase 5.7": {
+      "status": "PASS",
+      "details": "22/22 functional gates passed"
+    },
+    "Phase 6.2": {
+      "status": "PASS",
+      "details": "16/16 schema gates passed"
+    },
+    "Phase 6.3": {
+      "status": "PASS",
+      "details": "20/20 transport gates passed"
+    },
+    "Phase 6.4": {
+      "status": "PASS",
+      "details": "16/16 documentation gates passed"
+    }
+  },
+  "deliverable_sha256_checksums": {
+    ".dockerignore": "3c9f776b8b1fda6390571e54168e6ce89372a86c73bcffac0f823089cbb6a9f8",
+    "Dockerfile": "df961e03137a8beb8af0440bbb804e7a39d2e986876e5d18ecc947a828d39232",
+    "data/model_reports/application/phase_6_5_verification_report.json": "PENDING_GENERATION",
+    "data/model_reports/application/phase_6_5_verification_report.md": "PENDING_GENERATION",
+    "docker-compose.yml": "8d2882f186e6005949cfffec00b926e990e90455b32880a046c4ac3c29066585",
+    "requirements.lock": "f8ad8e5b13737224c08cafb7b9ecfc54977860a06df27f6169f79cb7b2b27ffc",
+    "src/api/entrypoint.py": "53f30aa4a64d53d4cc64a926bc1e75b7d3b4e4fdb3855d4b76f12486c6effda7",
+    "src/api/verification/verify_phase_6_5.py": "9db258b1d087cff8420d73f3093b5cf2300da4f9e8ee0147809d5ed61478c76d"
+  }
+}
