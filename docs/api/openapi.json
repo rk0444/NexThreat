@@ -1,0 +1,940 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "NexThreat Secure Network Telemetry Threat-Detection API",
+    "version": "1.0.0",
+    "description": "Authoritative contract specification for the NexThreat multi-model network telemetry threat-detection engine. Exposes high-throughput, low-latency HTTP interfaces for single-window and stream batch inference, operational health auditing, and runtime telemetry monitoring. Compliant with Phase 4, Phase 5, Phase 6.2, and Phase 6.3 governance contracts."
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:8000",
+      "description": "Local NexThreat API Server"
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "summary": "System Health and Cryptographic Integrity Evaluation",
+        "description": "Evaluates runtime server health, inference pipeline initialization state, and cryptographic SHA-256 integrity of all 33 frozen Phase 4 model and configuration artifacts.",
+        "operationId": "getHealth",
+        "responses": {
+          "200": {
+            "description": "System is healthy, pipeline is initialized, and cryptographic integrity of all 33 frozen baseline artifacts is fully verified.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "System is unhealthy, uninitialized, or cryptographic integrity verification failed (degraded state).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/status": {
+      "get": {
+        "summary": "Runtime Operational Metrics and Telemetry",
+        "description": "Retrieves real-time operational telemetry including uptime, cumulative requests served, inference window throughput, error counts, active thread pool utilization, engine state, and memory RSS footprint.",
+        "operationId": "getStatus",
+        "responses": {
+          "200": {
+            "description": "Current runtime operational telemetry snapshot.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StatusResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/infer/window": {
+      "post": {
+        "summary": "Single-Window Network Telemetry Inference",
+        "description": "Ingests a single 60-second network telemetry feature window in either Format A (ordered canonical 13-feature array) or Format B (named map containing all 13 canonical keys). Executes tri-model evaluation across Autoencoder, XGBoost, and LSTM temporal history buffer, emitting the authoritative 24-field response.",
+        "operationId": "inferSingleWindow",
+        "requestBody": {
+          "required": true,
+          "description": "Single window payload in either Format A or Format B.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "oneOf": [
+                  {
+                    "$ref": "#/components/schemas/SingleWindowCanonicalRequest"
+                  },
+                  {
+                    "$ref": "#/components/schemas/SingleWindowNamedRequest"
+                  }
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Inference completed successfully. Emits the authoritative 24-field nested response.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/StandardInferenceResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Client request rejected due to schema violation, missing fields, invalid types, non-finite values (NaN/Infinity), invalid timestamp, or non-advancing time violation.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Endpoint not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "HTTP method not allowed. Emits Allow header with POST.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "411": {
+            "description": "Length Required. Missing Content-Length header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Payload Too Large. Request body exceeds maximum size ceiling of 10 MB (10,485,760 bytes).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Media Type. Content-Type must be 'application/json'.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server or model execution error. Emits sanitized error message without leaking filesystem paths or internal memory addresses.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/infer/stream": {
+      "post": {
+        "summary": "Batch Sequential Telemetry Stream Inference",
+        "description": "Ingests a batch array of sequential 60-second network telemetry feature windows (up to 5,000 records). Windows are evaluated sequentially through the pipeline, continuously updating temporal continuity and emitting an ordered array of 24-field responses.",
+        "operationId": "inferStreamBatch",
+        "requestBody": {
+          "required": true,
+          "description": "Stream container payload containing an array of up to 5,000 single window records.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StreamBatchRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Stream inference completed successfully. Emits an ordered JSON array of 24-field inference records.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/StandardInferenceResponse"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Stream request rejected due to schema error, empty stream, non-monotonic timestamps, or record count exceeding maximum limit of 5,000 windows (STREAM_TOO_LARGE).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Endpoint not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "HTTP method not allowed. Emits Allow header with POST.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "411": {
+            "description": "Length Required. Missing Content-Length header.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "Payload Too Large. Request body exceeds maximum size ceiling of 10 MB (10,485,760 bytes).",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "415": {
+            "description": "Unsupported Media Type. Content-Type must be 'application/json'.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server or pipeline execution error. Emits sanitized error envelope.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "SingleWindowCanonicalRequest": {
+        "type": "object",
+        "description": "Format A: Canonical single window telemetry request with an ordered numeric feature array.",
+        "required": [
+          "window_id",
+          "timestamp",
+          "features"
+        ],
+        "properties": {
+          "window_id": {
+            "type": "string",
+            "description": "Unique identifier for the telemetry window.",
+            "example": "20260915_0001"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 UTC timestamp marking the close of the 60-second telemetry window.",
+            "example": "2026-09-15T00:01:00Z"
+          },
+          "features": {
+            "type": "array",
+            "description": "Ordered array of exactly 13 canonical network telemetry features in strict sequence: 1. flow_count, 2. packet_rate, 3. byte_rate, 4. mean_flow_duration, 5. std_flow_duration, 6. short_flow_ratio, 7. mean_packet_size, 8. packet_length_variability, 9. fwd_bwd_packet_ratio, 10. unique_dst_ports, 11. unique_dst_ips, 12. tcp_flow_ratio, 13. syn_packet_ratio.",
+            "minItems": 13,
+            "maxItems": 13,
+            "items": {
+              "type": "number"
+            },
+            "example": [
+              142.0,
+              45.2,
+              38210.5,
+              12.4,
+              4.2,
+              0.15,
+              845.0,
+              120.5,
+              1.25,
+              18.0,
+              12.0,
+              0.92,
+              0.08
+            ]
+          }
+        }
+      },
+      "SingleWindowNamedRequest": {
+        "type": "object",
+        "description": "Format B: Named object adapter request mapping all 13 canonical telemetry feature names to numeric values.",
+        "required": [
+          "window_id",
+          "timestamp",
+          "features"
+        ],
+        "properties": {
+          "window_id": {
+            "type": "string",
+            "description": "Unique identifier for the telemetry window.",
+            "example": "20260915_0001"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 UTC timestamp marking the close of the 60-second telemetry window.",
+            "example": "2026-09-15T00:01:00Z"
+          },
+          "features": {
+            "$ref": "#/components/schemas/CanonicalNamedFeatures"
+          }
+        }
+      },
+      "CanonicalNamedFeatures": {
+        "type": "object",
+        "description": "Exact 13 canonical features required by the NexThreat multi-model pipeline.",
+        "required": [
+          "flow_count",
+          "packet_rate",
+          "byte_rate",
+          "mean_flow_duration",
+          "std_flow_duration",
+          "short_flow_ratio",
+          "mean_packet_size",
+          "packet_length_variability",
+          "fwd_bwd_packet_ratio",
+          "unique_dst_ports",
+          "unique_dst_ips",
+          "tcp_flow_ratio",
+          "syn_packet_ratio"
+        ],
+        "properties": {
+          "flow_count": {
+            "type": "number",
+            "description": "Total network flows recorded during window.",
+            "example": 142.0
+          },
+          "packet_rate": {
+            "type": "number",
+            "description": "Average packets transmitted per second.",
+            "example": 45.2
+          },
+          "byte_rate": {
+            "type": "number",
+            "description": "Average bytes transmitted per second.",
+            "example": 38210.5
+          },
+          "mean_flow_duration": {
+            "type": "number",
+            "description": "Mean duration of flows in seconds.",
+            "example": 12.4
+          },
+          "std_flow_duration": {
+            "type": "number",
+            "description": "Standard deviation of flow durations in seconds.",
+            "example": 4.2
+          },
+          "short_flow_ratio": {
+            "type": "number",
+            "description": "Proportion of flows lasting under 1 second.",
+            "example": 0.15
+          },
+          "mean_packet_size": {
+            "type": "number",
+            "description": "Mean size of packets in bytes.",
+            "example": 845.0
+          },
+          "packet_length_variability": {
+            "type": "number",
+            "description": "Standard deviation of packet lengths in bytes.",
+            "example": 120.5
+          },
+          "fwd_bwd_packet_ratio": {
+            "type": "number",
+            "description": "Ratio of forward packets to backward packets.",
+            "example": 1.25
+          },
+          "unique_dst_ports": {
+            "type": "number",
+            "description": "Count of distinct destination ports observed.",
+            "example": 18.0
+          },
+          "unique_dst_ips": {
+            "type": "number",
+            "description": "Count of distinct destination IP addresses observed.",
+            "example": 12.0
+          },
+          "tcp_flow_ratio": {
+            "type": "number",
+            "description": "Proportion of flows utilizing the TCP protocol.",
+            "example": 0.92
+          },
+          "syn_packet_ratio": {
+            "type": "number",
+            "description": "Proportion of TCP packets with SYN flag set.",
+            "example": 0.08
+          }
+        }
+      },
+      "StreamBatchRequest": {
+        "type": "object",
+        "description": "Container for batch sequential telemetry ingestion up to 5,000 records.",
+        "required": [
+          "stream"
+        ],
+        "properties": {
+          "stream": {
+            "type": "array",
+            "description": "Sequential array of single window records (Format A or Format B), ordered chronologically. Maximum 5,000 items.",
+            "maxItems": 5000,
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/SingleWindowCanonicalRequest"
+                },
+                {
+                  "$ref": "#/components/schemas/SingleWindowNamedRequest"
+                }
+              ]
+            }
+          }
+        }
+      },
+      "StandardInferenceResponse": {
+        "type": "object",
+        "description": "Complete authoritative 24-field nested inference response across 5 model/state blocks and root telemetry.",
+        "required": [
+          "window_id",
+          "timestamp",
+          "autoencoder",
+          "xgboost",
+          "lstm",
+          "threat_inference"
+        ],
+        "properties": {
+          "window_id": {
+            "type": "string",
+            "description": "Unique identifier of the inferred window.",
+            "example": "20260915_0001"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "ISO 8601 UTC timestamp marking the close of the window.",
+            "example": "2026-09-15T00:01:00Z"
+          },
+          "global_position": {
+            "type": "integer",
+            "description": "Monotonically incrementing global sequence position.",
+            "example": 1
+          },
+          "dataset_day": {
+            "type": "string",
+            "description": "Dataset calendar partition key (YYYY-MM-DD).",
+            "example": "2026-09-15"
+          },
+          "autoencoder": {
+            "$ref": "#/components/schemas/AutoencoderBlock"
+          },
+          "xgboost": {
+            "$ref": "#/components/schemas/XGBoostBlock"
+          },
+          "lstm": {
+            "$ref": "#/components/schemas/LSTMBlock"
+          },
+          "threat_inference": {
+            "$ref": "#/components/schemas/ThreatInferenceBlock"
+          },
+          "execution_metadata": {
+            "$ref": "#/components/schemas/ExecutionMetadataBlock"
+          }
+        }
+      },
+      "AutoencoderBlock": {
+        "type": "object",
+        "description": "Autoencoder reconstruction anomaly detection evaluation.",
+        "required": [
+          "reconstruction_mse",
+          "threshold",
+          "is_anomaly"
+        ],
+        "properties": {
+          "reconstruction_mse": {
+            "type": "number",
+            "description": "Mean squared error of the autoencoder feature reconstruction.",
+            "example": 0.001842
+          },
+          "threshold": {
+            "type": "number",
+            "description": "Authoritative frozen reconstruction error threshold (0.003207791231673312).",
+            "example": 0.003207791231673312
+          },
+          "is_anomaly": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "description": "Binary anomaly indicator (1 if reconstruction_mse >= threshold, else 0).",
+            "example": 0
+          }
+        }
+      },
+      "XGBoostBlock": {
+        "type": "object",
+        "description": "Supervised multiclass classification evaluation across 8 canonical traffic classes.",
+        "required": [
+          "predicted_class_index",
+          "predicted_class_name",
+          "is_attack"
+        ],
+        "properties": {
+          "predicted_class_index": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 7,
+            "description": "Multiclass argmax prediction index: 0=Benign, 1=Botnet, 2=Brute_Force, 3=DDoS, 4=DoS, 5=Infiltration, 6=Port_Scan, 7=Web_Attack.",
+            "example": 0
+          },
+          "predicted_class_name": {
+            "type": "string",
+            "enum": [
+              "Benign",
+              "Botnet",
+              "Brute_Force",
+              "DDoS",
+              "DoS",
+              "Infiltration",
+              "Port_Scan",
+              "Web_Attack"
+            ],
+            "description": "Authoritative label corresponding to predicted_class_index.",
+            "example": "Benign"
+          },
+          "is_attack": {
+            "type": "integer",
+            "enum": [
+              0,
+              1
+            ],
+            "description": "Binary attack indicator derived strictly as predicted_class_index != 0 (1 if attack, 0 if Benign). Zero probability threshold is applied.",
+            "example": 0
+          },
+          "class_probabilities": {
+            "type": "array",
+            "description": "Softmax probability distribution across all 8 classes in index order.",
+            "minItems": 8,
+            "maxItems": 8,
+            "items": {
+              "type": "number"
+            },
+            "example": [
+              0.9982,
+              0.0003,
+              0.0002,
+              0.0004,
+              0.0005,
+              0.0001,
+              0.0002,
+              0.0001
+            ]
+          }
+        }
+      },
+      "LSTMBlock": {
+        "type": "object",
+        "description": "Temporal lookback sequence forecasting evaluation.",
+        "required": [
+          "is_eligible",
+          "ineligibility_reason",
+          "forecast_probability",
+          "threshold",
+          "forecast_decision"
+        ],
+        "properties": {
+          "is_eligible": {
+            "type": "boolean",
+            "description": "Indicates whether temporal sequence buffer contains 10 continuous 60-second windows.",
+            "example": true
+          },
+          "ineligibility_reason": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "Reason for temporal ineligibility ('lstm_lookback_cold_start', 'temporal_gap_discontinuity'), or null when eligible.",
+            "example": null
+          },
+          "forecast_probability": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "description": "Predicted probability of imminent attack over next time horizon, or null when ineligible.",
+            "example": 0.082
+          },
+          "threshold": {
+            "type": "number",
+            "description": "Authoritative frozen LSTM forecasting threshold (0.3000).",
+            "example": 0.3
+          },
+          "forecast_decision": {
+            "oneOf": [
+              {
+                "type": "integer",
+                "enum": [
+                  0,
+                  1
+                ]
+              },
+              {
+                "type": "string",
+                "enum": [
+                  "unavailable"
+                ]
+              }
+            ],
+            "description": "Binary forecast decision (1 if forecast_probability >= threshold, else 0), or 'unavailable' during cold-start.",
+            "example": 0
+          }
+        }
+      },
+      "ThreatInferenceBlock": {
+        "type": "object",
+        "description": "Consolidated threat-state synthesis across Autoencoder, XGBoost, and LSTM evaluations.",
+        "required": [
+          "is_eligible",
+          "threat_state_code",
+          "threat_state_name",
+          "priority_tier",
+          "decision_tuple"
+        ],
+        "properties": {
+          "is_eligible": {
+            "type": "boolean",
+            "description": "True when all three model decisions are eligible for consolidated threat state synthesis.",
+            "example": true
+          },
+          "threat_state_code": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "S0",
+              "S1",
+              "S2",
+              "S3",
+              "S4",
+              "S5",
+              "S6",
+              "S7",
+              null
+            ],
+            "description": "Authoritative threat-state code (S0 through S7), or null when ineligible during cold-start.",
+            "example": "S0"
+          },
+          "threat_state_name": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "BENIGN_CONCORDANCE",
+              "LSTM_FORECAST_ONLY",
+              "XGB_ATTACK_ONLY",
+              "XGB_LSTM_CONSISTENCY",
+              "AE_ANOMALY_ONLY",
+              "AE_LSTM_CONSISTENCY",
+              "AE_XGB_CONSENSUS",
+              "TRI_MODEL_CONSENSUS",
+              null
+            ],
+            "description": "Authoritative threat-state identifier name, or null when ineligible.",
+            "example": "BENIGN_CONCORDANCE"
+          },
+          "priority_tier": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "P4_INFORMATIONAL",
+              "P3_ELEVATED",
+              "P2_HIGH",
+              "P1_CRITICAL",
+              null
+            ],
+            "description": "SOC triage priority tier: P4_INFORMATIONAL (S0), P3_ELEVATED (S1, S4), P2_HIGH (S2, S5), P1_CRITICAL (S3, S6, S7), or null when ineligible.",
+            "example": "P4_INFORMATIONAL"
+          },
+          "decision_tuple": {
+            "type": [
+              "array",
+              "null"
+            ],
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "integer",
+              "enum": [
+                0,
+                1
+              ]
+            },
+            "description": "Binary decision vector [ae_decision, xgb_decision, lstm_decision] where 0 is benign and 1 is anomalous/attack/forecast, or null when ineligible.",
+            "example": [
+              0,
+              0,
+              0
+            ]
+          }
+        }
+      },
+      "ExecutionMetadataBlock": {
+        "type": "object",
+        "description": "Inference engine telemetry and schema versioning.",
+        "required": [
+          "inference_latency_ms",
+          "schema_version",
+          "engine"
+        ],
+        "properties": {
+          "inference_latency_ms": {
+            "type": "number",
+            "description": "Wall-clock inference execution latency in milliseconds.",
+            "example": 2.18
+          },
+          "schema_version": {
+            "type": "string",
+            "description": "Authoritative response schema version.",
+            "example": "1.0.0"
+          },
+          "engine": {
+            "type": "string",
+            "description": "Underlying runtime inference engine designation.",
+            "example": "NexThreat-Phase5.2"
+          }
+        }
+      },
+      "HealthResponse": {
+        "type": "object",
+        "description": "Response payload emitted by the /health endpoint.",
+        "required": [
+          "status",
+          "pipeline_initialized",
+          "integrity_verified",
+          "model_inventory_count",
+          "active_threads",
+          "timestamp"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "HEALTHY",
+              "DEGRADED",
+              "UNHEALTHY"
+            ],
+            "example": "HEALTHY"
+          },
+          "pipeline_initialized": {
+            "type": "boolean",
+            "example": true
+          },
+          "integrity_verified": {
+            "type": "boolean",
+            "description": "Cryptographic confirmation that all 33 frozen Phase 4 artifacts match their authoritative SHA-256 hashes.",
+            "example": true
+          },
+          "model_inventory_count": {
+            "type": "integer",
+            "description": "Count of loaded machine learning models (exactly 3: Autoencoder, XGBoost, LSTM).",
+            "example": 3
+          },
+          "active_threads": {
+            "type": "integer",
+            "description": "Count of active threads in the execution pool.",
+            "example": 4
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-09-15T00:00:00Z"
+          }
+        }
+      },
+      "StatusResponse": {
+        "type": "object",
+        "description": "Response payload emitted by the /status telemetry endpoint.",
+        "required": [
+          "uptime_seconds",
+          "total_requests_served",
+          "total_windows_inferred",
+          "total_errors",
+          "active_sessions",
+          "engine_state",
+          "model_latency_percentiles_ms",
+          "memory_rss_bytes",
+          "timestamp"
+        ],
+        "properties": {
+          "uptime_seconds": {
+            "type": "number",
+            "example": 1420.5
+          },
+          "total_requests_served": {
+            "type": "integer",
+            "example": 5230
+          },
+          "total_windows_inferred": {
+            "type": "integer",
+            "example": 15420
+          },
+          "total_errors": {
+            "type": "integer",
+            "example": 3
+          },
+          "active_sessions": {
+            "type": "integer",
+            "example": 1
+          },
+          "engine_state": {
+            "type": "string",
+            "example": "IDLE"
+          },
+          "model_latency_percentiles_ms": {
+            "type": "object",
+            "properties": {
+              "p50": {
+                "type": "number",
+                "example": 1.95
+              },
+              "p95": {
+                "type": "number",
+                "example": 3.42
+              },
+              "p99": {
+                "type": "number",
+                "example": 5.12
+              }
+            }
+          },
+          "memory_rss_bytes": {
+            "type": "integer",
+            "example": 1150423040
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "example": "2026-09-15T00:23:40Z"
+          }
+        }
+      },
+      "ErrorResponse": {
+        "type": "object",
+        "description": "Standardized Phase 6.2 error envelope.",
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "required": [
+              "code",
+              "message",
+              "status_code",
+              "timestamp",
+              "details"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "description": "Standardized machine-readable error code.",
+                "example": "INPUT_VALIDATION_ERROR"
+              },
+              "message": {
+                "type": "string",
+                "description": "Human-readable sanitized error description free of technical leaks.",
+                "example": "Invalid features array: expected 13 floats, got 12."
+              },
+              "status_code": {
+                "type": "integer",
+                "description": "Matching HTTP status code.",
+                "example": 400
+              },
+              "timestamp": {
+                "type": "string",
+                "format": "date-time",
+                "example": "2026-09-15T00:05:00Z"
+              },
+              "details": {
+                "type": "object",
+                "description": "Structured machine-readable context regarding the error.",
+                "example": {
+                  "field": "features",
+                  "expected_length": 13,
+                  "received_length": 12
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

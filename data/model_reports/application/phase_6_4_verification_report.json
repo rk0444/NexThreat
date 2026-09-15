@@ -1,0 +1,105 @@
+{
+  "phase": "Phase 6.4 \u2014 API Documentation, Integration Contracts & Operational Interface Specification",
+  "version": "1.0.0",
+  "status": "ACCEPTED",
+  "timestamp": "2026-09-15T05:56:52.004896+00:00",
+  "summary": {
+    "total_gates": 16,
+    "passed_gates": 16,
+    "failed_gates": 0,
+    "verdict": "PASS"
+  },
+  "gates": {
+    "D1": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "D2": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "D3": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "D4": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "D5": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "D6": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "D7": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "D8": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "D9": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "D10": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "D11": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "D12": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "D13": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "D14": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "D15": {
+      "status": "PASS",
+      "details": "PASS"
+    },
+    "D16": {
+      "status": "PASS",
+      "details": "PASS"
+    }
+  },
+  "upstream_regressions": {
+    "Phase 4.7": {
+      "status": "PASS",
+      "details": "33/33 SHA-256 files verified"
+    },
+    "Phase 5.7": {
+      "status": "PASS",
+      "details": "22/22 functional gates passed"
+    },
+    "Phase 6.2": {
+      "status": "PASS",
+      "details": "16/16 schema gates passed"
+    },
+    "Phase 6.3": {
+      "status": "PASS",
+      "details": "20/20 transport gates passed"
+    }
+  },
+  "deliverable_sha256_checksums": {
+    "data/model_reports/application/phase_6_4_verification_report.json": "PENDING_GENERATION",
+    "data/model_reports/application/phase_6_4_verification_report.md": "PENDING_GENERATION",
+    "docs/api/api_integration_guide.md": "1de50d18e4928cd5792d48494c291ea5944ba9c402b1dde2b4343312fd5908c8",
+    "docs/api/integration_examples.json": "56cd1835127cc10a8c937a3497c97a6ebbb383b8ba83e1bcb4c7526ba956c6f4",
+    "docs/api/openapi.json": "171283cf68d8aeb356337065ad5c33d9dcf50731d95f2c17d157d09afa2e0432",
+    "docs/api/operational_runbook.md": "3036f583640018a4e26cc00d7931be38e78d2a7b9976d6b450f03831f6c18f53",
+    "src/api/verification/verify_phase_6_4.py": "efa2da6ae43da937d58e6fe409775667a3082254c48e8890ea0cc12a31b12797"
+  }
+}
