@@ -1,0 +1,138 @@
+{
+  "phase": "Phase 6.6 \u2014 API End-to-End Verification & Regression",
+  "version": "1.0.0",
+  "status": "ACCEPTED \u2014 PHASE 6.6 COMPLETE",
+  "timestamp": "2026-09-19T06:31:17.080093+00:00",
+  "baseline_commit": "9aa4d78afc0d2d29fd7a49a104aa4acb7f5acc36",
+  "execution_policy": {
+    "deterministic_acceptance": true,
+    "retry_to_pass_prohibited": true,
+    "single_execution_enforced": true
+  },
+  "summary": {
+    "total_gates": 16,
+    "passed_gates": 16,
+    "failed_gates": 0,
+    "verdict": "PASS"
+  },
+  "gates": {
+    "E2E-1": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "PASS"
+    },
+    "E2E-2": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "PASS"
+    },
+    "E2E-3": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "PASS"
+    },
+    "E2E-4": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "PASS"
+    },
+    "E2E-5": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "PASS"
+    },
+    "E2E-6": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "PASS"
+    },
+    "E2E-7": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "Windows 1\u201310 verified cold-start/ineligible; window 11 activated live LSTM & threat inference"
+    },
+    "E2E-8": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "PASS"
+    },
+    "E2E-9": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "PASS"
+    },
+    "E2E-10": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "PASS"
+    },
+    "E2E-11": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "PASS"
+    },
+    "E2E-12": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "PASS"
+    },
+    "E2E-13": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "PASS"
+    },
+    "E2E-14": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "PASS"
+    },
+    "E2E-15": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "PASS"
+    },
+    "E2E-16": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "PASS"
+    }
+  },
+  "upstream_regressions": {
+    "Phase 4.7": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "33/33 files byte-exact SHA-256 match"
+    },
+    "Phase 5.7": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "22/22 functional gates passed"
+    },
+    "Phase 6.2": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "16/16 schema gates passed"
+    },
+    "Phase 6.3": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "20/20 transport gates passed (single execution, 0 retries)"
+    },
+    "Phase 6.4": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "16/16 documentation gates passed"
+    },
+    "Phase 6.5": {
+      "status": "PASS",
+      "attempt_count": 1,
+      "details": "16/16 packaging gates passed"
+    }
+  },
+  "deliverable_sha256_checksums": {
+    "data/model_reports/application/phase_6_6_api_e2e_verification_and_regression_implementation_plan.md": "0ad2a367f5bf238c85dfa4590a1ace79dcddcf9c5d0179dfe1de64c55f395850",
+    "data/model_reports/application/phase_6_6_verification_report.json": "d2b2077b5ff644e80256e836b815140d7550a175ecff26db1e13bf55cc447f68",
+    "data/model_reports/application/phase_6_6_verification_report.md": "c99fc3822b78786fb6c556aaf13ebe519193d2db480ed668af1cfd09856de9b9",
+    "src/api/verification/verify_phase_6_6.py": "31f5d3834ae704e837713ffa3cee11859f06e4a306f377146985755236252606"
+  }
+}
